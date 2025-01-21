@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import appStyles from "../../App.module.css";
 
-import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
+import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 
 const SignUpForm = () => {
@@ -33,7 +33,7 @@ const SignUpForm = () => {
             history.push("/signin");
         } catch (err) {
             setErrors(err.response?.data);
-            console.log(err);
+            console.log(err.response);
         }
     };
 
@@ -44,6 +44,7 @@ const SignUpForm = () => {
                     <h1 className={styles.Header}>Sign up</h1>
 
                     <Form onSubmit={handleSubmit}>
+
                         <Form.Group controlId="username">
                             <Form.Label className="d-none">Username</Form.Label>
                             <Form.Control
