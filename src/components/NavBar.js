@@ -4,14 +4,25 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import UserImage from "./UserImage";
+import axios from "axios";
 
 const NavBar = () => {
     const currentUser = useCurrentUser();
+    const setCurrentUser = useSetCurrentUser();
+
+    const handleSignOut = async () => {
+        try {
+          await axios.post("dj-rest-auth/logout/");
+          setCurrentUser(null);
+        } catch (err) {
+          console.log(err);
+        }
+      };
 
     const loggedOutNav = (
         <>
-            <h1>{currentUser?.username}</h1>
             <NavLink
                 className={`${styles.NavLink} text-center`}
                 activeClassName={styles.Active}
@@ -32,6 +43,12 @@ const NavBar = () => {
             <NavLink
                 className={`${styles.NavLink} text-center`}
                 activeClassName={styles.Active}
+                to={`/profiles/${currentUser?.profile_id}`}>
+                Profile
+            </NavLink>
+            <NavLink
+                className={`${styles.NavLink} text-center`}
+                activeClassName={styles.Active}
                 to="/customtasks">
                 Custom Tasks
             </NavLink>
@@ -40,6 +57,13 @@ const NavBar = () => {
                 className={`${styles.NavLink} text-center`}
                 activeClassName={styles.Active}>
                 Project Archive
+            </NavLink>
+            <NavLink
+                className={`${styles.NavLink} text-center`}
+                to="/"
+                onClick={handleSignOut}
+            >
+                Sign out
             </NavLink>
         </>
     );
@@ -52,6 +76,9 @@ const NavBar = () => {
                         <h1>Free Flow</h1>
                     </Navbar.Brand>
                 </NavLink>
+                <Nav.Item>
+                    <UserImage src={currentUser?.profile_image} text={currentUser?.username} height={30} />
+                </Nav.Item>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto text-left">
