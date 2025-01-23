@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { axiosReq } from "../../api/axiosDefaults";
+import ProjectPreview from "./ProjectPreview";
 
 const ProjectsPage = ({filter=""}) => {
 
@@ -36,10 +37,7 @@ const ProjectsPage = ({filter=""}) => {
                     {projects.length ? (
                         projects.map((project) => {
                             return (
-                            <div key={project.id}>
-                                <p>{project.title}</p>
-                                <p>{project.brief}</p>
-                            </div>
+                                <ProjectPreview key={project.id} {...project} />
                             )
                         })
                     ) : (
