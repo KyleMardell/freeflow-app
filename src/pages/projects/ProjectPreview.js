@@ -5,7 +5,7 @@ const ProjectPreview = (props) => {
     const { title, due_date, status, updated_at } = props;
 
     return (
-        <div>
+        <div className="py-2">
             <div className="d-flex justify-content-between">
                 <h2>{title}</h2>
                 <Link >

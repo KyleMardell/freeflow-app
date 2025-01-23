@@ -26,14 +26,11 @@ const ProjectsPage = ({filter=""}) => {
     }, [filter]);
 
     return (
-        <Row className="h-100">
-            <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <Row className="h-100 d-flex justify-content-center">
+            <Col className="py-2" lg={8}>
                 <h1>Projects List</h1>
                 {hasLoaded ? (
                     <>
-                    {
-                        console.log(projects)
-                    }
                     {projects.length ? (
                         projects.map((project) => {
                             return (
@@ -41,12 +38,12 @@ const ProjectsPage = ({filter=""}) => {
                             )
                         })
                     ) : (
-                        <div>no results 1</div>
+                        <div>No projects yet...</div>
                     )}
                     </>
                 ) : (
                     <>
-                        <div>no results 2</div>
+                        <div>No projects yet...</div>
                     </>
                 )}
             </Col>
