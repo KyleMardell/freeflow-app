@@ -4,7 +4,10 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import {
+    useCurrentUser,
+    useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
 import UserImage from "./UserImage";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
@@ -13,16 +16,16 @@ const NavBar = () => {
     const currentUser = useCurrentUser();
     const setCurrentUser = useSetCurrentUser();
 
-    const {expanded, setExpanded, ref} = useClickOutsideToggle();
+    const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
     const handleSignOut = async () => {
         try {
-          await axios.post("dj-rest-auth/logout/");
-          setCurrentUser(null);
+            await axios.post("dj-rest-auth/logout/");
+            setCurrentUser(null);
         } catch (err) {
-          console.log(err);
+            console.log(err);
         }
-      };
+    };
 
     const loggedOutNav = (
         <>
@@ -64,27 +67,34 @@ const NavBar = () => {
             <NavLink
                 className={`${styles.NavLink} text-center`}
                 to="/"
-                onClick={handleSignOut}
-            >
+                onClick={handleSignOut}>
                 Sign out
             </NavLink>
         </>
     );
 
     return (
-        <Navbar expanded={expanded} className={styles.NavBar} expand="lg" fixed="top">
+        <Navbar
+            expanded={expanded}
+            className={styles.NavBar}
+            expand="lg"
+            fixed="top">
             <Container>
-                <NavLink to="/">
+                <NavLink to={currentUser ? "/projects" : "/"}>
                     <Navbar.Brand>
                         <h1>Free Flow</h1>
                     </Navbar.Brand>
                 </NavLink>
-                { currentUser &&
+                {currentUser && (
                     <Nav.Item>
-                        <UserImage src={currentUser?.profile_image} text={currentUser?.username} height={30} />
+                        <UserImage
+                            src={currentUser?.profile_image}
+                            text={currentUser?.username}
+                            height={30}
+                        />
                     </Nav.Item>
-                }
-                
+                )}
+
                 <Navbar.Toggle
                     ref={ref}
                     onClick={() => setExpanded(!expanded)}
@@ -96,7 +106,7 @@ const NavBar = () => {
                             exact
                             className={`${styles.NavLink} text-center`}
                             activeClassName={styles.Active}
-                            to="/">
+                            to={currentUser ? "/projects" : "/"}>
                             Home
                         </NavLink>
                         {currentUser ? loggedInNav : loggedOutNav}

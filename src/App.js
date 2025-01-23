@@ -6,6 +6,7 @@ import './api/axiosDefaults';
 
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
+import ProjectsPage from "./projects/ProjectsPage";
 
 function App() {
 
@@ -24,6 +25,16 @@ function App() {
                                 exact
                                 path="/signup"
                                 render={() => <SignUpForm />}
+                            />
+                            <Route
+                                exact
+                                path="/projects"
+                                render={() => <ProjectsPage />}
+                            />
+                            <Route
+                                exact
+                                path="/profile"
+                                render={() => <h1>Profile</h1>}
                             />
                             <Route
                                 exact
