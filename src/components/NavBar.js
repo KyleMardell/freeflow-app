@@ -49,7 +49,7 @@ const NavBar = () => {
             <NavLink
                 className={`${styles.NavLink} text-center`}
                 activeClassName={styles.Active}
-                to={`/profiles/${currentUser?.profile_id}`}>
+                to={`/profile`}>
                 Profile
             </NavLink>
             <NavLink
