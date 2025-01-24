@@ -8,7 +8,6 @@ import {
     useCurrentUser,
     useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
-import UserImage from "./UserImage";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
@@ -82,18 +81,9 @@ const NavBar = () => {
             <Container>
                 <NavLink to={currentUser ? "/projects" : "/"}>
                     <Navbar.Brand>
-                        <h1>Free Flow</h1>
+                        <h1 className={styles.NavBrand}>Free Flow</h1>
                     </Navbar.Brand>
                 </NavLink>
-                {currentUser && (
-                    <Nav.Item>
-                        <UserImage
-                            src={currentUser?.profile_image}
-                            text={currentUser?.username}
-                            height={30}
-                        />
-                    </Nav.Item>
-                )}
 
                 <Navbar.Toggle
                     ref={ref}
