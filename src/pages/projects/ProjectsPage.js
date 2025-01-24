@@ -4,6 +4,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { axiosReq } from "../../api/axiosDefaults";
 import ProjectPreview from "./ProjectPreview";
+import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Button } from "react-bootstrap";
+import buttonStyles from "../../styles/Button.module.css";
 
 const ProjectsPage = ({filter=""}) => {
 
@@ -27,8 +30,13 @@ const ProjectsPage = ({filter=""}) => {
 
     return (
         <Row className="h-100 d-flex justify-content-center">
-            <Col className="py-2" lg={8}>
-                <h1>Projects List</h1>
+            <Col className="py-2 text-center" lg={8}>
+                <h1 className="my-4">My Projects</h1>
+                <Link>
+                    <Button className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
+                        Create New Project
+                    </Button>
+                </Link>
                 {hasLoaded ? (
                     <>
                     {projects.length ? (

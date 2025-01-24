@@ -7,6 +7,7 @@ import './api/axiosDefaults';
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import ProjectsPage from "./pages/projects/ProjectsPage";
+import ProjectPage from "./pages/projects/ProjectPage";
 
 function App() {
 
@@ -30,6 +31,11 @@ function App() {
                                 exact
                                 path="/projects"
                                 render={() => <ProjectsPage />}
+                            />
+                            <Route
+                                exact
+                                path="/projects/:id"
+                                render={() => <ProjectPage />}
                             />
                             <Route
                                 exact

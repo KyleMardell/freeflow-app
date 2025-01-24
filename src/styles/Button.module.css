@@ -5,8 +5,9 @@
     padding: 4px 10px;
     margin-left: 2px;
     margin-right: 2px;
-    min-width: 75px;
+    min-width: 110px;
     background-color: #001E6C;
+    color: #ffffff;
   }
   
   .Button:hover {

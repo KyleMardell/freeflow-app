@@ -1,0 +1,14 @@
+.Preview {
+    border: 2px solid #001E6C;
+    border-radius: 10px;
+    color: #001E6C;
+}
+
+.PreviewLink:hover {
+    text-decoration: none;
+}
+
+.Preview:hover {
+    color: #5089C6;
+    border: 2px solid #5089C6;
+}
