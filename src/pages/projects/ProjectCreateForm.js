@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Row, Col } from "react-bootstrap";
 
 import buttonStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router-dom";
@@ -13,7 +13,7 @@ const ProjectCreateForm = () => {
     const [projectData, setProjectData] = useState({
         title: "",
         brief: "",
-        hourly_rate: 0.00,
+        hourly_rate: 0.0,
         due_date: "",
         status: "draft",
     });
@@ -47,10 +47,10 @@ const ProjectCreateForm = () => {
         }
     };
 
-    return (
-        <Form onSubmit={handleSubmit}>
+    const formInputFields = (
+        <>
             <Form.Group>
-                <Form.Label>Title</Form.Label>
+                <Form.Label className="d-none">Title</Form.Label>
                 <Form.Control
                     type="text"
                     name="title"
@@ -66,7 +66,7 @@ const ProjectCreateForm = () => {
             ))}
 
             <Form.Group>
-                <Form.Label>Brief</Form.Label>
+                <Form.Label className="d-none">Brief</Form.Label>
                 <Form.Control
                     as="textarea"
                     rows={5}
@@ -82,69 +82,85 @@ const ProjectCreateForm = () => {
                 </Alert>
             ))}
 
-            <Form.Group>
-                <Form.Label>Status</Form.Label>
-                <Form.Control
-                    as="select"
-                    name="status"
-                    value={status}
-                    onChange={handleChange}>
-                    <option value="draft">Draft</option>
-                    <option value="active">Active</option>
-                    <option value="complete">Complete</option>
-                </Form.Control>
-            </Form.Group>
-            {errors?.status?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
+            <Row>
+                <Col xs={12} lg={4}>
+                    <Form.Group>
+                        <Form.Label className="px-2">Status</Form.Label>
+                        <Form.Control
+                            as="select"
+                            name="status"
+                            value={status}
+                            onChange={handleChange}>
+                            <option value="draft">Draft</option>
+                            <option value="active">Active</option>
+                            <option value="complete">Complete</option>
+                        </Form.Control>
+                    </Form.Group>
+                    {errors?.status?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
+                </Col>
+                <Col xs={12} lg={4}>
+                    <Form.Group>
+                        <Form.Label className="px-2">Due Date</Form.Label>
+                        <Form.Control
+                            type="date"
+                            placeholder="Select due date"
+                            name="due_date"
+                            value={due_date}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+                    {errors?.due_date?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
+                </Col>
+                <Col xs={12} lg={4}>
+                    <Form.Group>
+                        <Form.Label className="px-2">Hourly Rate (£)</Form.Label>
+                        <Form.Control
+                            type="number"
+                            placeholder="Hourly rate"
+                            min="0"
+                            step="0.01"
+                            name="hourly_rate"
+                            value={hourly_rate}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+                    {errors?.hourly_rate?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
+                </Col>
+            </Row>
+        </>
+    );
 
-            <Form.Row>
-                <Form.Group>
-                    <Form.Label>Due Date</Form.Label>
-                    <Form.Control
-                        type="date"
-                        placeholder="Select due date"
-                        name="due_date"
-                        value={due_date}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-                {errors?.due_date?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
-                ))}
-
-                <Form.Group>
-                    <Form.Label>Hourly Rate (£)</Form.Label>
-                    <Form.Control
-                        type="number"
-                        placeholder="Hourly rate"
-                        min="0"
-                        step="0.01"
-                        name="hourly_rate"
-                        value={hourly_rate}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-            </Form.Row>
-            {errors?.hourly_rate?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
-            <Button className={buttonStyles.Button} type="submit">
-                Submit
-            </Button>
-            {errors.non_field_errors?.map((message, idx) => (
-                <Alert variant="warning" key={idx} className="mt-3">
-                    {message}
-                </Alert>
-            ))}
-        </Form>
+    return (
+        <Row className="h-100 d-flex justify-content-center">
+            <Col className="my-auto p-2 text-center" lg={8}>
+                <h1 className="my-4">Create a Project</h1>
+            </Col>
+            <Col className="my-auto p-2" lg={8}>
+                <Form onSubmit={handleSubmit}>
+                    {formInputFields}
+                    <Button className={`${buttonStyles.Button} ${buttonStyles.Wide}`} type="submit">
+                        Submit
+                    </Button>
+                    {errors.non_field_errors?.map((message, idx) => (
+                        <Alert variant="warning" key={idx} className="mt-3">
+                            {message}
+                        </Alert>
+                    ))}
+                </Form>
+            </Col>
+        </Row>
     );
 };
 
