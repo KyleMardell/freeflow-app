@@ -9,6 +9,7 @@ import SignInForm from "./pages/auth/SignInForm";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import ProjectPage from "./pages/projects/ProjectPage";
 import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
+import ProjectEditForm from "./pages/projects/ProjectEditForm";
 
 function App() {
 
@@ -42,6 +43,11 @@ function App() {
                                 exact
                                 path="/projectscreate"
                                 render={() => <ProjectCreateForm />}
+                            />
+                            <Route
+                                exact
+                                path="/projects/:id/edit"
+                                render={() => <ProjectEditForm />}
                             />
                             <Route
                                 exact

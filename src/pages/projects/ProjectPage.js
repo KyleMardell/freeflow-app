@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Button } from "react-bootstrap";
 
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
+import { Link } from "react-router-dom/cjs/react-router-dom";
+
 import styles from "../../styles/ProjectPage.module.css";
+import buttonStyles from "../../styles/Button.module.css";
 
 const ProjectPage = () => {
     const { id } = useParams();
@@ -32,7 +35,7 @@ const ProjectPage = () => {
     }, [id]);
 
     const projectDetails = (
-        <div>
+        <>
             <Row>
                 <Col className={`${styles.DetailBorder} text-center`}>
                     <p>Due date: {due_date ? due_date : <>No date set</>}</p>
@@ -57,14 +60,22 @@ const ProjectPage = () => {
                     <p>Brief: {brief}</p>
                 </Col>
             </Row>
-        </div>
+        </>
     );
 
     return (
         <Row className="h-100 d-flex justify-content-center">
-            <Col className="py-2" lg={8}>
+            <Col className="p-4" xs={12} lg={8}>
                 <h1 className="text-center my-4 py-2">Project: {title}</h1>
                 {projectDetails}
+            </Col>
+            <Col className="p-4" xs={12} lg={8}>
+                <Link to={`/projects/${id}/edit`}>
+                    <Button
+                        className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
+                        Edit Project Details
+                    </Button>
+                </Link>
             </Col>
         </Row>
     );
