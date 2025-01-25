@@ -8,6 +8,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import ProjectPage from "./pages/projects/ProjectPage";
+import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 
 function App() {
 
@@ -36,6 +37,11 @@ function App() {
                                 exact
                                 path="/projects/:id"
                                 render={() => <ProjectPage />}
+                            />
+                            <Route
+                                exact
+                                path="/projectscreate"
+                                render={() => <ProjectCreateForm />}
                             />
                             <Route
                                 exact
