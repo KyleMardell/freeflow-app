@@ -25,9 +25,8 @@ const ProjectEditForm = () => {
         const handleMount = async () => {
             try {
                 const { data } = await axiosReq.get(`/projects/${id}`);
-                const {title, brief, hourly_rate, due_date, status} = data;
-                setProjectData({title, brief, hourly_rate, due_date, status});
-
+                const { title, brief, hourly_rate, due_date, status } = data;
+                setProjectData({ title, brief, hourly_rate, due_date, status });
             } catch (err) {
                 console.log(err);
             }
@@ -137,7 +136,9 @@ const ProjectEditForm = () => {
                 </Col>
                 <Col xs={12} lg={4}>
                     <Form.Group>
-                        <Form.Label className="px-2">Hourly Rate (£)</Form.Label>
+                        <Form.Label className="px-2">
+                            Hourly Rate (£)
+                        </Form.Label>
                         <Form.Control
                             type="number"
                             placeholder="Hourly rate"
@@ -166,7 +167,9 @@ const ProjectEditForm = () => {
             <Col className="my-auto p-2" lg={8}>
                 <Form onSubmit={handleSubmit}>
                     {formInputFields}
-                    <Button className={`${buttonStyles.Button} ${buttonStyles.Wide}`} type="submit">
+                    <Button
+                        className={`${buttonStyles.Button} ${buttonStyles.Wide}`}
+                        type="submit">
                         Submit
                     </Button>
                     {errors.non_field_errors?.map((message, idx) => (
@@ -175,6 +178,13 @@ const ProjectEditForm = () => {
                         </Alert>
                     ))}
                 </Form>
+            </Col>
+            <Col className="my-auto p-2" lg={8}>
+                <Button
+                    className={`${buttonStyles.Button} ${buttonStyles.Wide}`}
+                    onClick={() => history.goBack()}>
+                    Cancel
+                </Button>
             </Col>
         </Row>
     );

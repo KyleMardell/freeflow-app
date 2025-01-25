@@ -9,6 +9,11 @@
     background-color: #001E6C;
     color: #ffffff;
   }
+
+  .ButtonLarge {
+    width: 170px;
+    height: 50px
+  }
   
   .Button:hover {
     opacity: 0.8;
