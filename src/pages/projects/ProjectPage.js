@@ -124,10 +124,10 @@ const ProjectPage = () => {
                         Are you sure you want to delete this project?
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
+                        <Button className={`${buttonStyles.ButtonYellow} my-3`} onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button variant="primary" onClick={handleDelete}>
+                        <Button className={`${buttonStyles.Button} my-3`} onClick={handleDelete}>
                             Delete
                         </Button>
                     </Modal.Footer>

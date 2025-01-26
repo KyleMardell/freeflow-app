@@ -1,13 +1,23 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Row, Col, Button, Modal } from "react-bootstrap";
 
-import { Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom/cjs/react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 import styles from "../../styles/TaskPage.module.css";
+import buttonStyles from "../../styles/Button.module.css";
+
+
 
 const TaskPage = () => {
     const { tid, pid } = useParams();
     const [task, setTask] = useState({});
+
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+        const handleClose = () => setShowDeleteModal(false);
+        const handleShow = () => setShowDeleteModal(true);
+    
 
     const {
         id,
@@ -22,6 +32,19 @@ const TaskPage = () => {
         created_at,
         updated_at,
     } = task;
+
+    useEffect (() => {
+        const handleMount = async () => {
+            try {
+                const { data } = await axiosReq.get(`/projects/${pid}/tasks/${tid}`);
+                setTask(data);
+                console.log(data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        handleMount();
+    }, [pid, tid]);
 
     const taskDetails = (
       <>
@@ -61,7 +84,37 @@ const TaskPage = () => {
         <Row className="h-100 d-flex justify-content-center">
             <Col className="py-2" xs={12} lg={8}>
               <h1 className="text-center my-4 py-2">Task: {title}</h1>
+              {taskDetails}
             </Col>
+            <Col className="p-1 d-flex justify-content-around" xs={12} lg={8}>
+                <Link>
+                    <Button
+                        className={`${buttonStyles.Button} ${buttonStyles.ButtonLarge} my-3`}>
+                        Edit Task
+                    </Button>
+                </Link>
+                <Button
+                    className={`${buttonStyles.Button} ${buttonStyles.ButtonLarge} my-3`}
+                    onClick={handleShow}>
+                    Delete Task
+                </Button>
+                <Modal show={showDeleteModal} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Delete Task</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Are you sure you want to delete this task?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button className={`${buttonStyles.ButtonYellow} my-3`} onClick={handleClose}>
+                            Cancel
+                        </Button>
+                        <Button className={`${buttonStyles.Button} my-3`} onClick={handleClose}>
+                            Delete
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                </Col>
         </Row>
     );
 };
