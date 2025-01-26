@@ -9,6 +9,8 @@ import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import styles from "../../styles/ProjectPage.module.css";
 import buttonStyles from "../../styles/Button.module.css";
 
+import TaskPreview from "../tasks/TaskPreview";
+
 const ProjectPage = () => {
     const { id } = useParams();
     const [project, setProject] = useState({});
@@ -51,7 +53,7 @@ const ProjectPage = () => {
 
     const projectDetails = (
         <>
-            <Row>
+            <Row className="px-1">
                 <Col className={`${styles.DetailBorder} text-center`}>
                     <p>Due date: {due_date ? due_date : <>No date set</>}</p>
                 </Col>
@@ -62,7 +64,7 @@ const ProjectPage = () => {
                     </p>
                 </Col>
             </Row>
-            <Row>
+            <Row className="px-1">
                 <Col className={`${styles.DetailBorder} text-center`}>
                     <p>Created {created_at}</p>
                 </Col>
@@ -70,7 +72,7 @@ const ProjectPage = () => {
                     <p>Updated {updated_at}</p>
                 </Col>
             </Row>
-            <Row>
+            <Row className="px-1">
                 <Col className={`${styles.DetailBorder}`}>
                     <p>Brief: {brief}</p>
                 </Col>
@@ -80,17 +82,28 @@ const ProjectPage = () => {
 
     return (
         <Row className="h-100 d-flex justify-content-center">
-            <Col className="p-4" xs={12} lg={8}>
+            <Col className="py-2" xs={12} lg={8}>
                 <h1 className="text-center my-4 py-2">Project: {title}</h1>
                 {projectDetails}
             </Col>
-            <Col className="p-1" xs={12} lg={8}>
+            <Col className="px-1" xs={12} lg={8}>
             <Link to={`/projects/${id}/tasks/create`}>
                     <Button
                         className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
                         Add task
                     </Button>
                 </Link>
+            </Col>
+            <Col className="py-2 px-1 text-center" xs={12} lg={8}>
+                {tasks.length ? (
+                    tasks.map((task) => {
+                        return (
+                            <TaskPreview key={task.id} {...task} />
+                        )
+                    })
+                ) : (
+                    <div>No tasks yet...</div>
+                )}
             </Col>
             <Col className="p-1 d-flex justify-content-around" xs={12} lg={8}>
                 <Link to={`/projects/${id}/edit`}>

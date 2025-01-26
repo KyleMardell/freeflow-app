@@ -58,7 +58,7 @@ function App() {
                             />
                             <Route
                                 exact
-                                path="/projects/:pid/tasks/;tid"
+                                path="/projects/:pid/tasks/:tid"
                                 render={() => <TaskPage />}
                             />
                             <Route
