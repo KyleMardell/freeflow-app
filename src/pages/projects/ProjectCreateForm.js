@@ -161,6 +161,13 @@ const ProjectCreateForm = () => {
                     ))}
                 </Form>
             </Col>
+            <Col className="my-auto p-2" lg={8}>
+                <Button
+                    className={`${buttonStyles.ButtonYellow} ${buttonStyles.Wide}`}
+                    onClick={() => history.goBack()}>
+                    Cancel
+                </Button>
+            </Col>
         </Row>
     );
 };

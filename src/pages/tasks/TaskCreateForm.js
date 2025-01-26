@@ -81,7 +81,7 @@ const TaskCreateForm = () => {
             </Col>
             <Col className="my-auto p-2" lg={8}>
                 <Button
-                    className={`${buttonStyles.Button} ${buttonStyles.Wide}`}
+                    className={`${buttonStyles.ButtonYellow} ${buttonStyles.Wide}`}
                     onClick={() => history.goBack()}>
                     Cancel
                 </Button>

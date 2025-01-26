@@ -10,6 +10,26 @@
     color: #ffffff;
   }
 
+  .ButtonYellow {
+    align-self: center;
+    border-radius: 10px;
+    border-color: transparent;
+    padding: 4px 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+    min-width: 110px;
+    background-color: #FFAA4C;
+    color: #001E6C;
+  }
+
+  .ButtonYellow:hover {
+    opacity: 0.8;
+    border-color: transparent;
+    cursor: pointer;
+    background-color: #FFAA4C;
+    color: #001E6C;
+  }
+
   .ButtonLarge {
     width: 170px;
     height: 50px
