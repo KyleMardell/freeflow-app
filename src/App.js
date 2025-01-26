@@ -12,6 +12,7 @@ import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectEditForm from "./pages/projects/ProjectEditForm";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import TaskPage from "./pages/tasks/TaskPage";
+import TaskEditForm from "./pages/tasks/TaskEditForm";
 
 function App() {
 
@@ -60,6 +61,11 @@ function App() {
                                 exact
                                 path="/projects/:pid/tasks/:tid"
                                 render={() => <TaskPage />}
+                            />
+                            <Route
+                                exact
+                                path="/projects/:pid/tasks/:tid/edit"
+                                render={() => <TaskEditForm />}
                             />
                             <Route
                                 exact
