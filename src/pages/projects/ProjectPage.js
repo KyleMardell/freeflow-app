@@ -84,6 +84,14 @@ const ProjectPage = () => {
                 <h1 className="text-center my-4 py-2">Project: {title}</h1>
                 {projectDetails}
             </Col>
+            <Col className="p-1" xs={12} lg={8}>
+            <Link to={`/projects/${id}/tasks/create`}>
+                    <Button
+                        className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
+                        Add task
+                    </Button>
+                </Link>
+            </Col>
             <Col className="p-1 d-flex justify-content-around" xs={12} lg={8}>
                 <Link to={`/projects/${id}/edit`}>
                     <Button

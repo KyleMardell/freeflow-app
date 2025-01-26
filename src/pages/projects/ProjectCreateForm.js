@@ -90,7 +90,8 @@ const ProjectCreateForm = () => {
                             as="select"
                             name="status"
                             value={status}
-                            onChange={handleChange}>
+                            onChange={handleChange}
+                        >
                             <option value="draft">Draft</option>
                             <option value="active">Active</option>
                             <option value="complete">Complete</option>
