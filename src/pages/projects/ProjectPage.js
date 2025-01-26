@@ -45,7 +45,7 @@ const ProjectPage = () => {
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/projects/${id}`);
-            history.push('/projects/')
+            history.push('/projects/');
         } catch (err) {
             console.log(err);
         }
