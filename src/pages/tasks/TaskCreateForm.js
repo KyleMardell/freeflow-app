@@ -3,8 +3,14 @@ import { useHistory } from "react-router-dom";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
 import buttonStyles from "../../styles/Button.module.css";
+import { axiosReq } from "../../api/axiosDefaults";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const TaskCreateForm = () => {
+    const [errors, setErrors] = useState({});
+
+    const { id } = useParams();
+
     const [taskData, setTaskData] = useState({
         title: "",
         description: "",
@@ -24,28 +30,73 @@ const TaskCreateForm = () => {
 
     const history = useHistory();
 
+    const handleChange = (event) => {
+        setTaskData({
+            ...taskData,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const formData = new FormData();
+
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("estimated_time", estimated_time);
+        formData.append("actual_time", actual_time);
+        formData.append("status", status);
+        formData.append("due_date", due_date);
+
+        try {
+            const { data } = await axiosReq.post(`/projects/${id}/tasks/`);
+            history.push(`/projects/${id}/tasks/${data.id}`);
+        } catch (err) {
+            console.log(err);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
+        }
+    };
+
     return (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="my-auto p-2 text-center" lg={8}>
                 <h1 className="my-4">Create a Task</h1>
             </Col>
             <Col className="my-auto p-2" lg={8}>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Label className="px-2">Title</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Task title"
+                            name="title"
+                            value={title}
+                            onChange={handleChange}
                         />
                     </Form.Group>
+                    {errors?.title?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
 
                     <Form.Group>
                         <Form.Label className="px-2">Description</Form.Label>
                         <Form.Control
                             as="textarea"
                             placeholder="Task description"
+                            name="description"
+                            value={description}
+                            onChange={handleChange}
                         />
                     </Form.Group>
+                    {errors?.description?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
 
                     <Form.Group>
                         <Form.Label className="px-2">Estimated time</Form.Label>
@@ -53,30 +104,60 @@ const TaskCreateForm = () => {
                             type="number"
                             min="0"
                             step="0.1"
+                            name="estimated_time"
+                            value={estimated_time}
+                            onChange={handleChange}
                         />
                     </Form.Group>
+                    {errors?.estimated_time?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
 
                     <Form.Group>
                         <Form.Label className="px-2">Due Date</Form.Label>
                         <Form.Control
                             type="date"
                             placeholder="Select due date"
+                            name="due_date"
+                            value={due_date}
+                            onChange={handleChange}
                         />
                     </Form.Group>
+                    {errors?.due_date?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
 
                     <Form.Group>
                         <Form.Label className="px-2">Status</Form.Label>
                         <Form.Control
                             as="select"
-                        >
+                            name="status"
+                            value={status}
+                            onChange={handleChange}>
                             <option value="active">Active</option>
                             <option value="complete">Complete</option>
                         </Form.Control>
                     </Form.Group>
-                    
-                    <Button className={`${buttonStyles.Button} ${buttonStyles.Wide}`} type="submit">
+                    {errors?.status?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
+
+                    <Button
+                        className={`${buttonStyles.Button} ${buttonStyles.Wide}`}
+                        type="submit">
                         Submit
                     </Button>
+                    {errors.non_field_errors?.map((message, idx) => (
+                        <Alert variant="warning" key={idx} className="mt-3">
+                            {message}
+                        </Alert>
+                    ))}
                 </Form>
             </Col>
             <Col className="my-auto p-2" lg={8}>
