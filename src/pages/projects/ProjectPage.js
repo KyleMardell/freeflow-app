@@ -59,8 +59,7 @@ const ProjectPage = () => {
                 </Col>
                 <Col className={`${styles.DetailBorder} text-center`}>
                     <p>
-                        Hourly rate:{" "}
-                        {hourly_rate ? hourly_rate : <>No rate set</>}
+                        Hourly rate: {hourly_rate ? hourly_rate : <>No rate set</>}
                     </p>
                 </Col>
             </Row>

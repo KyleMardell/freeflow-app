@@ -99,7 +99,7 @@ const TaskCreateForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label className="px-2">Estimated time</Form.Label>
+                        <Form.Label className="px-2">Estimated time (hours)</Form.Label>
                         <Form.Control
                             type="number"
                             min="0"

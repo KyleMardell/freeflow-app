@@ -1,14 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Link, useParams } from "react-router-dom/cjs/react-router-dom";
 
 import styles from "../../styles/TaskPreview.module.css";
 
 const TaskPreview = (props) => {
+
+    const { id: project_id } = useParams();
+    
     const {
         id,
-        project_id,
         title,
-        description,
         estimated_time,
         actual_time,
         status,
@@ -19,6 +20,7 @@ const TaskPreview = (props) => {
     return (
         <Link to={`/projects/${project_id}/tasks/${id}`}>
             <div className={`${styles.Preview} my-2 mx-0`}>
+                
                 <div className="text-center">
                     <h2>{title}</h2>
                 </div>
