@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 
 import buttonStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -49,10 +49,10 @@ const TaskCreateForm = () => {
         formData.append("due_date", due_date);
 
         try {
-            const { data } = await axiosReq.post(`/projects/${id}/tasks/`);
+            const { data } = await axiosReq.post(`/projects/${id}/tasks/`, formData);
             history.push(`/projects/${id}/tasks/${data.id}`);
         } catch (err) {
-            console.log(err);
+            console.log(err.response?.data);
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
