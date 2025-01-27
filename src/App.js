@@ -13,8 +13,12 @@ import ProjectEditForm from "./pages/projects/ProjectEditForm";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import TaskPage from "./pages/tasks/TaskPage";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
+import ProfilePage from "./pages/profiles/ProfilePage";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
+    const currentUser = useCurrentUser();
+    const profile_id = currentUser?.profile_id;
 
     return (
                 <div className={styles.App}>
@@ -69,8 +73,8 @@ function App() {
                             />
                             <Route
                                 exact
-                                path="/profile"
-                                render={() => <h1>Profile</h1>}
+                                path="/profile/"
+                                render={() => <ProfilePage profile_id={profile_id} />}
                             />
                             <Route
                                 exact

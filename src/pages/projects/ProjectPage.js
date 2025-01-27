@@ -33,8 +33,6 @@ const ProjectPage = () => {
                 ]);
                 setProject(project);
                 setTasks(tasks);
-                console.log(project);
-                console.log(tasks);
             } catch (err) {
                 console.log(err);
             }
