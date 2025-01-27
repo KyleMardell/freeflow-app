@@ -15,6 +15,7 @@ import TaskPage from "./pages/tasks/TaskPage";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 function App() {
     const currentUser = useCurrentUser();
@@ -75,6 +76,11 @@ function App() {
                                 exact
                                 path="/profile/"
                                 render={() => <ProfilePage profile_id={profile_id} />}
+                            />
+                            <Route
+                                exact
+                                path="/profile/edit"
+                                render={() => <ProfileEditForm profile_id={profile_id} />}
                             />
                             <Route
                                 exact

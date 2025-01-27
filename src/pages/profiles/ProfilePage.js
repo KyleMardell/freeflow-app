@@ -6,6 +6,7 @@ import UserImage from "../../components/UserImage";
 
 import buttonStyles from "../../styles/Button.module.css";
 import styles from "../../styles/ProfilePage.module.css";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const ProfilePage = ({ profile_id }) => {
     const [profile, setProfile] = useState({});
@@ -68,10 +69,12 @@ const ProfilePage = ({ profile_id }) => {
             </Row>
             <Row className="px-1 my-4 d-flex justify-content-center">
                 <Col className="p-0 m-0" lg={8}>
-                    <Button
-                        className={`${buttonStyles.Button} ${buttonStyles.Wide}`}>
-                        Edit Profile
-                    </Button>
+                    <Link to="/profile/edit">
+                        <Button
+                            className={`${buttonStyles.Button} ${buttonStyles.Wide}`}>
+                            Edit Profile
+                        </Button>
+                    </Link>
                 </Col>
             </Row>
         </>
