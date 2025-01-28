@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom/cjs/react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 
 import buttonStyles from "../../styles/Button.module.css";
 import styles from "../../styles/CustomTaskPage.module.css";
 import { Row, Col, Button, Modal } from "react-bootstrap";
 
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+
 const CustomTaskPage = () => {
     const { id } = useParams();
+    const history = useHistory();
 
     const [customTask, setCustomTask] = useState({
         title: "",
@@ -34,6 +37,28 @@ const CustomTaskPage = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const handleClose = () => setShowDeleteModal(false);
     const handleShow = () => setShowDeleteModal(true);
+
+    useEffect (() => {
+      const handleMount = async () => {
+        try {
+          const { data } = await axiosReq.get(`/custom_tasks/${id}`);
+          setCustomTask(data);
+          console.log(data);
+        } catch (err) {
+          console.log(err.response.data);
+        }
+      };
+      handleMount();
+    },[id]);
+
+    const handleDelete = async () => {
+      try {
+        await axiosRes.delete(`/custom_tasks/${id}`);
+        history.push("/customtasks");
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
 
     const taskDetails = (
       <>
@@ -87,11 +112,11 @@ const CustomTaskPage = () => {
     return (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="py-2" xs={12} lg={8}>
-                <h1 className="text-center my-4 py-2">Task: {title}</h1>
+                <h1 className="text-center my-4 py-2">Custom Task: {title}</h1>
                 {taskDetails}
             </Col>
             <Col className="p-1 d-flex justify-content-around" xs={12} lg={8}>
-                <Link>
+                <Link to={"/"}>
                     <Button
                         className={`${buttonStyles.Button} ${buttonStyles.ButtonLarge} my-3`}>
                         Edit Task
@@ -117,7 +142,7 @@ const CustomTaskPage = () => {
                         </Button>
                         <Button
                             className={`${buttonStyles.Button} my-3`}
-                            onClick={handleClose}>
+                            onClick={handleDelete}>
                             Delete
                         </Button>
                     </Modal.Footer>
