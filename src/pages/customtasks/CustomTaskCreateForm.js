@@ -12,6 +12,11 @@ const CustomTaskCreateForm = () => {
         title: "",
         description: "",
         estimated_time: 0.00,
+        average_time: 0.00,
+        quickest_time: 0.00,
+        longest_time: 0.00,
+        frequency: 0,
+
     });
 
     const { title, description, estimated_time } = customTask;
@@ -25,6 +30,22 @@ const CustomTaskCreateForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const formData = new FormData();
+
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("estimated_time", estimated_time);
+        formData.append("average_time", average_time);
+        formData.append("longest_time", longest_time);
+        formData.append("quickest_time", quickest_time);
+        formData.append("frequency", frequency);
+
+        try {
+            const { data } = await axiosReq.post("/customtasks/", FormData);
+            history.push("/customtasks");
+        } catch (err) {
+            console.log(err.response);
+        }
     };
 
     return (
