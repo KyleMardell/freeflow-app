@@ -1,13 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Form, Button, Row, Col } from "react-bootstrap";
 import UserImage from "../../components/UserImage";
 
 import buttonStyles from "../../styles/Button.module.css";
 
+import { axiosReq } from "../../api/axiosDefaults";
+
 const ProfileEditForm = ({ profile_id }) => {
     const [profile, setProfile] = useState({});
     const { name, bio, image, email, phone } = profile;
+
+    useEffect(() => {
+      const handleMount = async () => {
+        try {
+          const { data } = await axiosReq.get(`/profiles/${profile_id}/`);
+          setProfile(data);
+          console.log(data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      handleMount();
+    },[profile_id]);
+
+    const handleChange = (event) => {
+      setProfile({
+        ...profile,
+        [event.target.name]: event.target.value,
+      });
+    };
 
     return (
         <Row className="h-100 d-flex justify-content-center">
