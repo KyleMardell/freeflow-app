@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { axiosReq } from "../../api/axiosDefaults";
-import ProjectPreview from "./ProjectPreview";
+import ProjectPreview from "../../components/ProjectPreview";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { Button } from "react-bootstrap";
 import buttonStyles from "../../styles/Button.module.css";

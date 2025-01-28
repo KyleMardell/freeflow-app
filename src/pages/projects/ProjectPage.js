@@ -9,7 +9,7 @@ import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import styles from "../../styles/ProjectPage.module.css";
 import buttonStyles from "../../styles/Button.module.css";
 
-import TaskPreview from "../tasks/TaskPreview";
+import TaskPreview from "../../components/TaskPreview";
 
 const ProjectPage = () => {
     const { id } = useParams();
