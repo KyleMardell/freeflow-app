@@ -41,9 +41,16 @@ const ProjectsPage = ({filter=""}) => {
                     <>
                     {projects.length ? (
                         projects.map((project) => {
-                            return (
-                                <ProjectPreview key={project.id} {...project} />
-                            )
+                            if (project.status !== "complete") {
+                                return (
+                                    <ProjectPreview key={project.id} {...project} />
+                                )
+                            } else {
+                                return (
+                                    <div key={project.id}></div>
+                                )
+                            }
+                            
                         })
                     ) : (
                         <div>No projects yet...</div>

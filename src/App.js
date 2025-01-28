@@ -20,6 +20,7 @@ import CustomTasksPage from "./pages/customtasks/CustomTasksPage";
 import CustomTaskCreateForm from "./pages/customtasks/CustomTaskCreateForm";
 import CustomTaskPage from "./pages/customtasks/CustomTaskPage";
 import CustomTaskEditForm from "./pages/customtasks/CustomTaskEditForm";
+import ProjectsArchivePage from "./pages/projects/ProjectsArchivePage";
 
 function App() {
     const currentUser = useCurrentUser();
@@ -109,7 +110,7 @@ function App() {
                             <Route
                                 exact
                                 path="/projectarchive"
-                                render={() => <h1>Project Archive</h1>}
+                                render={() => <ProjectsArchivePage />}
                             />
                             <Route render={() => <p>Page not found!</p>} />
                         </Switch>
