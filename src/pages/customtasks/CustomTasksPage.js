@@ -30,7 +30,7 @@ const CustomTasksPage = ({filter=""}) => {
     <Row className="h-100 d-flex justify-content-center">
             <Col className="py-2 text-center" lg={8}>
                 <h1 className="my-4">My Custom Tasks</h1>
-                <Link to="">
+                <Link to="/customtasks/create">
                     <Button className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
                         Create New Custom Task
                     </Button>

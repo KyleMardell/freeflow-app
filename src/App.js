@@ -17,6 +17,7 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import CustomTasksPage from "./pages/customtasks/CustomTasksPage";
+import CustomTaskCreateForm from "./pages/customtasks/CustomTaskCreateForm";
 
 function App() {
     const currentUser = useCurrentUser();
@@ -87,6 +88,11 @@ function App() {
                                 exact
                                 path="/customtasks"
                                 render={() => <CustomTasksPage />}
+                            />
+                            <Route
+                                exact
+                                path="/customtasks/create"
+                                render={() => <CustomTaskCreateForm />}
                             />
                             <Route
                                 exact
