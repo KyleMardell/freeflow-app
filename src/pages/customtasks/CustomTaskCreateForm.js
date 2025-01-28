@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
-import { Form, Button, Alert, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 
 import buttonStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+
+import { axiosReq } from "../../api/axiosDefaults";
 
 const CustomTaskCreateForm = () => {
     const history = useHistory();
@@ -12,14 +14,9 @@ const CustomTaskCreateForm = () => {
         title: "",
         description: "",
         estimated_time: 0.00,
-        average_time: 0.00,
-        quickest_time: 0.00,
-        longest_time: 0.00,
-        frequency: 0,
+     });
 
-    });
-
-    const { title, description, estimated_time } = customTask;
+    const { title, description, estimated_time} = customTask;
 
     const handleChange = (event) => {
         setCustomTask({
@@ -34,15 +31,11 @@ const CustomTaskCreateForm = () => {
 
         formData.append("title", title);
         formData.append("description", description);
-        formData.append("estimated_time", estimated_time);
-        formData.append("average_time", average_time);
-        formData.append("longest_time", longest_time);
-        formData.append("quickest_time", quickest_time);
-        formData.append("frequency", frequency);
+        formData.append("estimated_time", parseFloat(estimated_time));
 
         try {
-            const { data } = await axiosReq.post("/customtasks/", FormData);
-            history.push("/customtasks");
+            const { data } = await axiosReq.post("/custom_tasks/", formData);
+            history.push(`/customtasks/${data.id}`);
         } catch (err) {
             console.log(err.response);
         }
