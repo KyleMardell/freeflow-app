@@ -78,7 +78,7 @@ function App() {
                             />
                             <Route
                                 exact
-                                path="/profile/"
+                                path="/profile"
                                 render={() => <ProfilePage profile_id={profile_id} />}
                             />
                             <Route

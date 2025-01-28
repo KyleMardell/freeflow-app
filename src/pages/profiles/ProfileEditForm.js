@@ -188,6 +188,13 @@ const ProfileEditForm = ({ profile_id }) => {
                     ))}
                 </Form>
             </Col>
+            <Col className="my-auto p-2" lg={8}>
+                <Button
+                    className={`${buttonStyles.ButtonYellow} ${buttonStyles.Wide}`}
+                    onClick={() => history.push("/profile")}>
+                    Return to Profile
+                </Button>
+            </Col>
         </Row>
     );
 };

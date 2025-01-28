@@ -131,6 +131,13 @@ const ProjectPage = () => {
                     </Modal.Footer>
                 </Modal>
             </Col>
+            <Col className="my-auto p-2" lg={8}>
+                <Button
+                    className={`${buttonStyles.ButtonYellow} ${buttonStyles.Wide}`}
+                    onClick={() => history.push("/projects")}>
+                    Return to My Projects
+                </Button>
+            </Col>
         </Row>
     );
 };
