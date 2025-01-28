@@ -89,7 +89,7 @@ const TaskEditForm = () => {
     return (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="my-auto p-2 text-center" lg={8}>
-                <h1 className="my-4">Create a Task</h1>
+                <h1 className="my-4">Edit Task</h1>
             </Col>
             <Col className="my-auto p-2" lg={8}>
                 <Form onSubmit={handleSubmit}>

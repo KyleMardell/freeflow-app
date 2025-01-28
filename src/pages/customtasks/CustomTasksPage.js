@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq  } from '../../api/axiosDefaults';
 
 import buttonStyles from "../../styles/Button.module.css";
+import CustomTaskPreview from '../../components/CustomTaskPreview';
 
 const CustomTasksPage = ({filter=""}) => {
 
@@ -38,9 +39,9 @@ const CustomTasksPage = ({filter=""}) => {
                 {hasLoaded ? (
                     <>
                     {customTasks.length ? (
-                        customTasks.map((customTask) => {
+                        customTasks.map((task) => {
                             return (
-                                <div>Custom task</div>
+                                <CustomTaskPreview key={task.id} {...task} />
                             )
                         })
                     ) : (
