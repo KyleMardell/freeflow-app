@@ -46,13 +46,13 @@ function App() {
                             />
                             <Route
                                 exact
-                                path="/projects/:id"
-                                render={() => <ProjectPage />}
+                                path="/projects/create"
+                                render={() => <ProjectCreateForm />}
                             />
                             <Route
                                 exact
-                                path="/projectscreate"
-                                render={() => <ProjectCreateForm />}
+                                path="/projects/:id"
+                                render={() => <ProjectPage />}
                             />
                             <Route
                                 exact
