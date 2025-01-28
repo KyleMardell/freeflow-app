@@ -120,6 +120,9 @@ const TaskCreateForm = () => {
                                 </option>
                             ))}
                         </Form.Control>
+                        <Form.Text className="text-muted">
+                            Selecting a custom task will import its title, description and estimated time
+                        </Form.Text>
                     </Form.Group>
 
                     <Form.Group>
