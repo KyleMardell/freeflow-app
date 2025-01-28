@@ -116,7 +116,7 @@ const CustomTaskPage = () => {
                 {taskDetails}
             </Col>
             <Col className="p-1 d-flex justify-content-around" xs={12} lg={8}>
-                <Link to={"/"}>
+                <Link to={`/customtasks/${id}/edit`}>
                     <Button
                         className={`${buttonStyles.Button} ${buttonStyles.ButtonLarge} my-3`}>
                         Edit Task
