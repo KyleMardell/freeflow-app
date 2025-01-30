@@ -21,6 +21,7 @@ import CustomTaskCreateForm from "./pages/customtasks/CustomTaskCreateForm";
 import CustomTaskPage from "./pages/customtasks/CustomTaskPage";
 import CustomTaskEditForm from "./pages/customtasks/CustomTaskEditForm";
 import ProjectsArchivePage from "./pages/projects/ProjectsArchivePage";
+import ProjectReport from "./pages/projects/ProjectReport";
 
 function App() {
     const currentUser = useCurrentUser();
@@ -76,6 +77,11 @@ function App() {
                                 exact
                                 path="/projects/:pid/tasks/:tid/edit"
                                 render={() => <TaskEditForm />}
+                            />
+                            <Route
+                                exact
+                                path="/projects/:id/report"
+                                render={() => <ProjectReport profile_id={profile_id} />}
                             />
                             <Route
                                 exact

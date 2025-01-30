@@ -91,6 +91,14 @@ const ProjectPage = () => {
                     </Button>
                 </Link>
             </Col>
+            <Col className="px-1" xs={12} lg={8}>
+            <Link to={`/projects/${id}/report`}>
+                    <Button
+                        className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
+                        Generate Report
+                    </Button>
+                </Link>
+            </Col>
             <Col className="py-2 px-1 text-center" xs={12} lg={8}>
                 {tasks.length ? (
                     tasks.map((task) => {
