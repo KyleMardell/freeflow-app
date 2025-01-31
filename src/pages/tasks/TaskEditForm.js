@@ -33,7 +33,9 @@ const TaskEditForm = () => {
     useEffect(() => {
         const handleMount = async () => {
             try {
-                const { data } = await axiosReq.get(`/projects/${pid}/tasks/${tid}`);
+                const { data } = await axiosReq.get(
+                    `/projects/${pid}/tasks/${tid}`
+                );
                 const {
                     title,
                     description,
@@ -55,7 +57,7 @@ const TaskEditForm = () => {
             }
         };
         handleMount();
-    },[pid, tid]);
+    }, [pid, tid]);
 
     const handleChange = (event) => {
         setTaskData({
@@ -76,7 +78,10 @@ const TaskEditForm = () => {
         formData.append("due_date", due_date);
 
         try {
-            const { data } = await axiosReq.put(`/projects/${pid}/tasks/${tid}`, formData);
+            const { data } = await axiosReq.put(
+                `/projects/${pid}/tasks/${tid}`,
+                formData
+            );
             history.push(`/projects/${pid}/tasks/${data.id}`);
         } catch (err) {
             console.log(err.response?.data);
@@ -126,15 +131,20 @@ const TaskEditForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label className="px-2">Estimated time (hours)</Form.Label>
+                        <Form.Label className="px-2">
+                            Estimated time (hours)
+                        </Form.Label>
                         <Form.Control
                             type="number"
                             min="0"
-                            step="0.1"
+                            step="0.25"
                             name="estimated_time"
                             value={estimated_time}
                             onChange={handleChange}
                         />
+                        <Form.Text className="text-muted">
+                            Use 0.25 per quarter of an hour
+                        </Form.Text>
                     </Form.Group>
                     {errors?.estimated_time?.map((message, idx) => (
                         <Alert variant="warning" key={idx}>
@@ -143,15 +153,20 @@ const TaskEditForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label className="px-2">Actual time (hours)</Form.Label>
+                        <Form.Label className="px-2">
+                            Actual time (hours)
+                        </Form.Label>
                         <Form.Control
                             type="number"
                             min="0"
-                            step="0.1"
+                            step="0.25"
                             name="actual_time"
                             value={actual_time}
                             onChange={handleChange}
                         />
+                        <Form.Text className="text-muted">
+                            Use 0.25 per quarter of an hour
+                        </Form.Text>
                     </Form.Group>
                     {errors?.actual_time?.map((message, idx) => (
                         <Alert variant="warning" key={idx}>

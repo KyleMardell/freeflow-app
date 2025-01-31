@@ -115,13 +115,16 @@ const TaskCreateForm = () => {
                                 -- Select a Custom Task --
                             </option>
                             {customTaskData.map((customTask) => (
-                                <option key={customTask.id} value={customTask.id}>
+                                <option
+                                    key={customTask.id}
+                                    value={customTask.id}>
                                     {customTask.title}{" "}
                                 </option>
                             ))}
                         </Form.Control>
                         <Form.Text className="text-muted">
-                            Selecting a custom task will import its title, description and estimated time
+                            Selecting a custom task will import its title,
+                            description and estimated time
                         </Form.Text>
                     </Form.Group>
 
@@ -164,11 +167,14 @@ const TaskCreateForm = () => {
                         <Form.Control
                             type="number"
                             min="0"
-                            step="0.1"
+                            step="0.25"
                             name="estimated_time"
                             value={estimated_time}
                             onChange={handleChange}
                         />
+                        <Form.Text className="text-muted">
+                            Use 0.25 per quarter of an hour
+                        </Form.Text>
                     </Form.Group>
                     {errors?.estimated_time?.map((message, idx) => (
                         <Alert variant="warning" key={idx}>

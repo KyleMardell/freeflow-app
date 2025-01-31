@@ -13,10 +13,10 @@ const CustomTaskCreateForm = () => {
     const [customTask, setCustomTask] = useState({
         title: "",
         description: "",
-        estimated_time: 0.00,
-     });
+        estimated_time: 0.0,
+    });
 
-    const { title, description, estimated_time} = customTask;
+    const { title, description, estimated_time } = customTask;
 
     const handleChange = (event) => {
         setCustomTask({
@@ -75,11 +75,14 @@ const CustomTaskCreateForm = () => {
                         <Form.Control
                             type="number"
                             min="0"
-                            step="0.1"
+                            step="0.25"
                             name="estimated_time"
                             value={estimated_time}
                             onChange={handleChange}
                         />
+                        <Form.Text className="text-muted">
+                            Use 0.25 per quarter of an hour
+                        </Form.Text>
                     </Form.Group>
 
                     <Button

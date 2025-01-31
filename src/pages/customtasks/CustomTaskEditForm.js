@@ -15,23 +15,23 @@ const CustomTaskEditForm = () => {
     const [customTask, setCustomTask] = useState({
         title: "",
         description: "",
-        estimated_time: 0.00,
-     });
+        estimated_time: 0.0,
+    });
 
-    const { title, description, estimated_time} = customTask;
+    const { title, description, estimated_time } = customTask;
 
-    useEffect (() => {
-          const handleMount = async () => {
+    useEffect(() => {
+        const handleMount = async () => {
             try {
-              const { data } = await axiosReq.get(`/custom_tasks/${id}`);
-              setCustomTask(data);
-              console.log(data);
+                const { data } = await axiosReq.get(`/custom_tasks/${id}`);
+                setCustomTask(data);
+                console.log(data);
             } catch (err) {
-              console.log(err.response.data);
+                console.log(err.response.data);
             }
-          };
-          handleMount();
-        },[id]);
+        };
+        handleMount();
+    }, [id]);
 
     const handleChange = (event) => {
         setCustomTask({
@@ -49,7 +49,10 @@ const CustomTaskEditForm = () => {
         formData.append("estimated_time", parseFloat(estimated_time));
 
         try {
-            const { data } = await axiosReq.put(`/custom_tasks/${id}`, formData);
+            const { data } = await axiosReq.put(
+                `/custom_tasks/${id}`,
+                formData
+            );
             history.push(`/customtasks/${data.id}`);
         } catch (err) {
             console.log(err.response);
@@ -90,11 +93,14 @@ const CustomTaskEditForm = () => {
                         <Form.Control
                             type="number"
                             min="0"
-                            step="0.1"
+                            step="0.25"
                             name="estimated_time"
                             value={estimated_time}
                             onChange={handleChange}
                         />
+                        <Form.Text className="text-muted">
+                            Use 0.25 per quarter of an hour
+                        </Form.Text>
                     </Form.Group>
 
                     <Button
