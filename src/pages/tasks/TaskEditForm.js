@@ -86,46 +86,38 @@ const TaskEditForm = () => {
         });
     };
 
-    const handleStatusChange = (event) => {
-        const newStatus = event.target.value;
-        setTaskData((prevData) => ({ ...prevData, status: newStatus }));
-        console.log (actual_time, custom_task, customTaskData);
-
+    const updateCustomTaskData = () => {
         const actualTime = parseFloat(actual_time);
-        console.log(actualTime);
-    
-        if (newStatus === "complete" && customTaskData && actualTime) {
-            
+
+        if (status === "complete" && customTaskData && actualTime) {
             const frequencyNum = parseFloat(frequency);
             const newFrequency = frequencyNum + 1;
             const averageTimeNum = parseFloat(average_time);
             const longTimeNum = parseFloat(longest_time);
             const quickTimeNum = parseFloat(quickest_time);
             const actualTimeNum = parseFloat(actual_time);
+            console.log (quickTimeNum, actualTimeNum, averageTimeNum);
             
             const newAverage = frequencyNum > 0 ? ((frequencyNum * averageTimeNum) + actualTimeNum) / newFrequency : actualTimeNum;
             const newLongest = actualTimeNum > longTimeNum ? actualTimeNum : longTimeNum;
-            const newQuickest = actualTimeNum < quickTimeNum ? actualTimeNum : quickTimeNum;
+            const newQuickest = quickTimeNum === 0 || (actualTimeNum > 0 && actualTimeNum) < quickTimeNum ? actualTimeNum : quickTimeNum;
 
-            console.log(newAverage, newFrequency, newLongest, newQuickest);
+            console.log(newQuickest);
     
-            const updatedCustomTaskData = {
+            return {
                 ...customTaskData,
                 average_time: newAverage,
                 longest_time: newLongest,
                 quickest_time: newQuickest,
                 frequency: newFrequency,
             };
-            setCustomTaskData(updatedCustomTaskData);
-            console.log("Updated customTaskData:", updatedCustomTaskData);
-            
-        } else if (newStatus === "active") {
-            setCustomTaskData(originalCustomTaskData);
         }
+        return customTaskData;
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const updatedCustomData = await updateCustomTaskData();
 
         const formData = new FormData();
         formData.append("title", title);
@@ -135,21 +127,24 @@ const TaskEditForm = () => {
         formData.append("status", status);
         formData.append("due_date", due_date);
 
-        const customFormData = new FormData();
-        customFormData.append("average_time", customTaskData.average_time);
-        customFormData.append("quickest_time", customTaskData.quickest_time);
-        customFormData.append("longest_time", customTaskData.longest_time);
-        customFormData.append("frequency", customTaskData.frequency);
-        customFormData.append("title", customTaskData.title);
-        customFormData.append("estimated_time", customTaskData.estimated_time);
-
         try {
-            const [taskResponse, customTaskResponse] = await Promise.all([
-                axiosReq.put(`/projects/${pid}/tasks/${tid}`, formData),
-                axiosReq.put(`/custom_tasks/${custom_task}`, customFormData),
-            ]);
-            console.log(customTaskResponse);
-            
+            const taskResponse = await axiosReq.put(`/projects/${pid}/tasks/${tid}`, formData);
+            if(custom_task && status === "complete") {
+                console.log(average_time);
+                const customFormData = new FormData();
+                customFormData.append("average_time", updatedCustomData.average_time);
+                customFormData.append("quickest_time", updatedCustomData.quickest_time);
+                customFormData.append("longest_time", updatedCustomData.longest_time);
+                customFormData.append("frequency", updatedCustomData.frequency);
+                customFormData.append("title", updatedCustomData.title);
+                customFormData.append("estimated_time", updatedCustomData.estimated_time);
+
+                try {
+                    await axiosReq.put(`/custom_tasks/${custom_task}`, customFormData);
+                } catch (err) {
+                    console.log(err.response?.data);
+                }
+            }     
             history.push(`/projects/${pid}/tasks/${taskResponse.data.id}`);
         } catch (err) {
             console.log(err.response?.data);
@@ -264,7 +259,7 @@ const TaskEditForm = () => {
                             as="select"
                             name="status"
                             value={status}
-                            onChange={handleStatusChange}>
+                            onChange={handleChange}>
                             <option value="active">Active</option>
                             <option value="complete">Complete</option>
                         </Form.Control>
