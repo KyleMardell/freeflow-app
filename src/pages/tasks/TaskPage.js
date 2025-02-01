@@ -65,47 +65,47 @@ const TaskPage = () => {
     const taskDetails = (
         <>
             <Row className="px-1">
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>Due date: {due_date ? due_date : <>No date set</>}</p>
+                <Col className={`${styles.DetailBorder} ${styles.BorderTopLeft} ${styles.BorderRight} text-center`}>
+                    <p className="m-0 p-2">Due date: {due_date ? due_date : <>No date set</>}</p>
                 </Col>
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>Status: {status}</p>
+                <Col className={`${styles.DetailBorder} ${styles.BorderTopRight} text-center`}>
+                    <p className="m-0 p-2">Status: {status}</p>
                 </Col>
             </Row>
             <Row className="px-1">
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>
+                <Col className={`${styles.DetailBorder} ${styles.BorderMid} ${styles.BorderRight} text-center`}>
+                    <p className="m-0 p-2">
                         Estimated time (hours):{" "}
                         {estimated_time ? estimated_time : <>No time set</>}
                     </p>
                 </Col>
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>
+                <Col className={`${styles.DetailBorder} ${styles.BorderMid} text-center`}>
+                    <p className="m-0 p-2">
                         Actual time (hours):{" "}
                         {actual_time ? actual_time : <>No time set</>}
                     </p>
                 </Col>
             </Row>
             <Row className="px-1">
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>Created {created_at}</p>
+                <Col className={`${styles.DetailBorder} ${styles.BorderMid} ${styles.BorderRight} text-center`}>
+                    <p className="m-0 p-2">Created: {created_at}</p>
                 </Col>
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>Updated {updated_at}</p>
+                <Col className={`${styles.DetailBorder} ${styles.BorderMid} text-center`}>
+                    <p className="m-0 p-2">Updated: {updated_at}</p>
                 </Col>
             </Row>
             {custom_task ? (
                 <Row className="px-1">
-                    <Col className={`${styles.DetailBorder}`}>
-                        <p>Custom task used: {custom_task}</p>
+                    <Col className={`${styles.DetailBorder} ${styles.BorderMid}`}>
+                        <p className="m-0 p-2">Custom task used: {custom_task}</p>
                     </Col>
                 </Row>
             ) : (
                 <></>
             )}
             <Row className="px-1">
-                <Col className={`${styles.DetailBorder}`}>
-                    <p>description: {description}</p>
+                <Col className={`${styles.DetailBorder} ${styles.BorderBottom}`}>
+                    <p className="m-0 p-2">description: {description}</p>
                 </Col>
             </Row>
         </>

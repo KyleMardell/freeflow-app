@@ -2,6 +2,23 @@
     border: 2px, solid #001E6C;
 }
 
-.BorderOuter {
-    border-radius: 10px;
+.BorderTopLeft {
+    border-top-left-radius: 10px;
+}
+.BorderTopRight {
+    border-top-right-radius: 10px;
+}
+
+.BorderMid {
+    border-top: 0;
+}
+
+.BorderRight {
+    border-right: 0;
+}
+
+.BorderBottom {
+    border-top: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

@@ -4,9 +4,9 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Button, Col, Row, Spinner, Alert } from "react-bootstrap";
 import UserImage from "../../components/UserImage";
 
+import appStyles from "../../App.module.css";
 import buttonStyles from "../../styles/Button.module.css";
 import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
 
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
@@ -41,36 +41,55 @@ const ProfilePage = ({ profile_id }) => {
                 </Col>
             </Row>
             <Row className="px-1 d-flex justify-content-center">
-                <Col className={`${styles.DetailBorder} d-flex p-1`} lg={8}>
-                    <div className="d-flex align-items-center justify-content-center">
-                        <UserImage src={image} />
-                    </div>
-                    <div>
-                        <p className="p-1 m-0">Username: {owner}</p>
-                        <p className="p-1 m-0">Name: {name}</p>
-                    </div>
+                <Col
+                    className={`${styles.DetailBorder} ${styles.BorderTop} d-flex p-1`}
+                    lg={8}>
+                    <Row className="w-100">
+                        <Col
+                            xs={4}
+                            md={6}
+                            className="d-flex align-items-center justify-content-center">
+                            <UserImage src={image} />
+                        </Col>
+                        <Col xs={8} md={6}>
+                            <p className="p-1 m-0">Username: {owner}</p>
+                            <p className="p-1 m-0">Name: {name}</p>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
             <Row className="px-1 d-flex justify-content-center">
-                <Col className={`${styles.DetailBorder} p-1`} lg={8}>
+                <Col
+                    className={`${styles.DetailBorder} ${styles.BorderMid} p-1`}
+                    lg={8}>
                     <p className="p-1 m-0">Bio: {bio}</p>
                 </Col>
             </Row>
             <Row className="px-1 d-flex justify-content-center">
-                <Col className={`${styles.DetailBorder} p-1`} lg={8}>
+                <Col
+                    className={`${styles.DetailBorder} ${styles.BorderMid} p-1`}
+                    lg={8}>
                     <p className="p-1 m-0">Email: {email}</p>
                 </Col>
             </Row>
             <Row className="px-1 d-flex justify-content-center">
-                <Col className={`${styles.DetailBorder} p-1`} lg={8}>
+                <Col
+                    className={`${styles.DetailBorder} ${styles.BorderMid} p-1`}
+                    lg={8}>
                     <p className="p-1 m-0">Phone: {phone}</p>
                 </Col>
             </Row>
             <Row className="px-1 d-flex justify-content-center">
-                <Col className={`${styles.DetailBorder} p-1`} xs={6} lg={4}>
+                <Col
+                    className={`${styles.DetailBorder} ${styles.BorderBottomLeft} p-1`}
+                    xs={6}
+                    lg={4}>
                     <p className="p-1 m-0">Joined: {created_at}</p>
                 </Col>
-                <Col className={`${styles.DetailBorder} p-1`} xs={6} lg={4}>
+                <Col
+                    className={`${styles.DetailBorder} ${styles.BorderBottomRight} p-1`}
+                    xs={6}
+                    lg={4}>
                     <p className="p-1 m-0">Updated: {updated_at}</p>
                 </Col>
             </Row>
