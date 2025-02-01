@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner, Alert } from "react-bootstrap";
 
 import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 
 import UserImage from "../../components/UserImage";
+import appStyles from "../../App.module.css";
 
 const ProjectReport = ({ profile_id }) => {
+    const [errors, setErrors] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
     const [profile, setProfile] = useState({});
     const { name, bio, image, email, phone } = profile;
     const [project, setProject] = useState({});
@@ -33,12 +36,15 @@ const ProjectReport = ({ profile_id }) => {
                 setProfile(profile);
                 setProject(project);
                 setTasks(tasks);
-                console.log(profile, project, tasks);
+                setIsLoaded(true);
             } catch (err) {
-                console.log(err.response.data);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
+                setIsLoaded(false);
             }
         };
-
+        setIsLoaded(false);
         handleMount();
     }, [id, profile_id]);
 
@@ -84,7 +90,7 @@ const ProjectReport = ({ profile_id }) => {
         }
     }, [hourly_rate, tasks]);
 
-    return (
+    return isLoaded ? (
         <>
             <Row className="d-flex justify-content-center p-2">
                 <Col className="py-2" xs={12} lg={8}>
@@ -102,18 +108,26 @@ const ProjectReport = ({ profile_id }) => {
                 <Col className="px-1" xs={12} lg={8}>
                     <Row>
                         <Col>
-                            <p className="m-0 mb-1">Estimated time: {estimatedTotalHours} hours</p>
+                            <p className="m-0 mb-1">
+                                Estimated time: {estimatedTotalHours} hours
+                            </p>
                         </Col>
                         <Col>
-                            <p className="m-0 mb-1">Actual time: {actualTotalHours} hours</p>
+                            <p className="m-0 mb-1">
+                                Actual time: {actualTotalHours} hours
+                            </p>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <p className="m-0 mb-1">Estimated cost: £{totalEstimatedCost}</p>
+                            <p className="m-0 mb-1">
+                                Estimated cost: £{totalEstimatedCost}
+                            </p>
                         </Col>
                         <Col>
-                            <p className="m-0 mb-1">Actual cost: £{totalActualCost}</p>
+                            <p className="m-0 mb-1">
+                                Actual cost: £{totalActualCost}
+                            </p>
                         </Col>
                     </Row>
                 </Col>
@@ -131,18 +145,27 @@ const ProjectReport = ({ profile_id }) => {
                                 <h4 className="m-0">{report.title}</h4>
                                 <Row>
                                     <Col>
-                                        <p className="m-0 mb-1">Est time: {report.estimated_time} hrs</p>
+                                        <p className="m-0 mb-1">
+                                            Est time: {report.estimated_time}{" "}
+                                            hrs
+                                        </p>
                                     </Col>
                                     <Col>
-                                        <p className="m-0 mb-1">Est cost: £{report.estimated_cost}</p>
+                                        <p className="m-0 mb-1">
+                                            Est cost: £{report.estimated_cost}
+                                        </p>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <p className="m-0 mb-1">Total time: {report.actual_time}</p>
+                                        <p className="m-0 mb-1">
+                                            Total time: {report.actual_time}
+                                        </p>
                                     </Col>
                                     <Col>
-                                        <p className="m-0 mb-1">Total cost: ${report.actual_cost}</p>
+                                        <p className="m-0 mb-1">
+                                            Total cost: ${report.actual_cost}
+                                        </p>
                                     </Col>
                                 </Row>
                             </Col>
@@ -172,6 +195,19 @@ const ProjectReport = ({ profile_id }) => {
                 </Col>
             </Row>
         </>
+    ) : (
+        <Row className={appStyles.LoadingSpinner}>
+            <Col className="text-center" lg={8}>
+                <Spinner animation="grow" variant="dark" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+                {errors.detail && (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.detail}
+                    </Alert>
+                )}
+            </Col>
+        </Row>
     );
 };
 

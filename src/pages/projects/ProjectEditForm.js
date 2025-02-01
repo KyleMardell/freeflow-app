@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import { Form, Button, Alert, Row, Col } from "react-bootstrap";
+import { Form, Button, Alert, Row, Col, Spinner } from "react-bootstrap";
 
+import appStyles from "../../App.module.css";
 import buttonStyles from "../../styles/Button.module.css";
+
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 const ProjectEditForm = () => {
     const [errors, setErrors] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
     const history = useHistory();
 
     const [projectData, setProjectData] = useState({
@@ -27,10 +30,15 @@ const ProjectEditForm = () => {
                 const { data } = await axiosReq.get(`/projects/${id}`);
                 const { title, brief, hourly_rate, due_date, status } = data;
                 setProjectData({ title, brief, hourly_rate, due_date, status });
+                setIsLoaded(true);
             } catch (err) {
-                console.log(err);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
+                setIsLoaded(false);
             }
         };
+        setIsLoaded(false);
         handleMount();
     }, [id]);
 
@@ -159,7 +167,7 @@ const ProjectEditForm = () => {
         </>
     );
 
-    return (
+    return isLoaded ? (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="my-auto p-2 text-center" lg={8}>
                 <h1 className="my-4">Edit Project</h1>
@@ -181,10 +189,23 @@ const ProjectEditForm = () => {
             </Col>
             <Col className="my-auto p-2" lg={8}>
                 <Button
-                    className={`${buttonStyles.Button} ${buttonStyles.Wide}`}
+                    className={`${buttonStyles.ButtonYellow} ${buttonStyles.Wide}`}
                     onClick={() => history.goBack()}>
                     Cancel
                 </Button>
+            </Col>
+        </Row>
+    ) : (
+        <Row className={appStyles.LoadingSpinner}>
+            <Col className="text-center" lg={8}>
+                <Spinner animation="grow" variant="dark" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+                {errors.detail && (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.detail}
+                    </Alert>
+                )}
             </Col>
         </Row>
     );

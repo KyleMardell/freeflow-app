@@ -19,7 +19,6 @@ const ProjectsPage = ({ filter = "" }) => {
         const fetchProjects = async () => {
             try {
                 const { data } = await axiosReq.get("/projects");
-                console.log(data);
                 setProjects(data);
                 setIsLoaded(true);
             } catch (err) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Button, Modal } from "react-bootstrap";
+import { Col, Row, Button, Modal, Spinner, Alert } from "react-bootstrap";
 
 import { useParams } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
@@ -8,10 +8,13 @@ import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 
 import styles from "../../styles/ProjectPage.module.css";
 import buttonStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css";
 
 import TaskPreview from "../../components/TaskPreview";
 
 const ProjectPage = () => {
+    const [errors, setErrors] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
     const { id } = useParams();
     const [project, setProject] = useState({});
     const { title, brief, hourly_rate, due_date, created_at, updated_at } =
@@ -33,19 +36,26 @@ const ProjectPage = () => {
                 ]);
                 setProject(project);
                 setTasks(tasks);
+                setIsLoaded(true);
             } catch (err) {
-                console.log(err);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
+                setIsLoaded(false);
             }
         };
+        setIsLoaded(false);
         handleMount();
     }, [id]);
 
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/projects/${id}`);
-            history.push('/projects/');
+            history.push("/projects/");
         } catch (err) {
-            console.log(err);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
         }
     };
 
@@ -57,7 +67,8 @@ const ProjectPage = () => {
                 </Col>
                 <Col className={`${styles.DetailBorder} text-center`}>
                     <p>
-                        Hourly rate: {hourly_rate ? hourly_rate : <>No rate set</>}
+                        Hourly rate:{" "}
+                        {hourly_rate ? hourly_rate : <>No rate set</>}
                     </p>
                 </Col>
             </Row>
@@ -77,14 +88,14 @@ const ProjectPage = () => {
         </>
     );
 
-    return (
+    return isLoaded ? (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="py-2" xs={12} lg={8}>
                 <h1 className="text-center my-4 py-2">Project: {title}</h1>
                 {projectDetails}
             </Col>
             <Col className="px-1" xs={12} lg={8}>
-            <Link to={`/projects/${id}/tasks/create`}>
+                <Link to={`/projects/${id}/tasks/create`}>
                     <Button
                         className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
                         Add task
@@ -92,7 +103,7 @@ const ProjectPage = () => {
                 </Link>
             </Col>
             <Col className="px-1" xs={12} lg={8}>
-            <Link to={`/projects/${id}/report`}>
+                <Link to={`/projects/${id}/report`}>
                     <Button
                         className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
                         Generate Report
@@ -102,9 +113,7 @@ const ProjectPage = () => {
             <Col className="py-2 px-1 text-center" xs={12} lg={8}>
                 {tasks.length ? (
                     tasks.map((task) => {
-                        return (
-                            <TaskPreview key={task.id} {...task} />
-                        )
+                        return <TaskPreview key={task.id} {...task} />;
                     })
                 ) : (
                     <div>No tasks yet...</div>
@@ -130,10 +139,14 @@ const ProjectPage = () => {
                         Are you sure you want to delete this project?
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button className={`${buttonStyles.ButtonYellow} my-3`} onClick={handleClose}>
+                        <Button
+                            className={`${buttonStyles.ButtonYellow} my-3`}
+                            onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button className={`${buttonStyles.Button} my-3`} onClick={handleDelete}>
+                        <Button
+                            className={`${buttonStyles.Button} my-3`}
+                            onClick={handleDelete}>
                             Delete
                         </Button>
                     </Modal.Footer>
@@ -145,6 +158,19 @@ const ProjectPage = () => {
                     onClick={() => history.push("/projects")}>
                     Return to My Projects
                 </Button>
+            </Col>
+        </Row>
+    ) : (
+        <Row className={appStyles.LoadingSpinner}>
+            <Col className="text-center" lg={8}>
+                <Spinner animation="grow" variant="dark" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+                {errors.detail && (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.detail}
+                    </Alert>
+                )}
             </Col>
         </Row>
     );

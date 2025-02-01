@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Form, Button, Alert, Row, Col } from "react-bootstrap";
 
 import buttonStyles from "../../styles/Button.module.css";
+
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -90,8 +91,7 @@ const ProjectCreateForm = () => {
                             as="select"
                             name="status"
                             value={status}
-                            onChange={handleChange}
-                        >
+                            onChange={handleChange}>
                             <option value="draft">Draft</option>
                             <option value="active">Active</option>
                             <option value="complete">Complete</option>
@@ -122,7 +122,9 @@ const ProjectCreateForm = () => {
                 </Col>
                 <Col xs={12} lg={4}>
                     <Form.Group>
-                        <Form.Label className="px-2">Hourly Rate (£)</Form.Label>
+                        <Form.Label className="px-2">
+                            Hourly Rate (£)
+                        </Form.Label>
                         <Form.Control
                             type="number"
                             placeholder="Hourly rate"
@@ -151,7 +153,9 @@ const ProjectCreateForm = () => {
             <Col className="my-auto p-2" lg={8}>
                 <Form onSubmit={handleSubmit}>
                     {formInputFields}
-                    <Button className={`${buttonStyles.Button} ${buttonStyles.Wide}`} type="submit">
+                    <Button
+                        className={`${buttonStyles.Button} ${buttonStyles.Wide}`}
+                        type="submit">
                         Submit
                     </Button>
                     {errors.non_field_errors?.map((message, idx) => (
