@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Spinner, Alert } from "react-bootstrap";
+import { Col, Row, Spinner, Alert, Button } from "react-bootstrap";
 
 import { axiosReq } from "../../api/axiosDefaults";
-import { useParams } from "react-router-dom/cjs/react-router-dom";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 
 import UserImage from "../../components/UserImage";
 import appStyles from "../../App.module.css";
+import buttonStyles from "../../styles/Button.module.css";
 
 const ProjectReport = ({ profile_id }) => {
     const [errors, setErrors] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
+    const history = useHistory();
+
     const [profile, setProfile] = useState({});
     const { name, bio, image, email, phone } = profile;
     const [project, setProject] = useState({});
@@ -192,6 +195,15 @@ const ProjectReport = ({ profile_id }) => {
                     <p className="m-0 p-1">
                         Email: {email} | Phone: {phone}
                     </p>
+                </Col>
+            </Row>
+            <Row className="d-flex justify-content-center my-2">
+                <Col className="my-auto p-2" lg={8}>
+                    <Button
+                        className={`${buttonStyles.ButtonYellow} ${buttonStyles.Wide}`}
+                        onClick={() => history.goBack()}>
+                        Cancel
+                    </Button>
                 </Col>
             </Row>
         </>
