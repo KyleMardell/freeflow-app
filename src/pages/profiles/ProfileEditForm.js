@@ -4,6 +4,7 @@ import { Form, Button, Row, Col, Alert, Spinner } from "react-bootstrap";
 import UserImage from "../../components/UserImage";
 
 import buttonStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css";
 
 import { axiosReq } from "../../api/axiosDefaults";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
@@ -208,7 +209,7 @@ const ProfileEditForm = ({ profile_id }) => {
             </Col>
         </Row>
     ) : (
-        <Row className="d-flex justify-content-center">
+        <Row className={appStyles.LoadingSpinner}>
             <Col className="text-center my-4" lg={8}>
                 <Spinner animation="grow" variant="dark" role="status">
                     <span className="sr-only">Loading...</span>

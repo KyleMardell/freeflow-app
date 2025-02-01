@@ -6,6 +6,8 @@ import UserImage from "../../components/UserImage";
 
 import buttonStyles from "../../styles/Button.module.css";
 import styles from "../../styles/ProfilePage.module.css";
+import appStyles from "../../App.module.css";
+
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const ProfilePage = ({ profile_id }) => {
@@ -84,7 +86,7 @@ const ProfilePage = ({ profile_id }) => {
             </Row>
         </>
     ) : (
-        <Row className="d-flex justify-content-center">
+        <Row className={appStyles.LoadingSpinner}>
             <Col className="text-center my-4" lg={8}>
                 <Spinner animation="grow" variant="dark" role="status">
                     <span className="sr-only">Loading...</span>

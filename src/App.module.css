@@ -28,3 +28,10 @@ h6 {
     border-radius: 2px;
     border: 1px solid #001E6C;
   }
+
+.LoadingSpinner {
+    height: calc(100vh - 82px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
