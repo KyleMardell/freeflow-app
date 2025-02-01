@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Button, Modal } from "react-bootstrap";
+import { Row, Col, Button, Modal, Spinner, Alert } from "react-bootstrap";
 
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
+import appStyles from "../../App.module.css";
 import styles from "../../styles/TaskPage.module.css";
 import buttonStyles from "../../styles/Button.module.css";
 
-
 const TaskPage = () => {
+    const [errors, setErrors] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
     const [task, setTask] = useState({});
     const {
         custom_task,
@@ -37,22 +39,28 @@ const TaskPage = () => {
                     `/projects/${pid}/tasks/${tid}`
                 );
                 setTask(data);
-                console.log(data);
+                setIsLoaded(true);
             } catch (err) {
-                console.log(err);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
+                setIsLoaded(false);
             }
         };
+        setIsLoaded(false);
         handleMount();
     }, [pid, tid]);
 
     const handleDelete = async () => {
-            try {
-                await axiosRes.delete(`/projects/${pid}/tasks/${tid}`);
-                history.push(`/projects/${pid}`);
-            } catch (err) {
-                console.log(err);
+        try {
+            await axiosRes.delete(`/projects/${pid}/tasks/${tid}`);
+            history.push(`/projects/${pid}`);
+        } catch (err) {
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
             }
-        };
+        }
+    };
 
     const taskDetails = (
         <>
@@ -103,7 +111,7 @@ const TaskPage = () => {
         </>
     );
 
-    return (
+    return isLoaded ? (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="py-2" xs={12} lg={8}>
                 <h1 className="text-center my-4 py-2">Task: {title}</h1>
@@ -148,6 +156,19 @@ const TaskPage = () => {
                     onClick={() => history.push(`/projects/${pid}`)}>
                     Return to the project
                 </Button>
+            </Col>
+        </Row>
+    ) : (
+        <Row className={appStyles.LoadingSpinner}>
+            <Col className="text-center my-4" lg={8}>
+                <Spinner animation="grow" variant="dark" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+                {errors.detail && (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.detail}
+                    </Alert>
+                )}
             </Col>
         </Row>
     );

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Row, Col, Button, Alert } from "react-bootstrap";
+import { Form, Row, Col, Button, Alert, Spinner } from "react-bootstrap";
 
+import appStyles from "../../App.module.css";
 import buttonStyles from "../../styles/Button.module.css";
+
 import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const TaskEditForm = () => {
     const [errors, setErrors] = useState({});
-
+    const [isLoaded, setIsLoaded] = useState(false);
     const { pid, tid } = useParams();
 
     const [taskData, setTaskData] = useState({
@@ -60,8 +62,12 @@ const TaskEditForm = () => {
                     status,
                     due_date,
                 });
+                setIsLoaded(true);
             } catch (err) {
-                console.log(err);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
+                setIsLoaded(false);
             }
 
             try {
@@ -69,13 +75,15 @@ const TaskEditForm = () => {
                     const { data } = await axiosReq.get(`/custom_tasks/${custom_task}`);
                     setCustomTaskData(data);
                     setOriginalCustomTaskData(data);
-                    console.log(data);
                 }
             } catch (err) {
-                console.log(err);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
             }
 
         };
+        setIsLoaded(false);
         handleMount();
     }, [pid, tid, custom_task]);
 
@@ -96,13 +104,11 @@ const TaskEditForm = () => {
             const longTimeNum = parseFloat(longest_time);
             const quickTimeNum = parseFloat(quickest_time);
             const actualTimeNum = parseFloat(actual_time);
-            console.log (quickTimeNum, actualTimeNum, averageTimeNum);
             
             const newAverage = frequencyNum > 0 ? ((frequencyNum * averageTimeNum) + actualTimeNum) / newFrequency : actualTimeNum;
             const newLongest = actualTimeNum > longTimeNum ? actualTimeNum : longTimeNum;
             const newQuickest = quickTimeNum === 0 || (actualTimeNum > 0 && actualTimeNum) < quickTimeNum ? actualTimeNum : quickTimeNum;
 
-            console.log(newQuickest);
     
             return {
                 ...customTaskData,
@@ -130,7 +136,6 @@ const TaskEditForm = () => {
         try {
             const taskResponse = await axiosReq.put(`/projects/${pid}/tasks/${tid}`, formData);
             if(custom_task && status === "complete") {
-                console.log(average_time);
                 const customFormData = new FormData();
                 customFormData.append("average_time", updatedCustomData.average_time);
                 customFormData.append("quickest_time", updatedCustomData.quickest_time);
@@ -142,12 +147,13 @@ const TaskEditForm = () => {
                 try {
                     await axiosReq.put(`/custom_tasks/${custom_task}`, customFormData);
                 } catch (err) {
-                    console.log(err.response?.data);
+                    if (err.response?.status !== 401) {
+                        setErrors(err.response?.data);
+                    }
                 }
             }     
             history.push(`/projects/${pid}/tasks/${taskResponse.data.id}`);
         } catch (err) {
-            console.log(err.response?.data);
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
@@ -155,7 +161,8 @@ const TaskEditForm = () => {
     };
 
     return (
-        <Row className="h-100 d-flex justify-content-center">
+        (isLoaded) ? (
+            <Row className="h-100 d-flex justify-content-center">
             <Col className="my-auto p-2 text-center" lg={8}>
                 <h1 className="my-4">Edit Task</h1>
             </Col>
@@ -295,6 +302,21 @@ const TaskEditForm = () => {
                 </Button>
             </Col>
         </Row>
+        ) : (
+            <Row className={appStyles.LoadingSpinner}>
+            <Col className="text-center my-4" lg={8}>
+                <Spinner animation="grow" variant="dark" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+                {errors.detail && (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.detail}
+                    </Alert>
+                )}
+            </Col>
+        </Row>
+        )
+        
     );
 };
 

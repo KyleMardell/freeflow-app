@@ -38,10 +38,11 @@ const TaskCreateForm = () => {
         const fetchCustomTasks = async () => {
             try {
                 const { data } = await axiosReq.get("/custom_tasks");
-                console.log(data);
                 setCustomTaskData(data);
             } catch (err) {
-                console.log(err);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
             }
         };
         fetchCustomTasks();
@@ -91,7 +92,6 @@ const TaskCreateForm = () => {
             );
             history.push(`/projects/${id}/tasks/${data.id}`);
         } catch (err) {
-            console.log(err.response?.data);
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
