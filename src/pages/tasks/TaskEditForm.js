@@ -32,6 +32,7 @@ const TaskEditForm = () => {
 
     const [customTaskData, setCustomTaskData] = useState({});
     const [originalCustomTaskData, setOriginalCustomTaskData] = useState(customTaskData);
+    const { average_time, longest_time, quickest_time, frequency } = originalCustomTaskData;
 
     const history = useHistory();
 
@@ -88,15 +89,13 @@ const TaskEditForm = () => {
     const handleStatusChange = (event) => {
         const newStatus = event.target.value;
         setTaskData((prevData) => ({ ...prevData, status: newStatus }));
-        console.log (actual_time, customTaskData);
+        console.log (actual_time, custom_task, customTaskData);
 
         const actualTime = parseFloat(actual_time);
         console.log(actualTime);
     
         if (newStatus === "complete" && customTaskData && actualTime) {
-            const { average_time, longest_time, quickest_time, frequency } = originalCustomTaskData;
-            console.log(actual_time, longest_time, quickest_time, frequency);
-
+            
             const frequencyNum = parseFloat(frequency);
             const newFrequency = frequencyNum + 1;
             const averageTimeNum = parseFloat(average_time);
@@ -104,7 +103,6 @@ const TaskEditForm = () => {
             const quickTimeNum = parseFloat(quickest_time);
             const actualTimeNum = parseFloat(actual_time);
             
-
             const newAverage = frequencyNum > 0 ? ((frequencyNum * averageTimeNum) + actualTimeNum) / newFrequency : actualTimeNum;
             const newLongest = actualTimeNum > longTimeNum ? actualTimeNum : longTimeNum;
             const newQuickest = actualTimeNum < quickTimeNum ? actualTimeNum : quickTimeNum;
@@ -130,8 +128,8 @@ const TaskEditForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const formData = new FormData();
 
+        const formData = new FormData();
         formData.append("title", title);
         formData.append("description", description);
         formData.append("estimated_time", estimated_time);
@@ -139,12 +137,19 @@ const TaskEditForm = () => {
         formData.append("status", status);
         formData.append("due_date", due_date);
 
+        const customFormData = new FormData();
+        customFormData.append("average_time", average_time);
+        customFormData.append("quickest_time", quickest_time);
+        customFormData.append("longest_time", longest_time);
+        customFormData.append("frequency", frequency);
+
         try {
-            const { data } = await axiosReq.put(
-                `/projects/${pid}/tasks/${tid}`,
-                formData
-            );
-            history.push(`/projects/${pid}/tasks/${data.id}`);
+            const [taskResponse, customTaskResponse] = await Promise.all([
+                axiosReq.put(`/projects/${pid}/tasks/${tid}`, formData),
+                axiosReq.put(`/custom_tasks/${custom_task}`, customFormData),
+            ]);
+            
+            history.push(`/projects/${pid}/tasks/${taskResponse.data.id}`);
         } catch (err) {
             console.log(err.response?.data);
             if (err.response?.status !== 401) {

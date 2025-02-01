@@ -43,7 +43,6 @@ const CustomTaskEditForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-
         formData.append("title", title);
         formData.append("description", description);
         formData.append("estimated_time", parseFloat(estimated_time));
