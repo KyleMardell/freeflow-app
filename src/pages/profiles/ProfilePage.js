@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row, Spinner, Alert } from "react-bootstrap";
 import UserImage from "../../components/UserImage";
 
 import buttonStyles from "../../styles/Button.module.css";
@@ -9,6 +9,8 @@ import styles from "../../styles/ProfilePage.module.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const ProfilePage = ({ profile_id }) => {
+    const [errors, setErrors] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
     const [profile, setProfile] = useState({});
     const { owner, name, bio, image, email, phone, created_at, updated_at } =
         profile;
@@ -18,15 +20,18 @@ const ProfilePage = ({ profile_id }) => {
             try {
                 const { data } = await axiosReq.get(`/profiles/${profile_id}`);
                 setProfile(data);
-                console.log(data);
+                setIsLoaded(true);
             } catch (err) {
-                console.log(err);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
+                setIsLoaded(false);
             }
         };
         handleMount();
-    }, [profile_id]);
+    }, [profile_id, isLoaded]);
 
-    return (
+    return isLoaded ? (
         <>
             <Row className="d-flex justify-content-center">
                 <Col className="text-center my-4" lg={8}>
@@ -36,7 +41,7 @@ const ProfilePage = ({ profile_id }) => {
             <Row className="px-1 d-flex justify-content-center">
                 <Col className={`${styles.DetailBorder} d-flex p-1`} lg={8}>
                     <div className="d-flex align-items-center justify-content-center">
-                      <UserImage src={image} />
+                        <UserImage src={image} />
                     </div>
                     <div>
                         <p className="p-1 m-0">Username: {owner}</p>
@@ -63,7 +68,7 @@ const ProfilePage = ({ profile_id }) => {
                 <Col className={`${styles.DetailBorder} p-1`} xs={6} lg={4}>
                     <p className="p-1 m-0">Joined: {created_at}</p>
                 </Col>
-                <Col className={`${styles.DetailBorder} p-1`}xs={6} lg={4}>
+                <Col className={`${styles.DetailBorder} p-1`} xs={6} lg={4}>
                     <p className="p-1 m-0">Updated: {updated_at}</p>
                 </Col>
             </Row>
@@ -78,6 +83,19 @@ const ProfilePage = ({ profile_id }) => {
                 </Col>
             </Row>
         </>
+    ) : (
+        <Row className="d-flex justify-content-center">
+            <Col className="text-center my-4" lg={8}>
+                <Spinner animation="grow" variant="dark" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+                {errors.detail && (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.detail}
+                    </Alert>
+                )}
+            </Col>
+        </Row>
     );
 };
 
