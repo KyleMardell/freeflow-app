@@ -10,7 +10,7 @@ const ProjectPreview = (props) => {
 
     return (
         <Link to={`/projects/${id}`}>
-        <div className={`${styles.Preview} p-2 my-2`}>
+        <div className={`${styles.Preview} p-2 my-2 mx-0`}>
             <div className="text-center">
                 <h2>{title}</h2>
             </div>

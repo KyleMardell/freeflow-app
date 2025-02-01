@@ -34,7 +34,7 @@ const ProjectsPage = ({ filter = "" }) => {
 
     return isLoaded ? (
         <Row className="h-100 d-flex justify-content-center">
-            <Col className="py-2 text-center" lg={8}>
+            <Col className="py-2 px-1 text-center" lg={8}>
                 <h1 className="my-4">My Projects</h1>
                 <Link to="/projects/create">
                     <Button
