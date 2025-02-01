@@ -17,8 +17,15 @@ const ProjectPage = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const { id } = useParams();
     const [project, setProject] = useState({});
-    const { title, brief, hourly_rate, due_date, created_at, updated_at } =
-        project;
+    const {
+        title,
+        brief,
+        status,
+        hourly_rate,
+        due_date,
+        created_at,
+        updated_at,
+    } = project;
     const [tasks, setTasks] = useState([]);
 
     const history = useHistory();
@@ -62,27 +69,32 @@ const ProjectPage = () => {
     const projectDetails = (
         <>
             <Row className="px-1">
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>Due date: {due_date ? due_date : <>No date set</>}</p>
+                <Col className={`${styles.DetailBorder} ${styles.BorderTop} text-center`}>
+                    <p className="m-0 p-2">Status: {status}</p>
                 </Col>
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>
+            </Row>
+            <Row className="px-1">
+                <Col className={`${styles.BorderMid} ${styles.BorderRight} text-center`}>
+                    <p className="m-0 p-2">Due date: {due_date ? due_date : <>No date set</>}</p>
+                </Col>
+                <Col className={`${styles.BorderMid} text-center`}>
+                    <p className="m-0 p-2">
                         Hourly rate:{" "}
                         {hourly_rate ? hourly_rate : <>No rate set</>}
                     </p>
                 </Col>
             </Row>
             <Row className="px-1">
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>Created {created_at}</p>
+                <Col className={`${styles.BorderMid} ${styles.BorderRight} text-center`}>
+                    <p className="m-0 p-2">Created {created_at}</p>
                 </Col>
-                <Col className={`${styles.DetailBorder} text-center`}>
-                    <p>Updated {updated_at}</p>
+                <Col className={`${styles.BorderMid} text-center`}>
+                    <p className="m-0 p-2">Updated {updated_at}</p>
                 </Col>
             </Row>
             <Row className="px-1">
-                <Col className={`${styles.DetailBorder}`}>
-                    <p>Brief: {brief}</p>
+                <Col className={`${styles.DetailBorder} ${styles.BorderBottom}`}>
+                    <p className="m-0 p-2">Brief: {brief}</p>
                 </Col>
             </Row>
         </>
