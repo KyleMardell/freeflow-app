@@ -12,6 +12,7 @@ const TaskEditForm = () => {
     const { pid, tid } = useParams();
 
     const [taskData, setTaskData] = useState({
+        custom_task: null,
         title: "",
         description: "",
         estimated_time: 0.0,
@@ -20,6 +21,7 @@ const TaskEditForm = () => {
         due_date: "",
     });
     const {
+        custom_task,
         title,
         description,
         estimated_time,
@@ -27,6 +29,9 @@ const TaskEditForm = () => {
         status,
         due_date,
     } = taskData;
+
+    const [customTaskData, setCustomTaskData] = useState({});
+    const [originalCustomTaskData, setOriginalCustomTaskData] = useState(customTaskData);
 
     const history = useHistory();
 
@@ -37,6 +42,7 @@ const TaskEditForm = () => {
                     `/projects/${pid}/tasks/${tid}`
                 );
                 const {
+                    custom_task,
                     title,
                     description,
                     estimated_time,
@@ -45,6 +51,7 @@ const TaskEditForm = () => {
                     due_date,
                 } = data;
                 setTaskData({
+                    custom_task,
                     title,
                     description,
                     estimated_time,
@@ -55,15 +62,70 @@ const TaskEditForm = () => {
             } catch (err) {
                 console.log(err);
             }
+
+            try {
+                if (custom_task) {
+                    const { data } = await axiosReq.get(`/custom_tasks/${custom_task}`);
+                    setCustomTaskData(data);
+                    setOriginalCustomTaskData(data);
+                    console.log(data);
+                }
+            } catch (err) {
+                console.log(err);
+            }
+
         };
         handleMount();
-    }, [pid, tid]);
+    }, [pid, tid, custom_task]);
 
     const handleChange = (event) => {
         setTaskData({
             ...taskData,
             [event.target.name]: event.target.value,
         });
+    };
+
+    const handleStatusChange = (event) => {
+        const newStatus = event.target.value;
+        setTaskData((prevData) => ({ ...prevData, status: newStatus }));
+        console.log (actual_time, customTaskData);
+
+        const actualTime = parseFloat(actual_time);
+        console.log(actualTime);
+    
+        if (newStatus === "complete" && customTaskData && actualTime) {
+            const { average_time, longest_time, quickest_time, frequency } = originalCustomTaskData;
+            console.log(actual_time, longest_time, quickest_time, frequency);
+
+            const frequencyNum = parseFloat(frequency);
+            const newFrequency = frequencyNum + 1;
+            const averageTimeNum = parseFloat(average_time);
+            const longTimeNum = parseFloat(longest_time);
+            const quickTimeNum = parseFloat(quickest_time);
+            const actualTimeNum = parseFloat(actual_time);
+            
+
+            const newAverage = frequencyNum > 0 ? ((frequencyNum * averageTimeNum) + actualTimeNum) / newFrequency : actualTimeNum;
+            const newLongest = actualTimeNum > longTimeNum ? actualTimeNum : longTimeNum;
+            const newQuickest = actualTimeNum < quickTimeNum ? actualTimeNum : quickTimeNum;
+
+            console.log(newAverage, newFrequency, newLongest, newQuickest);
+    
+            setCustomTaskData((prevData) => {
+                const updatedData = {
+                    ...prevData,
+                    average_time: newAverage,
+                    longest_time: newLongest,
+                    quickest_time: newQuickest,
+                    frequency: newFrequency,
+                };
+                console.log("Updated customTaskData:", updatedData);
+                return updatedData;
+            });
+            
+        } else if (newStatus === "active") {
+            setCustomTaskData(originalCustomTaskData);
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -196,7 +258,7 @@ const TaskEditForm = () => {
                             as="select"
                             name="status"
                             value={status}
-                            onChange={handleChange}>
+                            onChange={handleStatusChange}>
                             <option value="active">Active</option>
                             <option value="complete">Complete</option>
                         </Form.Control>
@@ -219,6 +281,11 @@ const TaskEditForm = () => {
                     ))}
                 </Form>
             </Col>
+            {custom_task ? (
+                <Col className="my-auto p-2" lg={8}>
+                    <p>Custom task used: {custom_task}</p>
+                </Col>
+                ) : (<></>)}
             <Col className="my-auto p-2" lg={8}>
                 <Button
                     className={`${buttonStyles.ButtonYellow} ${buttonStyles.Wide}`}

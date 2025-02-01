@@ -118,7 +118,7 @@ const TaskCreateForm = () => {
                                 <option
                                     key={customTask.id}
                                     value={customTask.id}>
-                                    {customTask.title}{" "}
+                                    {customTask.title}
                                 </option>
                             ))}
                         </Form.Control>
