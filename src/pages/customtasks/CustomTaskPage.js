@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
+import {
+    Link,
+    useHistory,
+    useParams,
+} from "react-router-dom/cjs/react-router-dom";
 
+import { Row, Col, Button, Modal, Spinner, Alert } from "react-bootstrap";
+
+import appStyles from "../../App.module.css";
 import buttonStyles from "../../styles/Button.module.css";
 import styles from "../../styles/CustomTaskPage.module.css";
-import { Row, Col, Button, Modal } from "react-bootstrap";
 
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 
 const CustomTaskPage = () => {
+    const [errors, setErrors] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
     const { id } = useParams();
     const history = useHistory();
 
@@ -38,78 +46,92 @@ const CustomTaskPage = () => {
     const handleClose = () => setShowDeleteModal(false);
     const handleShow = () => setShowDeleteModal(true);
 
-    useEffect (() => {
-      const handleMount = async () => {
-        try {
-          const { data } = await axiosReq.get(`/custom_tasks/${id}`);
-          setCustomTask(data);
-          console.log(data);
-        } catch (err) {
-          console.log(err.response.data);
-        }
-      };
-      handleMount();
-    },[id]);
+    useEffect(() => {
+        const handleMount = async () => {
+            try {
+                const { data } = await axiosReq.get(`/custom_tasks/${id}`);
+                setCustomTask(data);
+                setIsLoaded(true);
+            } catch (err) {
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
+                setIsLoaded(false);
+            }
+        };
+        setIsLoaded(false);
+        handleMount();
+    }, [id]);
 
     const handleDelete = async () => {
-      try {
-        await axiosRes.delete(`/custom_tasks/${id}`);
-        history.push("/customtasks");
-      } catch (err) {
-        console.log(err.response.data);
-      }
-    }
+        try {
+            await axiosRes.delete(`/custom_tasks/${id}`);
+            history.push("/customtasks");
+        } catch (err) {
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
+        }
+    };
 
     const taskDetails = (
-      <>
-          <Row className="px-1">
-              <Col className={`${styles.DetailBorder}`}>
-                  <p>Description: {description ? description : <>No description set</>}</p>
-              </Col>
-          </Row>
-          <Row className="px-1">
-              <Col className={`${styles.DetailBorder}`}>
-                  <p>Number of uses: {frequency ? frequency : <>No uses yet</>}</p>
-              </Col>
-          </Row>
-          <Row className="px-1">
-              <Col className={`${styles.DetailBorder} text-center`}>
-                  <p>
-                      Estimated time (hours): {estimated_time ? estimated_time : <>No time set</>}
-                  </p>
-              </Col>
-              <Col className={`${styles.DetailBorder} text-center`}>
-                  <p>
-                      Average time (hours): {average_time ? average_time : <>No time set</>}
-                  </p>
-              </Col>
-          </Row>
-          <Row className="px-1">
-              <Col className={`${styles.DetailBorder} text-center`}>
-                  <p>
-                      Quickest time (hours): {quickest_time ? quickest_time : <>No time set</>}
-                  </p>
-              </Col>
-              <Col className={`${styles.DetailBorder} text-center`}>
-                  <p>
-                      Longest time (hours): {longest_time ? longest_time : <>No time set</>}
-                  </p>
-              </Col>
-          </Row>
-          <Row className="px-1">
-              <Col className={`${styles.DetailBorder} text-center`}>
-                  <p>Created {created_at}</p>
-              </Col>
-              <Col className={`${styles.DetailBorder} text-center`}>
-                  <p>Updated {updated_at}</p>
-              </Col>
-          </Row>
-          
-      </>
-  );
+        <>
+            <Row className="px-1">
+                <Col className={`${styles.DetailBorder}`}>
+                    <p>
+                        Description:{" "}
+                        {description ? description : <>No description set</>}
+                    </p>
+                </Col>
+            </Row>
+            <Row className="px-1">
+                <Col className={`${styles.DetailBorder}`}>
+                    <p>
+                        Number of uses:{" "}
+                        {frequency ? frequency : <>No uses yet</>}
+                    </p>
+                </Col>
+            </Row>
+            <Row className="px-1">
+                <Col className={`${styles.DetailBorder} text-center`}>
+                    <p>
+                        Estimated time (hours):{" "}
+                        {estimated_time ? estimated_time : <>No time set</>}
+                    </p>
+                </Col>
+                <Col className={`${styles.DetailBorder} text-center`}>
+                    <p>
+                        Average time (hours):{" "}
+                        {average_time ? average_time : <>No time set</>}
+                    </p>
+                </Col>
+            </Row>
+            <Row className="px-1">
+                <Col className={`${styles.DetailBorder} text-center`}>
+                    <p>
+                        Quickest time (hours):{" "}
+                        {quickest_time ? quickest_time : <>No time set</>}
+                    </p>
+                </Col>
+                <Col className={`${styles.DetailBorder} text-center`}>
+                    <p>
+                        Longest time (hours):{" "}
+                        {longest_time ? longest_time : <>No time set</>}
+                    </p>
+                </Col>
+            </Row>
+            <Row className="px-1">
+                <Col className={`${styles.DetailBorder} text-center`}>
+                    <p>Created {created_at}</p>
+                </Col>
+                <Col className={`${styles.DetailBorder} text-center`}>
+                    <p>Updated {updated_at}</p>
+                </Col>
+            </Row>
+        </>
+    );
 
-
-    return (
+    return isLoaded ? (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="py-2" xs={12} lg={8}>
                 <h1 className="text-center my-4 py-2">Custom Task: {title}</h1>
@@ -154,6 +176,19 @@ const CustomTaskPage = () => {
                     onClick={() => history.push("/customtasks")}>
                     Return to Custom Tasks
                 </Button>
+            </Col>
+        </Row>
+    ) : (
+        <Row className={appStyles.LoadingSpinner}>
+            <Col className="text-center my-4" lg={8}>
+                <Spinner animation="grow" variant="dark" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+                {errors.detail && (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.detail}
+                    </Alert>
+                )}
             </Col>
         </Row>
     );

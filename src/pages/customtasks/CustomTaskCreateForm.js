@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 
 import buttonStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 const CustomTaskCreateForm = () => {
+    const [errors, setErrors] = useState({});
     const history = useHistory();
 
     const [customTask, setCustomTask] = useState({
@@ -37,7 +38,9 @@ const CustomTaskCreateForm = () => {
             const { data } = await axiosReq.post("/custom_tasks/", formData);
             history.push(`/customtasks/${data.id}`);
         } catch (err) {
-            console.log(err.response);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
         }
     };
 
@@ -58,6 +61,11 @@ const CustomTaskCreateForm = () => {
                             onChange={handleChange}
                         />
                     </Form.Group>
+                    {errors?.title?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
 
                     <Form.Group>
                         <Form.Label>Description</Form.Label>
@@ -69,6 +77,11 @@ const CustomTaskCreateForm = () => {
                             onChange={handleChange}
                         />
                     </Form.Group>
+                    {errors?.description?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
 
                     <Form.Group>
                         <Form.Label>Estimated time (hours)</Form.Label>
@@ -84,12 +97,22 @@ const CustomTaskCreateForm = () => {
                             Use 0.25 per quarter of an hour
                         </Form.Text>
                     </Form.Group>
+                    {errors?.estimated_time?.map((message, idx) => (
+                        <Alert variant="warning" key={idx}>
+                            {message}
+                        </Alert>
+                    ))}
 
                     <Button
                         className={`${buttonStyles.Button} ${buttonStyles.Wide}`}
                         type="submit">
                         Submit
                     </Button>
+                    {errors.non_field_errors?.map((message, idx) => (
+                        <Alert variant="warning" key={idx} className="mt-3">
+                            {message}
+                        </Alert>
+                    ))}
                 </Form>
             </Col>
             <Col className="my-auto p-2" lg={8}>

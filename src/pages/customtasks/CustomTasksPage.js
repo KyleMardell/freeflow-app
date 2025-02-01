@@ -1,61 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { Button, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom/cjs/react-router-dom';
-import { axiosReq  } from '../../api/axiosDefaults';
+import { Button, Row, Col, Spinner, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom/cjs/react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
+import appStyles from "../../App.module.css";
 import buttonStyles from "../../styles/Button.module.css";
-import CustomTaskPreview from '../../components/CustomTaskPreview';
 
-const CustomTasksPage = ({filter=""}) => {
+import CustomTaskPreview from "../../components/CustomTaskPreview";
 
+const CustomTasksPage = ({ filter = "" }) => {
     const [customTasks, setCustomTasks] = useState({});
-    const [hasLoaded, setHasLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         const fetchCustomTasks = async () => {
             try {
-                const {data} = await axiosReq.get('/custom_tasks');
-                console.log(data);
+                const { data } = await axiosReq.get("/custom_tasks");
                 setCustomTasks(data);
-                setHasLoaded(true);
+                setIsLoaded(true);
             } catch (err) {
-                console.log(err);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
+                setIsLoaded(false);
             }
         };
-        setHasLoaded(false);
+        setIsLoaded(false);
         fetchCustomTasks();
     }, [filter]);
 
-  return (
-    <Row className="h-100 d-flex justify-content-center">
+    return isLoaded ? (
+        <Row className="h-100 d-flex justify-content-center">
             <Col className="py-2 text-center" lg={8}>
                 <h1 className="my-4">My Custom Tasks</h1>
                 <Link to="/customtasks/create">
-                    <Button className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
+                    <Button
+                        className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
                         Create New Custom Task
                     </Button>
                 </Link>
-                {hasLoaded ? (
-                    <>
-                    {customTasks.length ? (
-                        customTasks.map((task) => {
-                            return (
-                                <CustomTaskPreview key={task.id} {...task} />
-                            )
-                        })
-                    ) : (
-                        <div>No custom tasks yet...</div>
-                    )}
-                    </>
+                {customTasks.length ? (
+                    customTasks.map((task) => {
+                        return <CustomTaskPreview key={task.id} {...task} />;
+                    })
                 ) : (
-                    <>
-                        <div>No custom tasks yet...</div>
-                    </>
+                    <div>No custom tasks yet...</div>
                 )}
             </Col>
         </Row>
-  )
-}
+    ) : (
+        <Row className={appStyles.LoadingSpinner}>
+            <Col className="text-center my-4" lg={8}>
+                <Spinner animation="grow" variant="dark" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+                {errors.detail && (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.detail}
+                    </Alert>
+                )}
+            </Col>
+        </Row>
+    );
+};
 
-export default CustomTasksPage
+export default CustomTasksPage;
