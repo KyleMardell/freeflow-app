@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Row, Col, Alert, Spinner } from "react-bootstrap";
 import UserImage from "../../components/UserImage";
 
 import buttonStyles from "../../styles/Button.module.css";
@@ -20,6 +20,7 @@ const ProfileEditForm = ({ profile_id }) => {
     const { name, bio, image, email, phone } = profile;
 
     const [errors, setErrors] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const setCurrentUser = useSetCurrentUser();
 
@@ -31,10 +32,12 @@ const ProfileEditForm = ({ profile_id }) => {
             try {
                 const { data } = await axiosReq.get(`/profiles/${profile_id}`);
                 setProfile(data);
-                console.log(data);
+                setIsLoaded(true);
             } catch (err) {
-                console.log(err);
-                setErrors(err.response?.data);
+                if (err.response?.status !== 401) {
+                    setErrors(err.response?.data);
+                }
+                setIsLoaded(false);
             }
         };
         handleMount();
@@ -69,16 +72,24 @@ const ProfileEditForm = ({ profile_id }) => {
             }));
             history.goBack();
         } catch (err) {
-            console.log(err.response);
-            setErrors(err.response?.data);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
         }
     };
 
-    return (
+    return isLoaded ? (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="my-auto p-2 text-center" lg={8}>
                 <h1 className="my-4">Edit Profile</h1>
             </Col>
+
+            {errors.detail && (
+                <Alert variant="warning" className="mt-3">
+                    {errors.detail}
+                </Alert>
+            )}
+
             <Col className="my-auto p-2" lg={8}>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>
@@ -194,6 +205,19 @@ const ProfileEditForm = ({ profile_id }) => {
                     onClick={() => history.push("/profile")}>
                     Return to Profile
                 </Button>
+            </Col>
+        </Row>
+    ) : (
+        <Row className="d-flex justify-content-center">
+            <Col className="text-center my-4" lg={8}>
+                <Spinner animation="grow" variant="dark" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+                {errors.detail && (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.detail}
+                    </Alert>
+                )}
             </Col>
         </Row>
     );
