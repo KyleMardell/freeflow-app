@@ -109,17 +109,15 @@ const TaskEditForm = () => {
 
             console.log(newAverage, newFrequency, newLongest, newQuickest);
     
-            setCustomTaskData((prevData) => {
-                const updatedData = {
-                    ...prevData,
-                    average_time: newAverage,
-                    longest_time: newLongest,
-                    quickest_time: newQuickest,
-                    frequency: newFrequency,
-                };
-                console.log("Updated customTaskData:", updatedData);
-                return updatedData;
-            });
+            const updatedCustomTaskData = {
+                ...customTaskData,
+                average_time: newAverage,
+                longest_time: newLongest,
+                quickest_time: newQuickest,
+                frequency: newFrequency,
+            };
+            setCustomTaskData(updatedCustomTaskData);
+            console.log("Updated customTaskData:", updatedCustomTaskData);
             
         } else if (newStatus === "active") {
             setCustomTaskData(originalCustomTaskData);
@@ -138,16 +136,19 @@ const TaskEditForm = () => {
         formData.append("due_date", due_date);
 
         const customFormData = new FormData();
-        customFormData.append("average_time", average_time);
-        customFormData.append("quickest_time", quickest_time);
-        customFormData.append("longest_time", longest_time);
-        customFormData.append("frequency", frequency);
+        customFormData.append("average_time", customTaskData.average_time);
+        customFormData.append("quickest_time", customTaskData.quickest_time);
+        customFormData.append("longest_time", customTaskData.longest_time);
+        customFormData.append("frequency", customTaskData.frequency);
+        customFormData.append("title", customTaskData.title);
+        customFormData.append("estimated_time", customTaskData.estimated_time);
 
         try {
             const [taskResponse, customTaskResponse] = await Promise.all([
                 axiosReq.put(`/projects/${pid}/tasks/${tid}`, formData),
                 axiosReq.put(`/custom_tasks/${custom_task}`, customFormData),
             ]);
+            console.log(customTaskResponse);
             
             history.push(`/projects/${pid}/tasks/${taskResponse.data.id}`);
         } catch (err) {
