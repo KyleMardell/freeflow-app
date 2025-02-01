@@ -16,7 +16,7 @@ const ProjectPreview = (props) => {
             </div>
             <div className="d-flex justify-content-between">
                 <span>Status: {status}</span>
-                <span>Updated: {updated_at}</span>
+                <span className="mx-1">Updated: {updated_at}</span>
                 <span>{due_date ? <>Due: { due_date }</> : <></>}</span>
             </div>
         </div>
