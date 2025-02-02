@@ -9,6 +9,7 @@ import appStyles from "../../App.module.css";
 import buttonStyles from "../../styles/Button.module.css";
 
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { setTokenTimestamp } from "../../utils/utils";
 
 function SignInForm() {
     const setCurrentUser = useSetCurrentUser();
@@ -32,6 +33,7 @@ function SignInForm() {
                 signInData
             );
             setCurrentUser(data.user);
+            setTokenTimestamp(data);
             history.push("/projects");
         } catch (err) {
             setErrors(err.response?.data);

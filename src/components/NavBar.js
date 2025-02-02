@@ -13,6 +13,7 @@ import {
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
     const currentUser = useCurrentUser();
@@ -29,6 +30,7 @@ const NavBar = () => {
         try {
             await axios.post("dj-rest-auth/logout/");
             setCurrentUser(null);
+            removeTokenTimestamp();
             history.push("/");
         } catch (err) {
             console.log(err);
@@ -81,14 +83,16 @@ const NavBar = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>Sign Out</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    Are you sure you want to sign out?
-                </Modal.Body>
+                <Modal.Body>Are you sure you want to sign out?</Modal.Body>
                 <Modal.Footer>
-                    <Button className={buttonStyles.ButtonYellow} onClick={handleClose}>
+                    <Button
+                        className={buttonStyles.ButtonYellow}
+                        onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button className={buttonStyles.Button} onClick={handleSignOut}>
+                    <Button
+                        className={buttonStyles.Button}
+                        onClick={handleSignOut}>
                         Sign Out
                     </Button>
                 </Modal.Footer>
