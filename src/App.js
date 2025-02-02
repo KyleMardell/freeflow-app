@@ -23,6 +23,7 @@ import CustomTaskEditForm from "./pages/customtasks/CustomTaskEditForm";
 import ProjectsArchivePage from "./pages/projects/ProjectsArchivePage";
 import ProjectReport from "./pages/projects/ProjectReport";
 import NotFound from "./pages/errors/NotFound";
+import LandingPage from "./pages/landing/LandingPage";
 
 function App() {
     const currentUser = useCurrentUser();
@@ -34,7 +35,7 @@ function App() {
                     <Container className={styles.Main}>
                         <Switch>
                             <Route exact path="/" render={() => {
-                                return currentUser ? <Redirect to="/projects" /> : <h1>Home page</h1>
+                                return currentUser ? <Redirect to="/projects" /> : <LandingPage />
                                 }} />
                             <Route
                                 exact
