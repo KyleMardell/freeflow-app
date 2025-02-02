@@ -22,6 +22,7 @@ import CustomTaskPage from "./pages/customtasks/CustomTaskPage";
 import CustomTaskEditForm from "./pages/customtasks/CustomTaskEditForm";
 import ProjectsArchivePage from "./pages/projects/ProjectsArchivePage";
 import ProjectReport from "./pages/projects/ProjectReport";
+import NotFound from "./pages/errors/NotFound";
 
 function App() {
     const currentUser = useCurrentUser();
@@ -120,7 +121,7 @@ function App() {
                                 path="/projectarchive"
                                 render={() => <ProjectsArchivePage />}
                             />
-                            <Route render={() => <p>Page not found!</p>} />
+                            <Route render={() => <NotFound />} />
                         </Switch>
                     </Container>
                 </div>
