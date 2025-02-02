@@ -36,3 +36,52 @@ h6 {
     align-items: center;
     justify-content: center;
 }
+
+/* Media Queries for Larger Screens */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3rem; /* Larger size for tablets and up */
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    h3 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.25rem; /* Larger text for paragraphs on tablets and up */
+    }
+    
+    button {
+        font-size: 1.25rem; /* Larger button text */
+    }
+    
+    a {
+        font-size: 1.25rem; /* Larger link text */
+    }
+}
+
+@media (min-width: 1200px) {
+    h1 {
+        font-size: 4rem; /* Larger size for desktops */
+    }
+    h2 {
+        font-size: 3.5rem;
+    }
+    h3 {
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: 1.5rem; /* Even larger text for paragraphs on desktops */
+    }
+
+    button {
+        font-size: 1.75rem; /* Larger button text */
+    }
+
+    a {
+        font-size: 1.5rem; /* Larger link text */
+    }
+}
