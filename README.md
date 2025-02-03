@@ -1,6 +1,8 @@
-# Free Flow
+# Free Flow - Freelance Project Tracker
 
-[Responsive Image]()
+
+![Responsive Image](/docmedia/design/responsive.png)
+
 
 Free Flow is a freelance project tracker web app designed for business owners who need to manage projects and their associated tasks.
 The app helps track a project's progress while calculating estimated or final time and cost. Free Flow aims to assist anyone working on a new project, or even to estimate a project's cost and timeline before beginning. The tool is designed to solve the challenge of understanding project scope in terms of time and cost, offering value to any business person managing projects of various kinds.
@@ -20,20 +22,17 @@ Contents Here
 ## User Experience
 
 ### First time visitor goals
-
 - First-time visitors to the Free Flow app are likely individuals who are either about to start a new project or want to better understand how a project works. The goal is to provide clear and engaging information about the app's features, along with examples of how it can be used for different types of projects, all presented on the landing page. The aim is to attract and convert these visitors into registered users who are eager to sign up and start using the app.
 - Visitors should feel motivated to explore more features after their first use, potentially encouraging them to sign up for a full account.
 - Visitors should gain a clear understanding of how Free Flow can help them improve project management, from estimation to tracking, making it a tool they'll want to use for future projects.
 - For those who sign up and log in for the first time, the experience should be seamless, with the design elements and the intuitive interface leaving a lasting impression. First-time users should be able to create a new project and add tasks with minimal effort, requiring little or no instructions. The goal is to make the app feel familiar and easy to navigate, ensuring that these users are encouraged to return and become long-term, active users.
 
 ### Returning visitor goals
-
 - Returning visitors to Free Flow are likely users who were impressed with their initial experience and are now looking for more ways to track and manage their projects. The goal is to ensure the app remains intuitive and versatile, allowing users to easily create new projects, add tasks, and track progress seamlessly.
 - Another key goal for returning visitors is to offer the ability to generate detailed project reports for time and cost analysis or invoicing purposes. By leveraging custom tasks, returning users can track the time taken for specific tasks across multiple projects. The app would then provide reports showing both the estimated and actual time and cost for a project, giving users the data they need for accurate project analysis and invoicing.
 -  Returning users should have easy access to project and custom task reports to make better-informed decisions about future projects, helping them understand estimates and optimize task durations and costs.
 
 ### App use goals
-
 - The primary goal of the app is to deliver a versatile, easy-to-use project management system, with an intuitive interface that allows users to quickly view key project information.
 - The app is designed to help freelancers and project managers track project progress, better understand project scope, and generate reports or invoices.
 - Accessibility is key, ensuring the app is usable by a diverse range of users through full accessibility measures and an inclusive design approach.
@@ -44,7 +43,6 @@ Contents Here
 ## Design
 
 ### Concept and Epics
-
 My inspiration for the concept of the Free Flow app came from friends or family members who have asked if I could make a website for their business in the future. With this in mind, I researched how freelance business people operate and the challenges they face when undertaking a new project. When researching technology-based freelancers, I found that there were often many steps in a project that could be broken down into tasks.
 
 To better understand the scope of a project, I wanted to add estimated and final times to tasks. This way, a user could see the difference between estimated vs actual time to complete a project and provide a more accurate estimate for future projects. It would also allow users to identify which parts of a project took the most time and better understand how to prioritize tasks. The inspiration for assigning a time to a task came from my background as a BMW Vehicle Technician and VW Group Warranty Technician, where jobs or tasks are assigned a set time for billing purposes.
@@ -60,10 +58,10 @@ With the ability to add estimated and actual times to tasks, all that was needed
 
 As I wanted to include an hourly rate for the project and calculate costs, I also wanted to generate a report of the project for invoicing or analysis. This would provide an easy way to see a full estimated project breakdown and even a completed project's full task and hourly breakdown.
 
-Having used project tracking apps without a cost feature before, I knew the kind of app I wanted to create, but with the added costing feature. This meant I didn’t need to spend a great deal of time researching design ideas, as I had a clear vision of how I wanted the app to look, feel, and navigate. To meet the timeframe, I decided to use Bootstrap for layout, navigation, and some interactive features. With my experience using Bootstrap in multiple previous projects, I felt I had a good understanding of its uses and opted to use React Bootstrap . This would save me time, as I was already familiar with how to implement features I’ve used before using the CSS and JavaScript link version of Bootstrap.
+Having used project tracking apps without a cost feature before, I knew the kind of app I wanted to create, but with the added costing feature. This meant I didn’t need to spend a great deal of time researching design ideas, as I had a clear vision of how I wanted the app to look, feel, and navigate. To meet the time frame, I decided to use Bootstrap for layout, navigation, and some interactive features. With my experience using Bootstrap in multiple previous projects, I felt I had a good understanding of its uses and opted to use React Bootstrap. This would save me time, as I was already familiar with how to implement features I’ve used before using the CSS and JavaScript link version of Bootstrap and only required some slight modification in code to use the same features.
 
 ### Database
-When designing the Free Flow app, I wanted to create a database schema that would allow for future stretch goals while also establishing a solid foundation. With this in mind, I spent a reasonable amount of time ensuring that my schema would not need corrections once I began coding, as this could take up unnecessary time required to complete the project on schedule. I used my previous project's database schema as an example and Excalidraw to create and double-check my schema before beginning the coding process. I also used my wireframe designs for each page to understand the fields needed for each database model. Visualizing forms and pages helped me write down the required fields for each model and ensure nothing was missing or overlooked.
+When designing the Free Flow app, I wanted to create a database schema that would allow for future stretch goals while also establishing a solid foundation. With this in mind, I spent a reasonable amount of time ensuring that my schema would not need corrections once I began coding, as this could take up unnecessary time required to complete the project on schedule. I used my previous project's database schema as an example and [Excalidraw](https://excalidraw.com/) to create and double-check my schema before beginning the coding process. I also used my wireframe designs for each page to understand the fields needed for each database model. Visualizing forms and pages helped me write down the required fields for each model and ensure nothing was missing or overlooked.
 
 After designing and verifying my database schema, I realized that I only needed four custom models, or five in total, including the user model. The four custom models are profile, project, task, and custom task. These models provide sufficient functionality while keeping the project within the scope of both the MVP and the project timeline. I had considered adding more fields to each model, as well as other models, but in order to stay within the project's scope, they seemed unnecessary or too ambitious at this stage. However, I would like to add additional features in the future, and some of these are outlined below.
 
@@ -77,12 +75,12 @@ The custom task model contains fields like title, description, predicted time, n
 
 ### Functionality
 
-### Wireframes
-The project wireframes were some of the initial designs for the app, before I even created the database schema. I began with the wireframes because I could then visualize the pages of the app and gain an understanding of its functionality before coding. This also helped to understand the database fields that would be required to achieve the types of functions I wanted the app to have.
+### Wire Frames
+The project wire frames were some of the initial designs for the app, before I even created the database schema. I began with the wire frames because I could then visualize the pages of the app and gain an understanding of its functionality before coding. This also helped to understand the database fields that would be required to achieve the types of functions I wanted the app to have.
 
 As I wanted to keep to a mobile-first design, my plan was to limit the app width on larger screen sizes to easily create a similar look across all devices and therefore a familiar feeling for users switching between devices. Therefore, all my wireframe designs are based on mobile devices, as I knew I would not be creating wildly different designs for tablet or desktop devices, also reducing the design time required and helping to simplify the development stage.
 
-Listed below are the wireframes for each of the pages I created with the project list as example.
+Listed below are the wire frames for each of the pages I created with the project list as example.
 
 ![Projects List](/docmedia/design/wireframes/wire-projecsts-list.png)
 - [Project Details](/docmedia/design/wireframes/wire-project-detail.png)
@@ -109,15 +107,49 @@ For the typography, I opted for two professional-looking sans-serif style fonts 
 ![Fonts](/docmedia/design/fonts.png)
 
 ## Agile and kanban
-
-When it came to beginning the project after conceptualization, I wanted to use an Agile development methodology to stay flexible throughout the process, while keeping a core feature set to maintain focus. This meant I was able to quickly change things, such as design or user experience features, to create a better overall experience. I started by creating two project boards inside the GitHub repo: one for user stories and epics, and another for project development to ensure all features were considered and allow me to effectively plan the development process using story points. I found that creating two separate project boards helped me to understand the scope of the project and plan my time effectively.
+When it came to beginning the project after conceptualization, I wanted to use an Agile development methodology to stay flexible throughout the process, while keeping a core feature set to maintain focus. This meant I was able to quickly change things, such as design or user experience features, to create a better overall experience. I started by creating two project boards inside the GitHub repo: one for user stories and epics, and another for project development to ensure all features were considered and allow me to effectively plan the development process using story points. I found that creating two separate project boards helped me to understand the scope of the project and plan my time effectively. The project boards are linked and detailed below.
 
 [Project Board](https://github.com/users/KyleMardell/projects/7)
 [User Stories Board](https://github.com/users/KyleMardell/projects/8)
 
 ### User stories and epics
+Once I had come up with the initial concept for the project I began writing the epics and user stories to form a guide for the project, understand the scope and set a roadmap for the development process. The user stories helped me break down key features and prioritise essential functionality, ensuring that I stayed on track throughout the build.
+By outlining these stories early on, I was able to maintain a clear development direction and ensure that every feature aligned with the overall purpose of the platform. The list of user stories also provided a strong foundation for testing, as I could validate each feature against its intended functionality.
+
+Below I have listed the user story titles, details of which can be found in the user stories project board at the link above.
+
+- Sign Up
+- Sign In
+- Sign Out
+- Create Profile
+- View Profile
+- Edit Profile
+- Projects Ordered By
+- Project Report
+- Add A Task To A Project
+- Edit Tasks
+- Delete A Task
+- Tasks Ordered By
+- Mark A Task As Complete
+- Tasks Predicted Time
+- Task Time Taken
+- Create Custom Task
+- Custom Tasks List
+- Delete Custom Tasks
+- Edit Custom Tasks
+- View A Custom Task's Data
+- Custom Tasks Ordered By
+- Hourly Rate
+- Project Report
+- Landing Page
+- Home Page
+- Nav Bar
+- Responsive Design
+
 
 ### Issues
+In order to track the development process, I broke each task down into an issue and added it to a separate project board. This meant I could distinguish between user stories and development tasks, helping to manage my time and have a clear understanding of what needed to be done next. I created issues for each of the development stages, including design, back end, front end, testing and documentation based tasks. This also helped to ensure that there were no large features or steps overlooked.
+With the use of labels, issues were clearly categorised helping to distinguish between design, code and documentation, as well as front end or back end. I also used milestones to represent sprints, with each sprint lasting an average of 3-5 days. Sprints were named as each part of the development process, helping to keep track of the time and work loads remaining. As I was using an agile way of working, this meant there were issues that were ran over into the following sprint or design elements that were adapted from the initial plans. 
 
 ## Features
 
@@ -126,14 +158,53 @@ When it came to beginning the project after conceptualization, I wanted to use a
 #### Favicon
 
 #### Nav bar
+I opted for a simple responsive collapsible nav bar for the Free Flow app, as it is an intuitive and recognisable way of navigating the site. There are logged in and logged out options for signed up or visiting users. Visiting users can only visit the home page and the sign in or sign up pages, where as logged in users have access to all the features of the app.
+
+
+Mobile nav
+
+![Nav burger button](/docmedia/screenshots/nav-collapsed-mob.png) ![Logged out nav mobile](/docmedia/screenshots/nav-out-mob.png) ![Logged in nav mobile](/docmedia/screenshots/nav-in-mob.png)
+
+- [Logged out nav desktop](/docmedia/screenshots/nav-out-desk.png)
+- [Logged in nav desktop](/docmedia/screenshots/nav-in-desk.png)
 
 #### Landing page
+For the landing page I wanted to try to showcase some of the apps features to appeal to potential users to sign up for the app. As it is a project tracker, I wanted to follow the theme of the overall app by creating a simple yet professional look that creates a business tool feeling. I tried to add screenshots with feature highlights of the main pages of the app to showcase its potential and wide variety of use cases as well as multiple sign up buttons linked to the sign up page as call to actions.
+
+[Landing page desktop](/docmedia/screenshots/)
+[Landing page tablet](/docmedia/screenshots/)
+[Landing page mobile](/docmedia/screenshots/)
 
 #### Authentication pages
+As I was using the Django rest framework, when creating the sign in and sign up pages I used reference from the "Moments" [Code Institute]() app lessons, while adding my own styling to suit the overall asthetic of the app. These pages needed to be simple and intuitive and I did not want to overcrowd them or over complicate the sign up process with the need for email, as this is an MVP and I wanted users to be able to sign up and sign in with ease.
+
+![Sign in mobile](/docmedia/screenshots/signin-mob.png) ![Sign up mobile](/docmedia/screenshots/signup-mob.png)
+
+- [Sign in tablet](/docmedia/screenshots/signin-tab.png)
+- [Sign up tablet](/docmedia/screenshots/signup-tab.png)
+
+- [Sign in desktop](/docmedia/screenshots/signin-desk.png)
+- [Sign up desktop](/docmedia/screenshots/signup-desk.png)
 
 #### Home page / Projects list
+When a user logs in they are directed to the project list which is used as the logged in home page. This displays a list of all the currently active or draft projects, each of which displays basic information about the project and can be clicked to go to the projects details page. I wanted the logged in home page to be a quick way to view and access all of a users projects and as project managements is the core function of the app, I did not want to clutter the home page with anything unnecessary. By creating such a simple home page, the user can easily understand how to create and view projects without the need for instruction.
+When a user first signs up to the app a message showing there are no projects is displayed until a project is created.
+
+![Projects list populated mobile](/docmedia/screenshots/project-list-populated-mob.png) ![Projects list empty mobile](/docmedia/screenshots/project-list-empty-mob.png)
+
+- [Project list empty tablet](/docmedia/screenshots/project-list-empty-tab.png)
+- [Project list populated tablet](/docmedia/screenshots/project-list-populated-tab.png)
+
+- [Project list empty desktop](/docmedia/screenshots/project-list-empty-desk.png)
+- [Project list populated desktop](/docmedia/screenshots/project-list-populated-desk.png)
 
 #### Create project form
+In order to add a project to the projects list a user must use the create project form, accessible from the home page or projects list page. The form includes the necessary information for a new project, adding a title to quickly recognise the project, a text area for the brief as it may contain additional information such as project goals or further details. The user can set an hourly rate for a project if required for billing or estimation purposes, and finally a due date so they can see when the project is aimed to be completed by. 
+
+![Create project mobile](/docmedia//screenshots/create-project-mob.png)
+
+- [Create project tablet](/docmedia/screenshots/create-project-tab.png)
+- [Create project desktop](/docmedia/screenshots/create-project-desk.png)
 
 #### Edit project form
 
