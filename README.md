@@ -78,14 +78,42 @@ The custom task model contains fields like title, description, predicted time, n
 ### Functionality
 
 ### Wireframes
+The project wireframes were some of the initial designs for the app, before I even created the database schema. I began with the wireframes because I could then visualize the pages of the app and gain an understanding of its functionality before coding. This also helped to understand the database fields that would be required to achieve the types of functions I wanted the app to have.
+
+As I wanted to keep to a mobile-first design, my plan was to limit the app width on larger screen sizes to easily create a similar look across all devices and therefore a familiar feeling for users switching between devices. Therefore, all my wireframe designs are based on mobile devices, as I knew I would not be creating wildly different designs for tablet or desktop devices, also reducing the design time required and helping to simplify the development stage.
+
+Listed below are the wireframes for each of the pages I created with the project list as example.
+
+![Projects List](/docmedia/design/wireframes/wire-projecsts-list.png)
+- [Project Details](/docmedia/design/wireframes/wire-project-detail.png)
+- [Project Create/Edit](/docmedia/design/wireframes/wire-project-edit.png)
+- [Project Report](/docmedia/design/wireframes/wire-project-report.png)
+- [Projects Archive](/docmedia/design/wireframes/wire-archive.png)
+- [Task Details](/docmedia/design/wireframes/wire-task-details.png)
+- [Task Create/Edit](/docmedia/design/wireframes/wire-task-edit.png)
+- [Custom Tasks List](/docmedia/design/wireframes/wire-custom-tasks-list.png)
+- [Custom Task Details](/docmedia/design/wireframes/wire-custom-task-details.png)
+- [Custom Task Create/Edit](/docmedia/design/wireframes/wire-custom-task-edit.png)
+- [Profile Details](/docmedia/design/wireframes/wire-profile.png)
+- [Profile Edit](/docmedia/design/wireframes/wire-profile-edit.png)
+- [Nav Dropdown](/docmedia/design/wireframes/wire-nav.png)
 
 ### Colour scheme
+When it came to choosing a colour scheme for the app, I wanted to keep it simple and professional looking. For this reason, I chose a predominantly blue colour palette with a pastel orange accent colour that I used mainly for cancel and return navigation buttons. I found the colour palette on [colorhunt.co](https://colorhunt.co/palette/001e6c0353975089c6ffaa4c)
+
+![Colour Palette](/docmedia/design/colour-palette.png)
 
 ### Typography
+For the typography, I opted for two professional-looking sans-serif style fonts to fit the style of a professional project tracking tool. I used "Contrail One" for the headings and "Ysabeau" for paragraph text, both from [Google Fonts](https://fonts.google.com/).
+
+![Fonts](/docmedia/design/fonts.png)
 
 ## Agile and kanban
 
 When it came to beginning the project after conceptualization, I wanted to use an Agile development methodology to stay flexible throughout the process, while keeping a core feature set to maintain focus. This meant I was able to quickly change things, such as design or user experience features, to create a better overall experience. I started by creating two project boards inside the GitHub repo: one for user stories and epics, and another for project development to ensure all features were considered and allow me to effectively plan the development process using story points. I found that creating two separate project boards helped me to understand the scope of the project and plan my time effectively.
+
+[Project Board](https://github.com/users/KyleMardell/projects/7)
+[User Stories Board](https://github.com/users/KyleMardell/projects/8)
 
 ### User stories and epics
 
