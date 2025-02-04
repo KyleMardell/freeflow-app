@@ -25,11 +25,11 @@ Contents Here
 - First-time visitors to the Free Flow app are likely individuals who are either about to start a new project or want to better understand how a project works. The goal is to provide clear and engaging information about the app's features, along with examples of how it can be used for different types of projects, all presented on the landing page. The aim is to attract and convert these visitors into registered users who are eager to sign up and start using the app.
 - Visitors should feel motivated to explore more features after their first use, potentially encouraging them to sign up for a full account.
 - Visitors should gain a clear understanding of how Free Flow can help them improve project management, from estimation to tracking, making it a tool they'll want to use for future projects.
-- For those who sign up and log in for the first time, the experience should be seamless, with the design elements and the intuitive interface leaving a lasting impression. First-time users should be able to create a new project and add tasks with minimal effort, requiring little or no instructions. The goal is to make the app feel familiar and easy to navigate, ensuring that these users are encouraged to return and become long-term, active users.
+- For those who sign up and log in for the first time, the experience should be seamless, with professional design elements and an intuitive interface. First-time users should be able to create a new project and add tasks with minimal effort, requiring little or no instructions. The goal is to make the app feel familiar and easy to navigate, ensuring that these users are encouraged to return and become long-term, active users.
 
 ### Returning visitor goals
 - Returning visitors to Free Flow are likely users who were impressed with their initial experience and are now looking for more ways to track and manage their projects. The goal is to ensure the app remains intuitive and versatile, allowing users to easily create new projects, add tasks, and track progress seamlessly.
-- Another key goal for returning visitors is to offer the ability to generate detailed project reports for time and cost analysis or invoicing purposes. By leveraging custom tasks, returning users can track the time taken for specific tasks across multiple projects. The app would then provide reports showing both the estimated and actual time and cost for a project, giving users the data they need for accurate project analysis and invoicing.
+- Another key goal for returning visitors is to offer the ability to generate detailed project reports for time and cost analysis or invoicing purposes. By using custom tasks, returning users can track the time taken for specific tasks across multiple projects. The app would then provide reports showing both the estimated and actual time and cost for a project, giving users the data they need for accurate project analysis and invoicing.
 -  Returning users should have easy access to project and custom task reports to make better-informed decisions about future projects, helping them understand estimates and optimize task durations and costs.
 
 ### App use goals
@@ -61,7 +61,13 @@ As I wanted to include an hourly rate for the project and calculate costs, I als
 Having used project tracking apps without a cost feature before, I knew the kind of app I wanted to create, but with the added costing feature. This meant I didn’t need to spend a great deal of time researching design ideas, as I had a clear vision of how I wanted the app to look, feel, and navigate. To meet the time frame, I decided to use Bootstrap for layout, navigation, and some interactive features. With my experience using Bootstrap in multiple previous projects, I felt I had a good understanding of its uses and opted to use React Bootstrap. This would save me time, as I was already familiar with how to implement features I’ve used before using the CSS and JavaScript link version of Bootstrap and only required some slight modification in code to use the same features.
 
 ### Database
+
+#### Schema
 When designing the Free Flow app, I wanted to create a database schema that would allow for future stretch goals while also establishing a solid foundation. With this in mind, I spent a reasonable amount of time ensuring that my schema would not need corrections once I began coding, as this could take up unnecessary time required to complete the project on schedule. I used my previous project's database schema as an example and [Excalidraw](https://excalidraw.com/) to create and double-check my schema before beginning the coding process. I also used my wireframe designs for each page to understand the fields needed for each database model. Visualizing forms and pages helped me write down the required fields for each model and ensure nothing was missing or overlooked.
+
+- [Database Schema](/docmedia/design/schema/schema.png)
+
+#### Models
 
 After designing and verifying my database schema, I realized that I only needed four custom models, or five in total, including the user model. The four custom models are profile, project, task, and custom task. These models provide sufficient functionality while keeping the project within the scope of both the MVP and the project timeline. I had considered adding more fields to each model, as well as other models, but in order to stay within the project's scope, they seemed unnecessary or too ambitious at this stage. However, I would like to add additional features in the future, and some of these are outlined below.
 
@@ -72,6 +78,12 @@ The user can create a project, which will contain a title, brief, hourly rate, a
 Tasks are added to a project and contain fields such as a title, description, completion date, estimated time, time taken, custom task link, and status. This model provides enough functionality to track tasks within a project, estimate the time required to complete the project, and compare it with the actual time taken. When combined with the project's hourly rate, this model also enables the calculation of project and task costs.
 
 The custom task model contains fields like title, description, predicted time, number of uses, and the average, quickest, and longest times taken. These fields provide enough scope to track when a custom task has been used in a project, along with time-based data once the task is complete. This allows the user to view and analyze custom task data.
+
+#### Entity Relationship Diagram (ERD)
+Once I finalized the database schema, models, and their respective fields, I created an Entity Relationship Diagram (ERD) to visualize the relationships between models and ensure a well-structured schema before implementing it in Django. Establishing a solid schema and ERD early on allowed me to cover all required features of the app, preventing the need for major model changes later in development.
+Find my ERD below.
+
+- [ERD](/docmedia/design/schema/erd.png)
 
 ### Functionality
 
@@ -212,36 +224,110 @@ In order to add a project to the projects list, a user must use the Create Proje
 #### Edit project form
 The "Edit Project" form is very similar to the "Create Project" form, as all of the details that can be created can also be edited. The fields for when the project was created or last updated are not editable by the user. Once a project has been edited, the user is redirected to the project’s details page, where they can see the changes they have made in the details section, providing instant feedback that the project has been successfully edited.
 
+![Edit project mobile](/docmedia/screenshots/edit-project-mob.png)
+
+- [Edit project tablet](/docmedia/screenshots/edit-project-tab.png)
+- [Edit project desktop](/docmedia/screenshots/edit-project-desk.png)
+
 #### Project details page
 Each project's detail page can be accessed by clicking the project preview in the project list and serves as a central hub for each project. From this page, the user can view the project's details, tasks, and navigation buttons for editing or deleting the project and adding a task. Additionally, a list of all the project's tasks is displayed in a similar fashion to the project list, creating a consistent and familiar experience across different pages. Each task preview displays prioritized information, such as the task's status or due date, allowing the user to quickly assess the task. Much like the project previews, the task previews can also be clicked to view a task's detailed information.
+
+![Project page empty mobile](/docmedia/screenshots/project-page-mob.png) ![Project page with tasks mobile](/docmedia/screenshots/project-page-populated-mob.png)
+
+- [Project page empty tablet](/docmedia/screenshots/project-page-tab.png)
+- [Project page with tasks tablet](/docmedia/screenshots/project-page-populated-tab.png)
+- [Project page empty desktop](/docmedia/screenshots/project-page-desk.png)
+- [Project page with tasks desktop](/docmedia/screenshots/project-page-populated-desk.png)
 
 #### Create task form
 The create task form is accessed from within the project page by clicking the "Create Task" button. It contains input fields that accommodate a wide range of tasks, making it adaptable to any project. The user can set a title, description, due date, status, and estimated time, with the actual time field omitted, as this should only be updated upon task completion. These fields allow users to add details about each task, track the time taken versus the estimated time for better future estimation, and facilitate billing purposes when generating project reports. Additionally, users can import a custom task template, which automatically populates the title, description, and estimated time. When using a custom task template, the task is also linked to the custom task for time analysis and updating. When a task form has been successfully submitted, the user is redirected to the newly created task's details page, allowing the user to view the new task information and letting them know the task has been added to the project. If a form is submitted unsuccessfully, the user is shown an error alert below the appropriate input field.
 
+![Create task form mobile](/docmedia/screenshots/create-task-mob.png)
+
+- [Create task form tablet](/docmedia/screenshots/create-task-tab.png)
+- [Create task form desktop](/docmedia/screenshots/create-task-desk.png)
+
 #### Edit task form
 The edit task form contains all the fields from the create task form, as well as an "actual time" field that allows the user to enter the time taken to complete a task. This field is only available in the edit task form, as it should only be filled out once a task is complete. If a custom task template has been used and the task is marked as complete, the entered actual time is used to update the time data for the custom task. When a task has been edited, the user is redirected to the task details page to let them know the task has been correctly updated.
+
+![Edit task form mobile](/docmedia/screenshots/edit-task-mob.png)
+
+- [Edit task form tablet](/docmedia/screenshots/edit-task-tab.png)
+- [Edit task form desktop](/docmedia/screenshots/edit-task-desk.png)
 
 #### Task details
 The task details page displays the user-entered task data, as well as the created and updated dates. From this page, the user can edit or delete the task using the relevant buttons. The task information, due date, and status are also clearly displayed. If a custom task template has been used, the custom task ID is shown to indicate that the task is linked to a custom task.
 
+![Task page mobile](/docmedia/screenshots/task-page-mob.png)
+
+- [Task page tablet](/docmedia/screenshots/task-page-tab.png)
+- [Task page desktop](/docmedia/screenshots/task-page-desk.png)
+
 #### Custom tasks page
 The custom tasks page allows the user to view a list of all their custom tasks and create new ones. Similar to the project and task previews, the custom task preview displays basic task information in the list. Each preview can be clicked to navigate to the custom task details page. This consistent use of custom task previews creates a familiar experience across the app, allowing users to quickly and easily view their custom tasks.
+
+![Custom tasks list empty mobile](/docmedia/screenshots/custom-tasks-list-empty-mob.png) ![Custom tasks list populated mobile]()
+
+- [Custom tasks list empty tablet](/docmedia/screenshots/custom-tasks-list-empty-tab.png)
+- [Custom tasks list populated tabler]()
+- [Custom tasks list empty desktop](/docmedia/screenshots/custom-tasks-list-empty-desk.png)
+- [Custom tasks list populated desktop]()
 
 #### Create custom task form
 To create a custom task, only three fields are required: a title, description, and estimated time. These are the only template-based fields necessary for reusable tasks, as the due date and actual times are project- and task-specific. The main function of custom tasks relies on the actual time data from completed tasks, which is why the time statistic fields cannot be manually updated by the user. This streamlined approach allows users to quickly and easily add new custom tasks with no unnecessary or overcomplicated information required, promoting greater versatility and a wider range of use cases. When a new custom task is created, the user is redirected to the custom task's details page. This confirms that the new custom task has been added to the custom tasks list and that the data is correct. If any required data is missing or incorrect, the user is shown an error alert below the appropriate input field.
 
+![Create custom task form mobile](/docmedia/screenshots/create-custom-task-mob.png)
+
+- [Create custom task form tablet](/docmedia/screenshots/create-custom-task-tab.png)
+- [Create custom task form desktop](/docmedia/screenshots/create-custom-task-desk.png)
+
 #### Edit custom task form
 The edit custom task form contains the same three fields as the create task form, as the time data cannot be edited by the user. Once a task has been edited, the user is redirected to the custom task details page, providing instant feedback that the data has been updated.
+
+![Custom task edit form mobile](/docmedia/screenshots/edit-custom-task-mob.png)
+
+- [Custom task edit form tablet](/docmedia/screenshots/edit-custom-task-tab.png)
+- [Custom task edit form desktop](/docmedia/screenshots/edit-custom-task-desk.png)
 
 #### Custom task details
 Custom tasks contain data that is automatically updated upon completion of tasks that have used a custom task template. The details of these tasks can be found on the custom task details page. Here, the user-entered title, description, and estimated time are displayed alongside the estimated time, longest time, quickest time, and number of uses. This allows the user to view the time-based statistics of a reused task across multiple projects, providing better estimation for future tasks. This way, a user can adjust the estimated time of a custom task based on their previous experience with other projects.
 
-#### 404 page
+![Custom task page mobile](/docmedia/screenshots/custom-task-mob.png) ![Custom task page first use mobile](/docmedia/screenshots/custom-task-first-mob.png) ![Custom task page second use mobile](/docmedia/screenshots/custom-task-updated-mob.png)
 
+- [Custom task page tablet](/docmedia/screenshots/custom-task-tab.png)
+- [Custom task page first use tablet](/docmedia/screenshots/custom-task-first-tab.png)
+- [Custom task page second use tablet](/docmedia/screenshots/custom-task-updated-tab.png)
+- [Custom task page desktop](/docmedia/screenshots/custom-task-desk.png)
+- [Custom task page first use desktop](/docmedia/screenshots/custom-task-first-desk.png)
+- [Custom task page second use desktop](/docmedia/screenshots/custom-task-updated-desk.png)
+
+#### 404 page
+If the user enters an incorrect URL in the browser, they are shown a 404 page that follows the site's design and simply displays a "404 Page Not Found" message. The navigation links and dropdown menu remain fully functional, allowing the user to easily navigate to another page.
+
+![404 mobile](/docmedia/screenshots/mobile-404.png)
+
+- [404 Tablet](/docmedia//screenshots/tablet-404.png)
+- [404 Desktop](/docmedia//screenshots/desktop-404.png)
 
 ### Defensive programming
+When considering defensive programming, I focused on establishing a strong foundation in the backend code early on, while also implementing frontend measures. Defensive programming is essential for both data security and user experience.
+To ensure a secure foundation, I implemented checks in the API code for user requests. Since the app is designed for a single user rather than a social platform, each user should only be able to access the data they have created. With this in mind, all API views are restricted to return only data created by the requesting user, preventing unauthorized access to other users’ data. This approach was applied across all API views to ensure data security throughout the entire application.
+An example of restricting the returned resources to the request users resources is shown below.
+
+![Defensive programming api example](/docmedia/screenshots/defensive-api.png)
+
 
 ### Future features
+
+#### Pagination
+When finalizing the initial designs, I deliberately chose not to implement pagination, as the app is aimed at individuals and solo business owners. I anticipated that the average user would have only a few active projects at a time, each containing around 10–20 tasks. Given this, I initially did not see a need for pagination in the MVP stage.
+However, during development, I realized that long-term users might accumulate a large number of completed projects, making pagination beneficial for the project archive page. Additionally, if I were to implement a shared account system in the future, users might have a significantly larger number of active projects and tasks. For this reason, I would consider adding pagination as a future feature to enhance the user experience when navigating large lists of projects or tasks.
+
+#### Search and filters
+In my initial designs, I included a search and filter feature for projects, tasks, and custom tasks. On the back end, I implemented functionality to search by title or description and filter by date and status. Although these were stretch goals, I wanted to have the back-end logic in place in case I had time to integrate the feature into the front end. In hindsight, there wasn’t enough time within the sprints to include this feature in the MVP. However, since the back-end setup is already in place, I plan to add it as a future enhancement.
+
+#### Progress bars
+Currently, project and task previews display basic text information beneath the relevant title. In the future, I would like to enhance this by adding a progress bar to both project and task previews, providing users with a more visual way to track progress at a glance. The task progress bar would compare the estimated time to the actual time taken, while the project progress bar would display the total estimated time of all tasks versus the accumulated time taken. This improvement would give users instant insights into the progress of their tasks and projects.
 
 ## Development
 
