@@ -113,7 +113,7 @@ When it came to beginning the project after conceptualization, I wanted to use a
 [User Stories Board](https://github.com/users/KyleMardell/projects/8)
 
 ### User stories and epics
-Once I had come up with the initial concept for the project I began writing the epics and user stories to form a guide for the project, understand the scope and set a roadmap for the development process. The user stories helped me break down key features and prioritise essential functionality, ensuring that I stayed on track throughout the build.
+Once I had come up with the initial concept for the project, I began writing the epics and user stories to serve as a guide for the project, helping me understand the scope and set a roadmap for the development process. The user stories helped break down key features and prioritize essential functionality, ensuring that I stayed on track throughout the build.
 By outlining these stories early on, I was able to maintain a clear development direction and ensure that every feature aligned with the overall purpose of the platform. The list of user stories also provided a strong foundation for testing, as I could validate each feature against its intended functionality.
 
 Below I have listed the user story titles, details of which can be found in the user stories project board at the link above.
@@ -148,8 +148,9 @@ Below I have listed the user story titles, details of which can be found in the 
 
 
 ### Issues
-In order to track the development process, I broke each task down into an issue and added it to a separate project board. This meant I could distinguish between user stories and development tasks, helping to manage my time and have a clear understanding of what needed to be done next. I created issues for each of the development stages, including design, back end, front end, testing and documentation based tasks. This also helped to ensure that there were no large features or steps overlooked.
-With the use of labels, issues were clearly categorised helping to distinguish between design, code and documentation, as well as front end or back end. I also used milestones to represent sprints, with each sprint lasting an average of 3-5 days. Sprints were named as each part of the development process, helping to keep track of the time and work loads remaining. As I was using an agile way of working, this meant there were issues that were ran over into the following sprint or design elements that were adapted from the initial plans. 
+To track the development process, I broke each task down into an issue and added it to a separate project board. This approach allowed me to distinguish between user stories and development tasks, helping to manage my time and maintain a clear understanding of what needed to be done next. I created issues for each stage of development, including design, back-end, front-end, testing, and documentation tasks. This also helped ensure that no large features or steps were overlooked.
+
+With the use of labels, issues were clearly categorized, helping to distinguish between design, code, and documentation, as well as front-end or back-end tasks. I also used milestones to represent sprints, with each sprint lasting an average of 3-5 days. Sprints were named according to each part of the development process, which helped keep track of the time and remaining workload. As I was working in an agile manner, some issues extended into the following sprint, or design elements were adapted from the initial plans.
 
 ## Features
 
@@ -158,7 +159,7 @@ With the use of labels, issues were clearly categorised helping to distinguish b
 #### Favicon
 
 #### Nav bar
-I opted for a simple responsive collapsible nav bar for the Free Flow app, as it is an intuitive and recognisable way of navigating the site. There are logged in and logged out options for signed up or visiting users. Visiting users can only visit the home page and the sign in or sign up pages, where as logged in users have access to all the features of the app.
+I opted for a simple, responsive, collapsible nav bar for the Free Flow app, as it provides an intuitive and recognisable way to navigate the site. There are different options for logged-in and logged-out users. Visiting users can only access the home page and the sign-in or sign-up pages, while logged-in users have access to all the app’s features.
 
 
 Mobile nav
@@ -169,14 +170,15 @@ Mobile nav
 - [Logged in nav desktop](/docmedia/screenshots/nav-in-desk.png)
 
 #### Landing page
-For the landing page I wanted to try to showcase some of the apps features to appeal to potential users to sign up for the app. As it is a project tracker, I wanted to follow the theme of the overall app by creating a simple yet professional look that creates a business tool feeling. I tried to add screenshots with feature highlights of the main pages of the app to showcase its potential and wide variety of use cases as well as multiple sign up buttons linked to the sign up page as call to actions.
+For the landing page, I wanted to showcase some of the app's features to encourage potential users to sign up. Since it is a project tracker, I aimed to maintain the app's overall theme by creating a simple yet professional look that conveys the feel of a business tool. I included screenshots with feature highlights of the main pages to showcase its potential and diverse use cases. Additionally, I incorporated multiple sign-up buttons linked to the sign-up page as clear calls to action.
 
-[Landing page desktop](/docmedia/screenshots/)
-[Landing page tablet](/docmedia/screenshots/)
 [Landing page mobile](/docmedia/screenshots/)
 
+- [Landing page desktop](/docmedia/screenshots/)
+- [Landing page tablet](/docmedia/screenshots/)
+
 #### Authentication pages
-As I was using the Django rest framework, when creating the sign in and sign up pages I used reference from the "Moments" [Code Institute]() app lessons, while adding my own styling to suit the overall asthetic of the app. These pages needed to be simple and intuitive and I did not want to overcrowd them or over complicate the sign up process with the need for email, as this is an MVP and I wanted users to be able to sign up and sign in with ease.
+As I was using the Django REST framework, I referenced the "Moments" [Code Institute](https://learn.codeinstitute.net/) app lessons when creating the sign-in and sign-up pages while adding my own styling to match the overall aesthetic of the app. These pages needed to be simple and intuitive, and I did not want to overcrowd them or over complicate the sign-up process by requiring an email. Since this is an MVP, my priority was to allow users to sign up and sign in with ease.
 
 ![Sign in mobile](/docmedia/screenshots/signin-mob.png) ![Sign up mobile](/docmedia/screenshots/signup-mob.png)
 
@@ -187,8 +189,9 @@ As I was using the Django rest framework, when creating the sign in and sign up 
 - [Sign up desktop](/docmedia/screenshots/signup-desk.png)
 
 #### Home page / Projects list
-When a user logs in they are directed to the project list which is used as the logged in home page. This displays a list of all the currently active or draft projects, each of which displays basic information about the project and can be clicked to go to the projects details page. I wanted the logged in home page to be a quick way to view and access all of a users projects and as project managements is the core function of the app, I did not want to clutter the home page with anything unnecessary. By creating such a simple home page, the user can easily understand how to create and view projects without the need for instruction.
-When a user first signs up to the app a message showing there are no projects is displayed until a project is created.
+When a user logs in, they are directed to the project list, which serves as the logged-in home page. This page displays a list of all currently active or draft projects, each showing basic information about the project and linking to the project's details page. I wanted the logged-in home page to provide a quick way to view and access all of a user's projects. Since project management is the core function of the app, I chose not to clutter the home page with unnecessary elements. By keeping the home page simple, users can easily understand how to create and view projects without needing instructions.
+
+When a user first signs up for the app, a message indicating that there are no projects is displayed until a project is created.
 
 ![Projects list populated mobile](/docmedia/screenshots/project-list-populated-mob.png) ![Projects list empty mobile](/docmedia/screenshots/project-list-empty-mob.png)
 
@@ -199,7 +202,7 @@ When a user first signs up to the app a message showing there are no projects is
 - [Project list populated desktop](/docmedia/screenshots/project-list-populated-desk.png)
 
 #### Create project form
-In order to add a project to the projects list a user must use the create project form, accessible from the home page or projects list page. The form includes the necessary information for a new project, adding a title to quickly recognise the project, a text area for the brief as it may contain additional information such as project goals or further details. The user can set an hourly rate for a project if required for billing or estimation purposes, and finally a due date so they can see when the project is aimed to be completed by. 
+In order to add a project to the projects list, a user must use the Create Project form, accessible from the home page or the projects list page. The form includes the necessary information for a new project, such as a title to quickly recognize the project and a text area for the brief, which may contain additional details such as project goals. The user can set an hourly rate for a project if required for billing or estimation purposes, and finally, a due date to track when the project is expected to be completed. If any incorrect or missing information is provided, the user is shown an alert displaying a feedback message. Upon successful form submission, the user is redirected to the newly created project page, giving confirmation that the project has been created and allowing them to add tasks immediately without needing to navigate back to the project.
 
 ![Create project mobile](/docmedia//screenshots/create-project-mob.png)
 
@@ -207,24 +210,34 @@ In order to add a project to the projects list a user must use the create projec
 - [Create project desktop](/docmedia/screenshots/create-project-desk.png)
 
 #### Edit project form
+The "Edit Project" form is very similar to the "Create Project" form, as all of the details that can be created can also be edited. The fields for when the project was created or last updated are not editable by the user. Once a project has been edited, the user is redirected to the project’s details page, where they can see the changes they have made in the details section, providing instant feedback that the project has been successfully edited.
 
 #### Project details page
+Each project's detail page can be accessed by clicking the project preview in the project list and serves as a central hub for each project. From this page, the user can view the project's details, tasks, and navigation buttons for editing or deleting the project and adding a task. Additionally, a list of all the project's tasks is displayed in a similar fashion to the project list, creating a consistent and familiar experience across different pages. Each task preview displays prioritized information, such as the task's status or due date, allowing the user to quickly assess the task. Much like the project previews, the task previews can also be clicked to view a task's detailed information.
 
 #### Create task form
+The create task form is accessed from within the project page by clicking the "Create Task" button. It contains input fields that accommodate a wide range of tasks, making it adaptable to any project. The user can set a title, description, due date, status, and estimated time, with the actual time field omitted, as this should only be updated upon task completion. These fields allow users to add details about each task, track the time taken versus the estimated time for better future estimation, and facilitate billing purposes when generating project reports. Additionally, users can import a custom task template, which automatically populates the title, description, and estimated time. When using a custom task template, the task is also linked to the custom task for time analysis and updating. When a task form has been successfully submitted, the user is redirected to the newly created task's details page, allowing the user to view the new task information and letting them know the task has been added to the project. If a form is submitted unsuccessfully, the user is shown an error alert below the appropriate input field.
 
 #### Edit task form
+The edit task form contains all the fields from the create task form, as well as an "actual time" field that allows the user to enter the time taken to complete a task. This field is only available in the edit task form, as it should only be filled out once a task is complete. If a custom task template has been used and the task is marked as complete, the entered actual time is used to update the time data for the custom task. When a task has been edited, the user is redirected to the task details page to let them know the task has been correctly updated.
 
 #### Task details
+The task details page displays the user-entered task data, as well as the created and updated dates. From this page, the user can edit or delete the task using the relevant buttons. The task information, due date, and status are also clearly displayed. If a custom task template has been used, the custom task ID is shown to indicate that the task is linked to a custom task.
 
 #### Custom tasks page
+The custom tasks page allows the user to view a list of all their custom tasks and create new ones. Similar to the project and task previews, the custom task preview displays basic task information in the list. Each preview can be clicked to navigate to the custom task details page. This consistent use of custom task previews creates a familiar experience across the app, allowing users to quickly and easily view their custom tasks.
 
 #### Create custom task form
+To create a custom task, only three fields are required: a title, description, and estimated time. These are the only template-based fields necessary for reusable tasks, as the due date and actual times are project- and task-specific. The main function of custom tasks relies on the actual time data from completed tasks, which is why the time statistic fields cannot be manually updated by the user. This streamlined approach allows users to quickly and easily add new custom tasks with no unnecessary or overcomplicated information required, promoting greater versatility and a wider range of use cases. When a new custom task is created, the user is redirected to the custom task's details page. This confirms that the new custom task has been added to the custom tasks list and that the data is correct. If any required data is missing or incorrect, the user is shown an error alert below the appropriate input field.
 
 #### Edit custom task form
+The edit custom task form contains the same three fields as the create task form, as the time data cannot be edited by the user. Once a task has been edited, the user is redirected to the custom task details page, providing instant feedback that the data has been updated.
 
 #### Custom task details
+Custom tasks contain data that is automatically updated upon completion of tasks that have used a custom task template. The details of these tasks can be found on the custom task details page. Here, the user-entered title, description, and estimated time are displayed alongside the estimated time, longest time, quickest time, and number of uses. This allows the user to view the time-based statistics of a reused task across multiple projects, providing better estimation for future tasks. This way, a user can adjust the estimated time of a custom task based on their previous experience with other projects.
 
-#### 404 & 500 pages
+#### 404 page
+
 
 ### Defensive programming
 
