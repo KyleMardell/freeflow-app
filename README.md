@@ -128,35 +128,135 @@ When it came to beginning the project after conceptualization, I wanted to use a
 Once I had come up with the initial concept for the project, I began writing the epics and user stories to serve as a guide for the project, helping me understand the scope and set a roadmap for the development process. The user stories helped break down key features and prioritize essential functionality, ensuring that I stayed on track throughout the build.
 By outlining these stories early on, I was able to maintain a clear development direction and ensure that every feature aligned with the overall purpose of the platform. The list of user stories also provided a strong foundation for testing, as I could validate each feature against its intended functionality.
 
-Below I have listed the user story titles, details of which can be found in the user stories project board at the link above.
+Below I have listed the user stories and the relevant features that satisfy each one.
 
-- Sign Up
-- Sign In
-- Sign Out
-- Create Profile
-- View Profile
-- Edit Profile
-- Projects Ordered By
-- Project Report
-- Add A Task To A Project
-- Edit Tasks
-- Delete A Task
-- Tasks Ordered By
-- Mark A Task As Complete
-- Tasks Predicted Time
-- Task Time Taken
-- Create Custom Task
-- Custom Tasks List
-- Delete Custom Tasks
-- Edit Custom Tasks
-- View A Custom Task's Data
-- Custom Tasks Ordered By
-- Hourly Rate
-- Project Report
-- Landing Page
-- Home Page
-- Nav Bar
-- Responsive Design
+- Responsive Design - As a user, I want a responsive design so that I can use the app on mobile and desktop devices with consistent design and familiarity
+    - Satisfied by all pages. See features section where each page is shown in mobile, tablet and desktop screen sizes.
+    - [Features](#features)
+
+- Landing Page - As a user, I want to visit an landing page so that I can understand the app, find out more information and sign up
+    - Satisfied by the landing page
+    - [Landing page](#landing-page)
+
+- Nav Bar - As a user, I want to use an intuitive nav bar so that I can easily navigate to different pages
+    - Satisfied by the nav bar
+    - [Nav bar](#nav-bar)
+
+- Sign Up - As a user, I want to sign up to the app so that I can use the apps logged in users features
+    - Satisfied by the sign up page
+    - [Auth pages](#authentication-pages)
+
+- Sign In - As a user, I want to sign in to the app so that I can access my projects
+    - Satisfied by the sign in page
+    - [Auth pages](#authentication-pages)
+
+- Sign Out - As a user, I want to sign out of the app so that I can make sure my data is secure when leaving the app
+    - Satisfied by the sign out page
+    - [Auth pages](#authentication-pages)
+
+- Home Page - As a user, I want a clean and intuitive home page so that I can quickly and easily view and access my projects
+    - Satisfied by the home page / projects list
+    - [Home page / Project list](#home-page--projects-list)
+
+- Projects List - As a user, I want to view a list of all my projects so that I can easily navigate between projects and quickly view its progress
+    - Satisfied by the home page / projects list
+    - [Home page / Project list](#home-page--projects-list)
+
+- Create A Project - As a user, I want to create a new project with a title, brief, hourly rate and completion date so that I can track my work for a specific client
+    - Satisfied by the create project form
+    - [Project create form](#create-project-form)
+
+- View a Projects Data - As a user, I want to view a projects details so that I can better understand what the project requirements are.
+    - Satisfied by the project details page
+    - [Project details page](#project-details-page)
+
+- Edit Project - As a user, I want to edit a projects details so that I can keep the project up to date if any changes are needed
+    - Satisfied by the edit project form
+    - [Project edit form](#edit-project-form)
+
+- Delete A Project - As a user, I want to delete a project so that I can remove it from my projects list
+    - Satisfied by a button on the project details page
+    - [Project details page](#project-details-page)
+
+- Hourly Rate - As a user, I want to enter an hourly rate for a project so that I can calculate the projects costs
+    - Satisfied by the create project form
+    - [Project create form](#create-project-form)
+
+- Project Report - As a user, I want to see a project report or summary so that I can evaluate the final project costs vs predicted costs, as well as efficiency and give the client a final cost report or invoice
+    - Satisfied by the report page
+    - [Report]()
+
+- Projects Ordered By - As a user, I want to reorder my projects list so that I can prioritise projects based on urgency or importance
+    - Not satisfied due to time limitations
+    - API code contains the functionality ready to implement as a future feature.
+
+- Add A Task To A Project - As a user, I want to add tasks to a project with a title, description, predicted time, time taken and completion date so that I can break down the project into manageable pieces.
+    - Satisfied by the create task form
+    - [Create task form](#create-task-form)
+
+- View A Tasks Data - As a user, I want to view a tasks details so that I can better understand what the task requirements are.
+    - Satisfied by the task details page
+    - [Task details page](#task-details)
+
+- Edit Tasks - As a user, I want to edit a task so that I can update task details in case any changes are needed
+    - Satisfied by the edit task form
+    - [Edit task form](#edit-task-form)
+
+- Delete A Task - As a user, I want to delete a task from a project so that I can remove unnecessary tasks
+    - Satisfied by a button on the task details page.
+    - [Task details page](#task-details)
+
+- Mark A Task As Complete - As a user, I want to mark a task as completed so that I can track the progress on a project and easily see which task are completed vs remaining
+    - Satisfied by the edit task form. A user must edit to task details and change the status to complete.
+    - [Edit task form](#edit-task-form)
+
+- Tasks Predicted Time - As a user, I want to add a predicted time to a task so that I can estimate how long a project will take and its cost
+    - Satisfied by the create task form. A user can set an estimated time on a task.
+    - [Create task form](#create-task-form)
+
+- Task Time Taken - As a user, I want to add the actual time taken to complete a task so that I can compare it with the predicted time and accurately cost projects
+    - Satisfied by the edit task form. A user can only add the actual time value to an existing task by using the edit form and not on creation.
+    - [Edit task form](#edit-task-form)
+
+- Tasks Ordered By - As a user, I want to reorder tasks in a project so that I can prioritise tasks based on urgency or importance
+    - Not satisfied due to time limitations
+    - API code contains the functionality ready to implement as a future feature.
+
+- Create Custom Task - As a user, I want to create custom reusable tasks with a title, description and predicted time so that I can quickly add frequently used tasks to a project.
+    - Satisfied by the create custom task form
+    - [Create custom task form](#create-custom-task-form)
+
+- Custom Tasks List - As a user, I want to view a list of all my custom tasks so that I can manage my tasks and view frequently used tasks
+    - Satisfied by the custom tasks page
+    - [Custom tasks page](#custom-tasks-page)
+
+- Delete Custom Tasks - As a user, I want to delete a custom task so that I can keep my custom tasks list up to date and delete any unnecessary tasks
+    - Satisfied by a button on the custom task details page
+    - [Custom task details page](#custom-task-details)
+
+- Edit Custom Tasks - As a user, I want to edit a custom tasks details so that I can keep custom tasks up to date and make any changes needed
+    - Satisfied by the edit custom task form
+    - [Custom task edit form](#edit-custom-task-form)
+
+- View A Custom Task's Data - As a user, I want to see each custom tasks details and data including number of uses, average time taken, quickest time, and longest time taken so that I can understand a task in more detail and more accurately estimate future project costs
+    - Satisfied by the custom task details page
+    - [Custom task details page](#custom-task-details)
+
+- Custom Tasks Ordered By - As a user, I want to reorder my custom tasks list so that I can prioritise tasks by time or urgency
+    - Not satisfied due to time limitations
+    - API code contains the functionality ready to implement as a future feature.
+
+- Create Profile - As a user, I want a profile to be automatically created when I sign up so that I can add my information to my profile.
+    - Satisfied by a signal in Django connected to sign up. This automatically generates a profile page for every new user.
+    - [Auth pages](#authentication-pages)
+
+- View Profile - As a user, I want to view my profile so that I can see what current details it contains.
+    - Satisfied by the profile page
+    - [Profile page](#profile-page)
+
+- Edit Profile - As a user, I want to edit my profile so that I can keep my information up to date
+    - Satisfied by the profile edit form
+    - [Profile edit form](#profile-edit-form)
 
 
 ### Issues
@@ -172,9 +272,6 @@ With the use of labels, issues were clearly categorized, helping to distinguish 
 
 #### Nav bar
 I opted for a simple, responsive, collapsible nav bar for the Free Flow app, as it provides an intuitive and recognisable way to navigate the site. There are different options for logged-in and logged-out users. Visiting users can only access the home page and the sign-in or sign-up pages, while logged-in users have access to all the app’s features.
-
-
-Mobile nav
 
 ![Nav burger button](/docmedia/screenshots/nav-collapsed-mob.png) ![Logged out nav mobile](/docmedia/screenshots/nav-out-mob.png) ![Logged in nav mobile](/docmedia/screenshots/nav-in-mob.png)
 
@@ -301,6 +398,24 @@ Custom tasks contain data that is automatically updated upon completion of tasks
 - [Custom task page first use desktop](/docmedia/screenshots/custom-task-first-desk.png)
 - [Custom task page second use desktop](/docmedia/screenshots/custom-task-updated-desk.png)
 
+#### Profile page
+Upon signing up, each user is automatically assigned a profile page, created via a Django signal in the API. This means users do not need to manually create or delete their profiles. Profiles are generated upon account creation and removed if an account is deleted. The main purpose of the profile page is to include user details in project reports, with a future goal of enabling report exports to PDF or a similar format.
+The profile displays a default user image and fields for a name, bio, email address, and phone number. This setup allows for flexibility, as users can choose to display a business logo and professional details or opt for a more personal approach with a profile picture and personal contact information. The bio field provides additional customization, allowing users to add a business tagline or a short personal introduction.
+
+![Profile page mobile](/docmedia/screenshots/profile-mob.png)
+
+- [Profile page tablet](/docmedia/screenshots/profile-tab.png)
+- [Profile page desktop](/docmedia/screenshots/profile-desk.png)
+
+#### Profile edit form
+Since users cannot create or delete their profiles, only an edit profile form is required. This form allows users to update their profile information without being tied to their account details, giving them the flexibility to use either personal or business information.
+The form includes fields for name, bio, email, and phone number. Users can also upload a profile image, or a default image will be set if none is provided. This ensures a customizable yet streamlined experience for all users.
+
+![Profile edit form mobile]()
+
+- [Profile edit form tablet]()
+- [Profile edit form desktop]()
+
 #### 404 page
 If the user enters an incorrect URL in the browser, they are shown a 404 page that follows the site's design and simply displays a "404 Page Not Found" message. The navigation links and dropdown menu remain fully functional, allowing the user to easily navigate to another page.
 
@@ -330,12 +445,10 @@ In my initial designs, I included a search and filter feature for projects, task
 Currently, project and task previews display basic text information beneath the relevant title. In the future, I would like to enhance this by adding a progress bar to both project and task previews, providing users with a more visual way to track progress at a glance. The task progress bar would compare the estimated time to the actual time taken, while the project progress bar would display the total estimated time of all tasks versus the accumulated time taken. This improvement would give users instant insights into the progress of their tasks and projects.
 
 ## Development
-
 When it came to the development of the app, using a Django back end and a React front end provided a large amount of functionality. As this was the chosen tech stack, most of the development was done using a Gitpod workspace and Google Chrome Developer Tools. Once I had a solid design and database model in place, I began by developing the back end API in Django, carrying out full manual testing before deployment to ensure there were no errors or known bugs before beginning to develop the front end. I also wrote some basic unit tests.
 
 
 ### Django API
-
 The back end API is made using the Django Rest Framework as well as a number of other helper packages. There are four custom models with corresponding serializers, views, and URLs. There are models for profiles, projects, tasks, and custom tasks. A user profile is generated automatically when a user signs up, and all other models have full C.R.U.D. functionality using Django's Rest Framework API views.
 
 #### Profile model
@@ -359,9 +472,7 @@ The tasks model contains user input fields for title, description, due date, est
 ## Credits
 
 ### Django email field
-
 I wanted to add an email field to the profile model when starting the project. After some light research, I found that Django has a built-in email field that conducts basic email validation checks, such as an '@' and a '.' after it. [Email field documentation](https://www.geeksforgeeks.org/emailfield-django-models/)
 
 ### Django decimal field
-
 As I wanted to add an hourly rate and an amount of time in hours, I needed to add a field to my models that contains numbers. I used the DecimalField, as it also has the option to define max digits and decimal places, which was perfect for an hourly rate and amount of time. [Decimal field documentation](https://www.geeksforgeeks.org/decimalfield-django-models/)
