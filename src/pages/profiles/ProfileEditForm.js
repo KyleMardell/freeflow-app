@@ -9,8 +9,10 @@ import appStyles from "../../App.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ProfileEditForm = ({ profile_id }) => {
+    useRedirect("loggedOut");
     const [profile, setProfile] = useState({
         name: "",
         bio: "",

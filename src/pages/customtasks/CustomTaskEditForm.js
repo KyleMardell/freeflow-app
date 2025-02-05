@@ -7,8 +7,10 @@ import appStyles from "../../App.module.css";
 import buttonStyles from "../../styles/Button.module.css";
 
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const CustomTaskEditForm = () => {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const history = useHistory();

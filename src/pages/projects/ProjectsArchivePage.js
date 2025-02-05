@@ -6,8 +6,10 @@ import { axiosReq } from "../../api/axiosDefaults";
 import ProjectPreview from "../../components/ProjectPreview";
 import { Spinner, Alert } from "react-bootstrap";
 import appStyles from "../../App.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ProjectsArchivePage = ({ filter = "" }) => {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const [projects, setProjects] = useState([]);

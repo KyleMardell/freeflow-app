@@ -5,8 +5,10 @@ import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import buttonStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const TaskCreateForm = () => {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
 
     const { id } = useParams();

@@ -12,8 +12,10 @@ import buttonStyles from "../../styles/Button.module.css";
 import styles from "../../styles/CustomTaskPage.module.css";
 
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const CustomTaskPage = () => {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const { id } = useParams();

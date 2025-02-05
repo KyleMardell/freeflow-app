@@ -6,8 +6,10 @@ import buttonStyles from "../../styles/Button.module.css";
 
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ProjectCreateForm = () => {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const history = useHistory();
 

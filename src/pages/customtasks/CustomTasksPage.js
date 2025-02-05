@@ -8,8 +8,10 @@ import appStyles from "../../App.module.css";
 import buttonStyles from "../../styles/Button.module.css";
 
 import CustomTaskPreview from "../../components/CustomTaskPreview";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const CustomTasksPage = ({ filter = "" }) => {
+    useRedirect("loggedOut");
     const [customTasks, setCustomTasks] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const [errors, setErrors] = useState({});

@@ -11,8 +11,10 @@ import buttonStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 import TaskPreview from "../../components/TaskPreview";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ProjectPage = () => {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const { id } = useParams();

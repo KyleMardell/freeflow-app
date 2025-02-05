@@ -8,8 +8,10 @@ import { Link } from "react-router-dom/cjs/react-router-dom";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/TaskPage.module.css";
 import buttonStyles from "../../styles/Button.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const TaskPage = () => {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const [task, setTask] = useState({});

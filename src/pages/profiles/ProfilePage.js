@@ -9,8 +9,10 @@ import buttonStyles from "../../styles/Button.module.css";
 import styles from "../../styles/ProfilePage.module.css";
 
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ProfilePage = ({ profile_id }) => {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const [profile, setProfile] = useState({});

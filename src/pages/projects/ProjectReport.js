@@ -7,8 +7,10 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 import UserImage from "../../components/UserImage";
 import appStyles from "../../App.module.css";
 import buttonStyles from "../../styles/Button.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ProjectReport = ({ profile_id }) => {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const history = useHistory();

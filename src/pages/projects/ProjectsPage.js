@@ -9,8 +9,10 @@ import { Button, Spinner, Alert } from "react-bootstrap";
 
 import buttonStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ProjectsPage = ({ filter = "" }) => {
+    useRedirect("loggedOut");
     const [projects, setProjects] = useState([]);
     const [errors, setErrors] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);

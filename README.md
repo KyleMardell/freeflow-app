@@ -273,7 +273,11 @@ With the use of labels, issues were clearly categorized, helping to distinguish 
 #### Nav bar
 I opted for a simple, responsive, collapsible nav bar for the Free Flow app, as it provides an intuitive and recognisable way to navigate the site. There are different options for logged-in and logged-out users. Visiting users can only access the home page and the sign-in or sign-up pages, while logged-in users have access to all the app’s features.
 
-![Nav burger button](/docmedia/screenshots/nav-collapsed-mob.png) ![Logged out nav mobile](/docmedia/screenshots/nav-out-mob.png) ![Logged in nav mobile](/docmedia/screenshots/nav-in-mob.png)
+![Nav burger button](/docmedia/screenshots/nav-collapsed-mob.png)
+
+![Logged out nav mobile](/docmedia/screenshots/nav-out-mob.png)
+
+![Logged in nav mobile](/docmedia/screenshots/nav-in-mob.png)
 
 - [Logged out nav desktop](/docmedia/screenshots/nav-out-desk.png)
 - [Logged in nav desktop](/docmedia/screenshots/nav-in-desk.png)
