@@ -24,10 +24,14 @@ const ProjectsPage = ({ filter = "" }) => {
                 setProjects(data);
                 setIsLoaded(true);
             } catch (err) {
+                setIsLoaded(false);
                 if (err.response?.status !== 401) {
                     setErrors(err.response?.data);
                 }
-                setIsLoaded(false);
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    customError: "An error occurred. Please try again or navigate to another page."
+                }));
             }
         };
         setIsLoaded(false);
@@ -65,11 +69,16 @@ const ProjectsPage = ({ filter = "" }) => {
                 <Spinner animation="grow" variant="dark" role="status">
                     <span className="sr-only">Loading...</span>
                 </Spinner>
-                {errors.detail && (
+                {errors?.detail ? (
                     <Alert variant="warning" className="mt-3">
                         {errors.detail}
                     </Alert>
-                )}
+                ) : null}
+                {errors?.customError ? (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.customError}
+                    </Alert>
+                ) : null}
             </Col>
         </Row>
     );
