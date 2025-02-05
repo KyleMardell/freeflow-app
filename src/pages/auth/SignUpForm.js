@@ -18,6 +18,8 @@ const SignUpForm = () => {
     });
     const { username, password1, password2 } = signUpData;
 
+    const [confirmMessage, setConfirmMessage] = useState("");
+
     const [errors, setErrors] = useState({});
 
     const history = useHistory();
@@ -33,7 +35,10 @@ const SignUpForm = () => {
         event.preventDefault();
         try {
             await axios.post("/dj-rest-auth/registration/", signUpData);
-            history.push("/signin");
+            setConfirmMessage("Sign-up successful! Redirecting to sign in...");
+            setTimeout(() => {
+                history.push("/signin");
+            }, 2000);
         } catch (err) {
             setErrors(err.response?.data);
             console.log(err.response);
@@ -47,7 +52,6 @@ const SignUpForm = () => {
                     <h1 className={styles.Header}>Sign up</h1>
 
                     <Form onSubmit={handleSubmit}>
-
                         <Form.Group controlId="username">
                             <Form.Label className="d-none">Username</Form.Label>
                             <Form.Control
@@ -101,15 +105,25 @@ const SignUpForm = () => {
                             </Alert>
                         ))}
                         <div className="text-center">
-                            <Button className={`${buttonStyles.Button} ${buttonStyles.Wide}`} type="submit">
+                            <Button
+                                className={`${buttonStyles.Button} ${buttonStyles.Wide}`}
+                                type="submit">
                                 Sign Up
                             </Button>
                             {errors.non_field_errors?.map((message, idx) => (
-                                <Alert key={idx} variant="warning" className="mt-3">
+                                <Alert
+                                    key={idx}
+                                    variant="warning"
+                                    className="mt-3">
                                     {message}
                                 </Alert>
                             ))}
                         </div>
+                        {confirmMessage && (
+                            <Alert variant="success" className="mt-3">
+                                {confirmMessage}
+                            </Alert>
+                        )}
                     </Form>
                 </Container>
                 <Container className={`mt-3 ${appStyles.Content}`}>
