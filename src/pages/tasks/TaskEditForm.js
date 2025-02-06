@@ -251,18 +251,19 @@ const TaskEditForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label className="px-2">
+                        <Form.Label htmlFor="estimated_time" className="px-2">
                             Estimated time (hours)
                         </Form.Label>
                         <Form.Control
                             type="number"
                             min="0"
                             step="0.25"
+                            id="estimated_time"
                             name="estimated_time"
                             value={estimated_time}
                             onChange={handleChange}
                         />
-                        <Form.Text className="text-muted">
+                        <Form.Text>
                             Use 0.25 per quarter of an hour
                         </Form.Text>
                     </Form.Group>
@@ -273,18 +274,19 @@ const TaskEditForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label className="px-2">
+                        <Form.Label htmlFor="actual_time" className="px-2">
                             Actual time (hours)
                         </Form.Label>
                         <Form.Control
                             type="number"
                             min="0"
                             step="0.25"
+                            id="actual_time"
                             name="actual_time"
                             value={actual_time}
                             onChange={handleChange}
                         />
-                        <Form.Text className="text-muted">
+                        <Form.Text>
                             Use 0.25 per quarter of an hour
                         </Form.Text>
                     </Form.Group>
@@ -311,10 +313,11 @@ const TaskEditForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label className="px-2">Status</Form.Label>
+                        <Form.Label htmlFor="status" className="px-2">Status</Form.Label>
                         <Form.Control
                             as="select"
                             name="status"
+                            id="status"
                             value={status}
                             onChange={handleChange}>
                             <option value="active">Active</option>

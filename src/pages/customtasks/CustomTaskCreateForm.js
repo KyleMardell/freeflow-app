@@ -91,16 +91,17 @@ const CustomTaskCreateForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label>Estimated time (hours)</Form.Label>
+                        <Form.Label htmlFor="estimated_time">Estimated time (hours)</Form.Label>
                         <Form.Control
                             type="number"
                             min="0"
                             step="0.25"
+                            id="estimated_time"
                             name="estimated_time"
                             value={estimated_time}
                             onChange={handleChange}
                         />
-                        <Form.Text className="text-muted">
+                        <Form.Text>
                             Use 0.25 per quarter of an hour
                         </Form.Text>
                     </Form.Group>

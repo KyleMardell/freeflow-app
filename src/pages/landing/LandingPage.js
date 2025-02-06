@@ -4,14 +4,14 @@ import { Button, Carousel, Col, Image, Row } from "react-bootstrap";
 import buttonStyles from "../../styles/Button.module.css";
 import styles from "../../styles/LandingPage.module.css";
 
-import logo from "../../assets/title-logo.png";
-import listTip from "../../assets/projects-tip.png";
-import projectTip from "../../assets/project-details-tip.png";
-import reportTip from "../../assets/report-tip.png";
-import createProjectTip from "../../assets/create-project-tip.png";
-import createTaskTip from "../../assets/create-task-tip.png";
-import customTaskFirstTip from "../../assets/custom-task-tip.png";
-import customTaskUpdatedTip from "../../assets/custom-task-updated-tip.png";
+import logo from "../../assets/title-logo.webp";
+import listTip from "../../assets/projects-tip.webp";
+import projectTip from "../../assets/project-details-tip.webp";
+import reportTip from "../../assets/report-tip.webp";
+import createProjectTip from "../../assets/create-project-tip.webp";
+import createTaskTip from "../../assets/create-task-tip.webp";
+import customTaskFirstTip from "../../assets/custom-task-tip.webp";
+import customTaskUpdatedTip from "../../assets/custom-task-updated-tip.webp";
 
 const LandingPage = () => {
     return (

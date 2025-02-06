@@ -114,9 +114,10 @@ const ProjectEditForm = () => {
             <Row>
                 <Col xs={12} lg={4}>
                     <Form.Group>
-                        <Form.Label className="px-2">Status</Form.Label>
+                        <Form.Label htmlFor="status" className="px-2">Status</Form.Label>
                         <Form.Control
                             as="select"
+                            id="status"
                             name="status"
                             value={status}
                             onChange={handleChange}>

@@ -109,7 +109,7 @@ const ProfileEditForm = ({ profile_id }) => {
                             value={name}
                             onChange={handleChange}
                         />
-                        <Form.Text className="text-muted">
+                        <Form.Text>
                             This may also be a company name.
                         </Form.Text>
                     </Form.Group>
@@ -144,7 +144,7 @@ const ProfileEditForm = ({ profile_id }) => {
                             value={email || ""}
                             onChange={handleChange}
                         />
-                        <Form.Text className="text-muted">
+                        <Form.Text>
                             Email is required
                         </Form.Text>
                     </Form.Group>
@@ -172,7 +172,7 @@ const ProfileEditForm = ({ profile_id }) => {
 
                     <Form.Group>
                         <UserImage src={image} />
-                        <Form.Label>Change image</Form.Label>
+                        <Form.Label htmlFor="image-upload">Change image</Form.Label>
                         <Form.File
                             id="image-upload"
                             ref={imageFile}

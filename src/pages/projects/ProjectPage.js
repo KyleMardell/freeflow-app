@@ -119,7 +119,7 @@ const ProjectPage = () => {
                 <h1 className="text-center my-4 py-2">Project: {title}</h1>
                 {projectDetails}
             </Col>
-            <Col className="px-1" xs={12} lg={8}>
+            <Col className="px-1 my-3" xs={12} lg={8}>
                 <Link to={`/projects/${id}/tasks/create`}>
                     <Button
                         className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
@@ -127,7 +127,7 @@ const ProjectPage = () => {
                     </Button>
                 </Link>
             </Col>
-            <Col className="px-1" xs={12} lg={8}>
+            <Col className="px-1 mb-3" xs={12} lg={8}>
                 <Link to={`/projects/${id}/report`}>
                     <Button
                         className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
@@ -144,7 +144,7 @@ const ProjectPage = () => {
                     <div>No tasks yet...</div>
                 )}
             </Col>
-            <Col className="p-1 d-flex justify-content-around" xs={12} lg={8}>
+            <Col className="p-1 mb-3 d-flex justify-content-around" xs={12} lg={8}>
                 <Link to={`/projects/${id}/edit`}>
                     <Button
                         className={`${buttonStyles.Button} ${buttonStyles.ButtonLarge} my-3`}>
