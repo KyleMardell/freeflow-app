@@ -17,20 +17,20 @@ const LandingPage = () => {
     return (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="p-2 my-5 text-center" xs={12} lg={8}>
-                <Image className={styles.Logo} src={logo} fluid />
+                <Image className={styles.Logo} src={logo} fluid alt="Welcome to free flow, the go-to freelance tracker."/>
             </Col>
             <Col className="p-2 my-4 text-center" xs={12} lg={8}>
                 <Carousel fade>
                     <Carousel.Item>
-                        <Image src={listTip} fluid />
+                        <Image src={listTip} fluid alt="project list tip" />
                     </Carousel.Item>
 
                     <Carousel.Item>
-                        <Image src={projectTip} fluid />
+                        <Image src={projectTip} fluid alt="project page tip" />
                     </Carousel.Item>
 
                     <Carousel.Item>
-                        <Image src={reportTip} fluid />
+                        <Image src={reportTip} fluid alt="report page tip" />
                     </Carousel.Item>
                 </Carousel>
             </Col>
@@ -53,11 +53,11 @@ const LandingPage = () => {
             <Col className="p-2 my-1 text-center" xs={12} lg={8}>
                 <Carousel fade>
                     <Carousel.Item>
-                        <Image src={createProjectTip} fluid />
+                        <Image src={createProjectTip} fluid alt="create project tip" />
                     </Carousel.Item>
 
                     <Carousel.Item>
-                        <Image src={createTaskTip} fluid />
+                        <Image src={createTaskTip} fluid alt="crete task tip" />
                     </Carousel.Item>
                 </Carousel>
             </Col>
@@ -81,11 +81,11 @@ const LandingPage = () => {
             <Col className="p-2 mt-5 mb-3 text-center" xs={12} lg={8}>
                 <Carousel fade>
                     <Carousel.Item>
-                        <Image src={customTaskFirstTip} fluid />
+                        <Image src={customTaskFirstTip} fluid alt="custom task tip one" />
                     </Carousel.Item>
 
                     <Carousel.Item>
-                        <Image src={customTaskUpdatedTip} fluid />
+                        <Image src={customTaskUpdatedTip} fluid alt="custom task tip two" />
                     </Carousel.Item>
                 </Carousel>
             </Col>
