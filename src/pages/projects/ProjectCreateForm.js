@@ -43,10 +43,14 @@ const ProjectCreateForm = () => {
             const { data } = await axiosReq.post("/projects/", formData);
             history.push(`/projects/${data.id}`);
         } catch (err) {
-            console.log(err);
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                customError:
+                    "An error occurred. Please try again or navigate to another page.",
+            }));
         }
     };
 
@@ -165,6 +169,16 @@ const ProjectCreateForm = () => {
                             {message}
                         </Alert>
                     ))}
+                    {errors?.detail ? (
+                        <Alert variant="warning" className="mt-3">
+                            {errors.detail}
+                        </Alert>
+                    ) : null}
+                    {errors?.customError ? (
+                        <Alert variant="warning" className="mt-3">
+                            {errors.customError}
+                        </Alert>
+                    ) : null}
                 </Form>
             </Col>
             <Col className="my-auto p-2" lg={8}>

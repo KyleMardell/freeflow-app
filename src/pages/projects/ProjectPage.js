@@ -47,10 +47,15 @@ const ProjectPage = () => {
                 setTasks(tasks);
                 setIsLoaded(true);
             } catch (err) {
+                setIsLoaded(false);
                 if (err.response?.status !== 401) {
                     setErrors(err.response?.data);
                 }
-                setIsLoaded(false);
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    customError:
+                        "An error occurred. Please try again or navigate to another page.",
+                }));
             }
         };
         setIsLoaded(false);
@@ -71,13 +76,17 @@ const ProjectPage = () => {
     const projectDetails = (
         <>
             <Row className="px-1">
-                <Col className={`${styles.DetailBorder} ${styles.BorderTop} text-center`}>
+                <Col
+                    className={`${styles.DetailBorder} ${styles.BorderTop} text-center`}>
                     <p className="m-0 p-2">Status: {status}</p>
                 </Col>
             </Row>
             <Row className="px-1">
-                <Col className={`${styles.BorderMid} ${styles.BorderRight} text-center`}>
-                    <p className="m-0 p-2">Due date: {due_date ? due_date : <>No date set</>}</p>
+                <Col
+                    className={`${styles.BorderMid} ${styles.BorderRight} text-center`}>
+                    <p className="m-0 p-2">
+                        Due date: {due_date ? due_date : <>No date set</>}
+                    </p>
                 </Col>
                 <Col className={`${styles.BorderMid} text-center`}>
                     <p className="m-0 p-2">
@@ -87,7 +96,8 @@ const ProjectPage = () => {
                 </Col>
             </Row>
             <Row className="px-1">
-                <Col className={`${styles.BorderMid} ${styles.BorderRight} text-center`}>
+                <Col
+                    className={`${styles.BorderMid} ${styles.BorderRight} text-center`}>
                     <p className="m-0 p-2">Created {created_at}</p>
                 </Col>
                 <Col className={`${styles.BorderMid} text-center`}>
@@ -95,7 +105,8 @@ const ProjectPage = () => {
                 </Col>
             </Row>
             <Row className="px-1">
-                <Col className={`${styles.DetailBorder} ${styles.BorderBottom}`}>
+                <Col
+                    className={`${styles.DetailBorder} ${styles.BorderBottom}`}>
                     <p className="m-0 p-2">Brief: {brief}</p>
                 </Col>
             </Row>
@@ -180,11 +191,16 @@ const ProjectPage = () => {
                 <Spinner animation="grow" variant="dark" role="status">
                     <span className="sr-only">Loading...</span>
                 </Spinner>
-                {errors.detail && (
+                {errors?.detail ? (
                     <Alert variant="warning" className="mt-3">
                         {errors.detail}
                     </Alert>
-                )}
+                ) : null}
+                {errors?.customError ? (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.customError}
+                    </Alert>
+                ) : null}
             </Col>
         </Row>
     );

@@ -35,8 +35,10 @@ const TaskEditForm = () => {
     } = taskData;
 
     const [customTaskData, setCustomTaskData] = useState({});
-    const [originalCustomTaskData, setOriginalCustomTaskData] = useState(customTaskData);
-    const { average_time, longest_time, quickest_time, frequency } = originalCustomTaskData;
+    const [originalCustomTaskData, setOriginalCustomTaskData] =
+        useState(customTaskData);
+    const { average_time, longest_time, quickest_time, frequency } =
+        originalCustomTaskData;
 
     const history = useHistory();
 
@@ -66,15 +68,22 @@ const TaskEditForm = () => {
                 });
                 setIsLoaded(true);
             } catch (err) {
+                setIsLoaded(false);
                 if (err.response?.status !== 401) {
                     setErrors(err.response?.data);
                 }
-                setIsLoaded(false);
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    customError:
+                        "An error occurred. Please try again or navigate to another page.",
+                }));
             }
 
             try {
                 if (custom_task) {
-                    const { data } = await axiosReq.get(`/custom_tasks/${custom_task}`);
+                    const { data } = await axiosReq.get(
+                        `/custom_tasks/${custom_task}`
+                    );
                     setCustomTaskData(data);
                     setOriginalCustomTaskData(data);
                 }
@@ -82,8 +91,12 @@ const TaskEditForm = () => {
                 if (err.response?.status !== 401) {
                     setErrors(err.response?.data);
                 }
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    customError:
+                        "An error occurred when retrieving custom tasks. Please try again.",
+                }));
             }
-
         };
         setIsLoaded(false);
         handleMount();
@@ -106,12 +119,20 @@ const TaskEditForm = () => {
             const longTimeNum = parseFloat(longest_time);
             const quickTimeNum = parseFloat(quickest_time);
             const actualTimeNum = parseFloat(actual_time);
-            
-            const newAverage = frequencyNum > 0 ? ((frequencyNum * averageTimeNum) + actualTimeNum) / newFrequency : actualTimeNum;
-            const newLongest = actualTimeNum > longTimeNum ? actualTimeNum : longTimeNum;
-            const newQuickest = quickTimeNum === 0 || (actualTimeNum > 0 && actualTimeNum) < quickTimeNum ? actualTimeNum : quickTimeNum;
 
-    
+            const newAverage =
+                frequencyNum > 0
+                    ? (frequencyNum * averageTimeNum + actualTimeNum) /
+                      newFrequency
+                    : actualTimeNum;
+            const newLongest =
+                actualTimeNum > longTimeNum ? actualTimeNum : longTimeNum;
+            const newQuickest =
+                quickTimeNum === 0 ||
+                (actualTimeNum > 0 && actualTimeNum) < quickTimeNum
+                    ? actualTimeNum
+                    : quickTimeNum;
+
             return {
                 ...customTaskData,
                 average_time: newAverage,
@@ -136,35 +157,62 @@ const TaskEditForm = () => {
         formData.append("due_date", due_date);
 
         try {
-            const taskResponse = await axiosReq.put(`/projects/${pid}/tasks/${tid}`, formData);
-            if(custom_task && status === "complete") {
+            const taskResponse = await axiosReq.put(
+                `/projects/${pid}/tasks/${tid}`,
+                formData
+            );
+            if (custom_task && status === "complete") {
                 const customFormData = new FormData();
-                customFormData.append("average_time", updatedCustomData.average_time);
-                customFormData.append("quickest_time", updatedCustomData.quickest_time);
-                customFormData.append("longest_time", updatedCustomData.longest_time);
+                customFormData.append(
+                    "average_time",
+                    updatedCustomData.average_time
+                );
+                customFormData.append(
+                    "quickest_time",
+                    updatedCustomData.quickest_time
+                );
+                customFormData.append(
+                    "longest_time",
+                    updatedCustomData.longest_time
+                );
                 customFormData.append("frequency", updatedCustomData.frequency);
                 customFormData.append("title", updatedCustomData.title);
-                customFormData.append("estimated_time", updatedCustomData.estimated_time);
+                customFormData.append(
+                    "estimated_time",
+                    updatedCustomData.estimated_time
+                );
 
                 try {
-                    await axiosReq.put(`/custom_tasks/${custom_task}`, customFormData);
+                    await axiosReq.put(
+                        `/custom_tasks/${custom_task}`,
+                        customFormData
+                    );
                 } catch (err) {
                     if (err.response?.status !== 401) {
                         setErrors(err.response?.data);
                     }
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        customError:
+                            "An error occurred when updating custom tasks.",
+                    }));
                 }
-            }     
+            }
             history.push(`/projects/${pid}/tasks/${taskResponse.data.id}`);
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                customError:
+                    "An error occurred. Please try again or navigate to another page.",
+            }));
         }
     };
 
-    return (
-        (isLoaded) ? (
-            <Row className="h-100 d-flex justify-content-center">
+    return isLoaded ? (
+        <Row className="h-100 d-flex justify-content-center">
             <Col className="my-auto p-2 text-center" lg={8}>
                 <h1 className="my-4">Edit Task</h1>
             </Col>
@@ -289,13 +337,25 @@ const TaskEditForm = () => {
                             {message}
                         </Alert>
                     ))}
+                    {errors?.detail ? (
+                        <Alert variant="warning" className="mt-3">
+                            {errors.detail}
+                        </Alert>
+                    ) : null}
+                    {errors?.customError ? (
+                        <Alert variant="warning" className="mt-3">
+                            {errors.customError}
+                        </Alert>
+                    ) : null}
                 </Form>
             </Col>
             {custom_task ? (
                 <Col className="my-auto p-2" lg={8}>
                     <p>Custom task used: {custom_task}</p>
                 </Col>
-                ) : (<></>)}
+            ) : (
+                <></>
+            )}
             <Col className="my-auto p-2" lg={8}>
                 <Button
                     className={`${buttonStyles.ButtonYellow} ${buttonStyles.Wide}`}
@@ -304,21 +364,24 @@ const TaskEditForm = () => {
                 </Button>
             </Col>
         </Row>
-        ) : (
-            <Row className={appStyles.LoadingSpinner}>
+    ) : (
+        <Row className={appStyles.LoadingSpinner}>
             <Col className="text-center my-4" lg={8}>
                 <Spinner animation="grow" variant="dark" role="status">
                     <span className="sr-only">Loading...</span>
                 </Spinner>
-                {errors.detail && (
+                {errors?.detail ? (
                     <Alert variant="warning" className="mt-3">
                         {errors.detail}
                     </Alert>
-                )}
+                ) : null}
+                {errors?.customError ? (
+                    <Alert variant="warning" className="mt-3">
+                        {errors.customError}
+                    </Alert>
+                ) : null}
             </Col>
         </Row>
-        )
-        
     );
 };
 

@@ -45,6 +45,11 @@ const TaskCreateForm = () => {
                 if (err.response?.status !== 401) {
                     setErrors(err.response?.data);
                 }
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    customError:
+                        "An error occurred when retrieving custom tasks.",
+                }));
             }
         };
         fetchCustomTasks();
@@ -97,6 +102,10 @@ const TaskCreateForm = () => {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                customError: "An error occurred. Please try again.",
+            }));
         }
     };
 
@@ -129,6 +138,16 @@ const TaskCreateForm = () => {
                             description and estimated time
                         </Form.Text>
                     </Form.Group>
+                    {errors?.detail ? (
+                        <Alert variant="warning" className="mt-3">
+                            {errors.detail}
+                        </Alert>
+                    ) : null}
+                    {errors?.customError ? (
+                        <Alert variant="warning" className="mt-3">
+                            {errors.customError}
+                        </Alert>
+                    ) : null}
 
                     <Form.Group>
                         <Form.Label className="px-2">Title</Form.Label>
@@ -222,7 +241,7 @@ const TaskCreateForm = () => {
                         type="submit">
                         Submit
                     </Button>
-                    {errors.non_field_errors?.map((message, idx) => (
+                    {errors?.non_field_errors?.map((message, idx) => (
                         <Alert variant="warning" key={idx} className="mt-3">
                             {message}
                         </Alert>
