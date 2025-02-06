@@ -51,6 +51,16 @@ const ProfileEditForm = ({ profile_id }) => {
         handleMount();
     }, [profile_id]);
 
+    const handleChangeImage = (event) => {
+        if (event.target.files.length) {
+            URL.revokeObjectURL(image);
+            setProfile({
+                ...profile,
+                image: URL.createObjectURL(event.target.files[0]),
+            });
+        }
+    };
+
     const handleChange = (event) => {
         setProfile({
             ...profile,
@@ -66,7 +76,7 @@ const ProfileEditForm = ({ profile_id }) => {
         formData.append("phone", phone);
         formData.append("email", email);
         if (imageFile?.current?.files[0]) {
-            formData.append("image", imageFile?.current.files[0]);
+            formData.append("image", imageFile.current.files[0]);
         }
 
         try {
@@ -101,10 +111,11 @@ const ProfileEditForm = ({ profile_id }) => {
             <Col className="my-auto p-2" lg={8}>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label htmlFor="name">Name</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Name"
+                            id="name"
                             name="name"
                             value={name}
                             onChange={handleChange}
@@ -120,10 +131,11 @@ const ProfileEditForm = ({ profile_id }) => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label>Bio</Form.Label>
+                        <Form.Label htmlFor="bio">Bio</Form.Label>
                         <Form.Control
                             as="textarea"
                             placeholder="Bio..."
+                            id="bio"
                             name="bio"
                             value={bio}
                             onChange={handleChange}
@@ -136,10 +148,11 @@ const ProfileEditForm = ({ profile_id }) => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label>Email Address</Form.Label>
+                        <Form.Label htmlFor="email">Email Address</Form.Label>
                         <Form.Control
                             type="email"
                             placeholder="name@email.com"
+                            id="email"
                             name="email"
                             value={email || ""}
                             onChange={handleChange}
@@ -155,10 +168,11 @@ const ProfileEditForm = ({ profile_id }) => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Label htmlFor="phone">Phone Number</Form.Label>
                         <Form.Control
                             type="tel"
                             placeholder="0123456789"
+                            id="phone"
                             name="phone"
                             value={phone}
                             onChange={handleChange}
@@ -172,21 +186,14 @@ const ProfileEditForm = ({ profile_id }) => {
 
                     <Form.Group>
                         <UserImage src={image} />
+
                         <Form.Label htmlFor="image-upload">Change image</Form.Label>
+                        
                         <Form.File
                             id="image-upload"
+                            accept="image/*"
+                            onChange={handleChangeImage}
                             ref={imageFile}
-                            accept="image/"
-                            onChange={(e) => {
-                                if (e.target.files.length) {
-                                    setProfile({
-                                        ...profile,
-                                        image: URL.createObjectURL(
-                                            e.target.files[0]
-                                        ),
-                                    });
-                                }
-                            }}
                         />
                     </Form.Group>
                     {errors?.image?.map((message, idx) => (

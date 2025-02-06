@@ -57,10 +57,11 @@ const ProjectCreateForm = () => {
     const formInputFields = (
         <>
             <Form.Group>
-                <Form.Label className="d-none">Title</Form.Label>
+                <Form.Label htmlFor="title" className="d-none">Title</Form.Label>
                 <Form.Control
                     type="text"
                     name="title"
+                    id="title"
                     value={title}
                     onChange={handleChange}
                     placeholder="Project title"
@@ -73,11 +74,12 @@ const ProjectCreateForm = () => {
             ))}
 
             <Form.Group>
-                <Form.Label className="d-none">Brief</Form.Label>
+                <Form.Label htmlFor="brief" className="d-none">Brief</Form.Label>
                 <Form.Control
                     as="textarea"
                     rows={5}
                     placeholder="Project brief"
+                    id="brief"
                     name="brief"
                     value={brief}
                     onChange={handleChange}
@@ -112,11 +114,12 @@ const ProjectCreateForm = () => {
                 </Col>
                 <Col xs={12} lg={4}>
                     <Form.Group>
-                        <Form.Label className="px-2">Due Date</Form.Label>
+                        <Form.Label htmlFor="due_date" className="px-2">Due Date</Form.Label>
                         <Form.Control
                             type="date"
                             placeholder="Select due date"
                             name="due_date"
+                            id="due_date"
                             value={due_date}
                             onChange={handleChange}
                         />
@@ -129,12 +132,13 @@ const ProjectCreateForm = () => {
                 </Col>
                 <Col xs={12} lg={4}>
                     <Form.Group>
-                        <Form.Label className="px-2">
+                        <Form.Label htmlFor="hourly_rate" className="px-2">
                             Hourly Rate (£)
                         </Form.Label>
                         <Form.Control
                             type="number"
                             placeholder="Hourly rate"
+                            id="hourly_rate"
                             min="0"
                             step="0.01"
                             name="hourly_rate"

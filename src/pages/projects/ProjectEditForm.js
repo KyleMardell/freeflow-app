@@ -79,9 +79,10 @@ const ProjectEditForm = () => {
     const formInputFields = (
         <>
             <Form.Group>
-                <Form.Label className="d-none">Title</Form.Label>
+                <Form.Label htmlFor="title">Title</Form.Label>
                 <Form.Control
                     type="text"
+                    id="title"
                     name="title"
                     value={title}
                     onChange={handleChange}
@@ -95,11 +96,12 @@ const ProjectEditForm = () => {
             ))}
 
             <Form.Group>
-                <Form.Label className="d-none">Brief</Form.Label>
+                <Form.Label htmlFor="brief">Brief</Form.Label>
                 <Form.Control
                     as="textarea"
                     rows={5}
                     placeholder="Project brief"
+                    id="brief"
                     name="brief"
                     value={brief}
                     onChange={handleChange}
@@ -134,10 +136,11 @@ const ProjectEditForm = () => {
                 </Col>
                 <Col xs={12} lg={4}>
                     <Form.Group>
-                        <Form.Label className="px-2">Due Date</Form.Label>
+                        <Form.Label htmlFor="due_date" className="px-2">Due Date</Form.Label>
                         <Form.Control
                             type="date"
                             placeholder="Select due date"
+                            id="due_date"
                             name="due_date"
                             value={due_date}
                             onChange={handleChange}
@@ -151,7 +154,7 @@ const ProjectEditForm = () => {
                 </Col>
                 <Col xs={12} lg={4}>
                     <Form.Group>
-                        <Form.Label className="px-2">
+                        <Form.Label htmlFor="hourly_rate" className="px-2">
                             Hourly Rate (£)
                         </Form.Label>
                         <Form.Control
@@ -159,6 +162,7 @@ const ProjectEditForm = () => {
                             placeholder="Hourly rate"
                             min="0"
                             step="0.01"
+                            id="hourly_rate"
                             name="hourly_rate"
                             value={hourly_rate}
                             onChange={handleChange}

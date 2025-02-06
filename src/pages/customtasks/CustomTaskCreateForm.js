@@ -59,10 +59,11 @@ const CustomTaskCreateForm = () => {
             <Col className="my-auto p-2" lg={8}>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>
-                        <Form.Label>Title</Form.Label>
+                        <Form.Label htmlFor="title">Title</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Custom Task Title"
+                            id="title"
                             name="title"
                             value={title}
                             onChange={handleChange}
@@ -75,10 +76,11 @@ const CustomTaskCreateForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label htmlFor="description">Description</Form.Label>
                         <Form.Control
                             as="textarea"
                             placeholder="Custom Task Description"
+                            id="description"
                             name="description"
                             value={description}
                             onChange={handleChange}

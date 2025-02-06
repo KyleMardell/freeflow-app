@@ -158,10 +158,11 @@ const TaskCreateForm = () => {
                     ) : null}
 
                     <Form.Group>
-                        <Form.Label className="px-2">Title</Form.Label>
+                        <Form.Label htmlFor="title" className="px-2">Title</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Task title"
+                            id="title"
                             name="title"
                             value={title}
                             onChange={handleChange}
@@ -174,11 +175,12 @@ const TaskCreateForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label className="px-2">Description</Form.Label>
+                        <Form.Label htmlFor="description" className="px-2">Description</Form.Label>
                         <Form.Control
                             as="textarea"
                             placeholder="Task description"
                             name="description"
+                            id="description"
                             value={description}
                             onChange={handleChange}
                         />
@@ -211,11 +213,12 @@ const TaskCreateForm = () => {
                     ))}
 
                     <Form.Group>
-                        <Form.Label className="px-2">Due Date</Form.Label>
+                        <Form.Label htmlFor="due_date" className="px-2">Due Date</Form.Label>
                         <Form.Control
                             type="date"
                             placeholder="Select due date"
                             name="due_date"
+                            id="due_date"
                             value={due_date}
                             onChange={handleChange}
                         />
