@@ -41,7 +41,6 @@ const SignUpForm = () => {
             }, 2000);
         } catch (err) {
             setErrors(err.response?.data);
-            console.log(err.response);
         }
     };
 

@@ -50,6 +50,7 @@ Before deploying the back-end API code, I checked that all files conformed to th
 
 #### JavaScript Liner
 At the end of development I checked all reacts files using the [ESLint](https://eslint.org/play/) tool with all files passing with no errors. This was a good final check to all the javascript files to check there were no overlooked errors.
+Once development was complete, I removed all console logs from the front-end code, with one exception in the [CurrentUserContext](https://github.com/KyleMardell/freeflow-app/blob/main/src/contexts/CurrentUserContext.js) file. The remaining console log captures an error when there is no response from the "dj-rest-auth/user/" endpoint. This would only occur if a logged-in user was automatically logged out, in which case they would be redirected to the home page. Since this error does not need to be displayed to the user, the console log remains to satisfy the try-catch block rather than leaving the catch case empty.
 
 ### Accessibility and Performance
 

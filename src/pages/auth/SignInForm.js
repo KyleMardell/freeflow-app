@@ -39,7 +39,6 @@ function SignInForm() {
             history.push("/projects");
         } catch (err) {
             setErrors(err.response?.data);
-            console.log(err.response);
         }
     };
 
