@@ -404,7 +404,7 @@ Custom tasks contain data that is automatically updated upon completion of tasks
 
 #### Profile page
 Upon signing up, each user is automatically assigned a profile page, created via a Django signal in the API. This means users do not need to manually create or delete their profiles. Profiles are generated upon account creation and removed if an account is deleted. The main purpose of the profile page is to include user details in project reports, with a future goal of enabling report exports to PDF or a similar format.
-The profile displays a default user image and fields for a name, bio, email address, and phone number. This setup allows for flexibility, as users can choose to display a business logo and professional details or opt for a more personal approach with a profile picture and personal contact information. The bio field provides additional customization, allowing users to add a business tagline or a short personal introduction.
+The profile displays a default user image and fields for a name, bio, email address, and phone number. This setup allows for flexibility, as users can choose to display business or professional details or opt for a more personal approach with personal contact information. The bio field provides additional customization, allowing users to add a business tagline or a short personal introduction.
 
 ![Profile page mobile](/docmedia/screenshots/profile-mob.png)
 
@@ -413,7 +413,7 @@ The profile displays a default user image and fields for a name, bio, email addr
 
 #### Profile edit form
 Since users cannot create or delete their profiles, only an edit profile form is required. This form allows users to update their profile information without being tied to their account details, giving them the flexibility to use either personal or business information.
-The form includes fields for name, bio, email, and phone number. Users can also upload a profile image, or a default image will be set if none is provided. This ensures a customizable yet streamlined experience for all users.
+The form includes fields for name, bio, email, and phone number. I initially planned to add the ability to upload a custom user image, but I encountered a bug with this feature later in development. Since it is not a critical feature of the app, I decided to remove it from the profile edit form for now. I plan to fix this post-MVP as a later implementation, as I believe it would enhance the report page if exported as an invoice.
 
 ![Profile edit form mobile]()
 
@@ -470,8 +470,114 @@ The tasks model contains user input fields for title, description, due date, est
 
 ## Testing
 
+Full testing can be found in the [TESTING](/TESTING.md) file.
 
 ## Deployment
+
+To deploy the Free Flow App, several steps must be followed to ensure a fully functional online or local version. A prerequisite is having a functioning database. For this project, I used a PostgreSQL database provided by Code Institute along with the provided database URL. Once the database URL is available, the app can be cloned, set up, and deployed either locally or online using a hosting service like Heroku.
+
+The steps required to deploy the app are outlined below.
+
+### GitHub
+
+#### Fork repositories
+
+- To fork the repositories
+    - Login or Sign Up to GitHub
+    - Navigate to the front end repository for this project [Free Flow](https://github.com/KyleMardell/freeflow-app)
+    - Click the "Fork" button on the top right of the page
+    - Navigate to the back end API repository for this project [Free Flow API](https://github.com/KyleMardell/freeflow-api)
+    - Click the "Fork" button on the top right of the page
+
+#### Clone repositories
+
+- To clone the repositories
+    - Login or Sign Up to GitHub
+    - Navigate to the front end repository for this project [Free Flow](https://github.com/KyleMardell/bee-teach)
+        - Click on the "Code" button
+        - Select how you would like to clone (HTTPS, SSH, or GitHub CLI)
+        - Copy your chosen link
+        - Open the terminal of your code editor or IDE
+        - Change the current working directory to the location you want to use for the cloned directory
+        - Type "git clone" into the terminal followed by the copied link and press enter.
+    - Navigate to the back end API repository for this project [Free Flow API](https://github.com/KyleMardell/freeflow-api)
+        - Repeat the steps as shown for the front end repository
+
+### API Deployment
+
+#### Django settings
+
+- Django Settings
+    - Go to the settings.py file in the Free Flow Django Project
+    - Find the "ALLOWED_HOSTS" and replace the first entry with your development servers URL for security purposes (in my case, starting "8000-kylemardell-freeflow")
+    - Find the "CSRF_TRUSTED_ORIGINS" and replace the first entry with your own development server URL for security purposes (in my case, starting "8000-kylemardell-freeflow")
+    - If deploying locally, install the requirements with the command "pip install -r requirements.txt" in the terminal of your development environment.
+    - Migrate the database to the newly linked database with the command "python manage.py makemigrations" and then "python manage.py migrate"
+    - Create a new superuser with the command "python manage.py createsuperuser" and add a username and password.
+
+- ENV File (NOT TO BE PUBLICLY SHARED, confirm env.py is added to your .gitignore file)
+    - In order to run the app locally, you will need to create a file named 'env.py' in the base project folder or same directory as the requirements.txt file.
+    - add 'import os' at the top of the file/page
+    - add the code 'os.environ.setdefault("DATABASE_URL", "postgres://my_database_url")', making sure to add your own database url in place of 'my_database_url'
+    - add the code 'os.environ.setdefault("SECRET_KEY", "my_secret_key")', making sure to add your own secret key in place of 'my_secret_key'
+    - add the code 'os.environ.setdefault("CLOUDINARY_URL", "cloudinary://my_cloudinary_url")', making sure to add your own cloudinary url in place of 'my_cloudinary_url' described below
+
+#### Cloudinary
+
+- In order to set up the Free Flow apps profile images, an image hosting service is needed to host the images. In this case I used [Cloudinary](https://cloudinary.com/).
+    - Login or sign up with your [Cloudinary](https://cloudinary.com/) account
+    - Navigate to the dashboard
+    - Click "Go to API Keys" at the top of the page
+    - Locate the "API environment variable" / Cloudinary URL at the top of the page
+    - Copy your "API Key" and "API Secret" into the Cloudinary URL for use in the Heroku config var settings
+
+#### Heroku
+
+- Deploy to Heroku
+    - Login or sign up with your [Heroku](https://heroku.com) account
+    - Navigate to the dashboard
+    - Click "New" at the top right of the screen, select "Create new app"
+    - Enter a unique name (I used freeflow-api)
+    - Choose a region
+    - Click "Create app"
+    - Navigate to the "Settings" tab
+    - Navigate to "Buildpacks"
+    - Click "Add buildpack"
+    - Add "Python" as a buildpack (this ensures python is used to execute the app)
+    - Click "Reveal Config Vars"
+    - Add a new config var with key "DISABLE_COLLECTSTATIC" and a value of 1.
+    - Add a new config var with key "CLOUDINARY_URL" and the value from your Cloudinary URL detailed above, beginning "cloudinary://" (this links your cloudinary account to the heroku app)
+    - Add a new config var with key "DATABASE_URL" and add the URL of your database, in this case beginning "postgres://" (this links your database to the heroku app)
+    - Add a new config var with key "SECRET_KEY" and add your own secret key, e.g. "th15-15-4-53CR3T-K3y" (this is essentially a private password for the heroku app)
+    - Add a new config var with key "ALLOWED_HOST" and add the URL of your deployed API Heroku app (this will need to be done once the API has been deployed to Heroku)
+    - Add a new config var with key "CLIENT_ORIGIN" and add the URL of your deployed front end Heroku app (this will need to be done once the front end has been deployed to Heroku).
+    - Add a new config var with key "CLIENT_ORIGIN_DEV" and add the URL of your deployed development environment (This allows you to access the API from your development environment).
+    - Navigate to the "Deploy" tab
+    - Select GitHub as deployment method
+    - Authenticate with GitHub account
+    - Search for repo name (BeeTeach), click "Connect"
+    - Optionally enable "Automatic deploys"
+    - Click "Deploy branch" under "Manual Deploy" ensuring main branch is selected
+    - Click "Open App" at the top of the screen to get the deployed apps URL for use in the config vars.
+
+### Front End Deployment
+
+#### Heroku
+
+- Deploy to Heroku
+    - Login or sign up with your [Heroku](https://heroku.com) account
+    - Navigate to the dashboard
+    - Click "New" at the top right of the screen, select "Create new app"
+    - Enter a unique name (I used freeflow-app)
+    - Choose a region
+    - Click "Create app"
+    - Navigate to the "Deploy" tab
+    - Select GitHub as deployment method
+    - Authenticate with GitHub account
+    - Search for repo name (BeeTeach), click "Connect"
+    - Optionally enable "Automatic deploys"
+    - Click "Deploy branch" under "Manual Deploy" ensuring main branch is selected
+    - Click "Open App" at the top of the screen to view the app
 
 ## Credits
 
@@ -480,3 +586,6 @@ I wanted to add an email field to the profile model when starting the project. A
 
 ### Django decimal field
 As I wanted to add an hourly rate and an amount of time in hours, I needed to add a field to my models that contains numbers. I used the DecimalField, as it also has the option to define max digits and decimal places, which was perfect for an hourly rate and amount of time. [Decimal field documentation](https://www.geeksforgeeks.org/decimalfield-django-models/)
+
+### Code Institute
+Having learned how to create a social media app through Code Institute’s lessons on Django Rest Framework and React, I drew inspiration from the coding methods taught in the course. I also referred to the sign-in and sign-up pages from the "Moments App" tutorial, as authentication pages tend to follow a similar structure across many apps. This approach allowed me to quickly set up authentication, enabling me to focus on other, more unique features of the app. Additionally, I took inspiration from components like user context and more complex hooks, which contributed to the overall user experience.
