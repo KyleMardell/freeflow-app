@@ -51,16 +51,6 @@ const ProfileEditForm = ({ profile_id }) => {
         handleMount();
     }, [profile_id]);
 
-    const handleChangeImage = (event) => {
-        if (event.target.files.length) {
-            URL.revokeObjectURL(image);
-            setProfile({
-                ...profile,
-                image: URL.createObjectURL(event.target.files[0]),
-            });
-        }
-    };
-
     const handleChange = (event) => {
         setProfile({
             ...profile,
@@ -75,9 +65,6 @@ const ProfileEditForm = ({ profile_id }) => {
         formData.append("bio", bio);
         formData.append("phone", phone);
         formData.append("email", email);
-        if (imageFile?.current?.files[0]) {
-            formData.append("image", imageFile.current.files[0]);
-        }
 
         try {
             const { data } = await axiosReq.put(
@@ -179,24 +166,6 @@ const ProfileEditForm = ({ profile_id }) => {
                         />
                     </Form.Group>
                     {errors?.phone?.map((message, idx) => (
-                        <Alert variant="warning" key={idx}>
-                            {message}
-                        </Alert>
-                    ))}
-
-                    <Form.Group>
-                        <UserImage src={image} />
-
-                        <Form.Label htmlFor="image-upload">Change image</Form.Label>
-                        
-                        <Form.File
-                            id="image-upload"
-                            accept="image/*"
-                            onChange={handleChangeImage}
-                            ref={imageFile}
-                        />
-                    </Form.Group>
-                    {errors?.image?.map((message, idx) => (
                         <Alert variant="warning" key={idx}>
                             {message}
                         </Alert>
