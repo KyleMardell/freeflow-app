@@ -19,9 +19,7 @@ Ultimately, Free Flow allows users to track multiple projects by breaking each o
 
 ## Testing
 Testing for the Free Flow app was mainly done during development, with a confirmation testing session carried out once all development was complete. This ensured there were no missed bugs in the final production version of the app and that any issues found could be resolved. I performed only minimal automated testing on the API side in terms of unit testing, although full manual testing was conducted, as detailed in the table below.
-
 I also carried out validation and accessibility testing to ensure my code met development standards and that all pages of the app were fully accessible.
-
 Throughout development, I used Google Chrome DevTools as one of my primary testing tools. This allowed me to use print statements or console logs to track data as it was passed between the front end and back end, as well as to identify any errors that occurred during development. For accessibility, I used tools such as Google Chrome’s Lighthouse and the WAVE accessibility testing tool to verify that all pages adhered to accessibility standards. Any anomalies could then be rectified or justified.
 
 ### API Testing
@@ -32,9 +30,26 @@ Final API testing was confirmed through a full manual testing session from the f
 ### Validation
 
 #### HTML Validation
-Once development was almost complete I carried out HTML validation using the Web3 HTML Validator to check all HTML conformed to Web3 standards. In order to carry out these tests I used Google Chromes developer tools to view the rendered pages source code, and then enter this source code into the validator. This way I made sure the full HTML document for each page was valid.
+Once development was nearly complete, I carried out HTML validation using the [Web3 HTML Validator](https://validator.w3.org/) to ensure all HTML conformed to Web3 standards. To perform these tests, I used Google Chrome's developer tools to view the rendered page's source code and then entered this source code into the validator. This ensured that the full HTML document for each page was valid.
 
-The results of the HTML page validation can be found below.
+The only changes required during HTML validation were minimal and did not affect the app's functionality. The first change was to the navbar brand. I had used an <h1> tag inside the navbar brand, which React renders as a <span> element. Since an <h1> cannot be a child of a <span>, I removed the <h1> and applied styles to compensate.
+
+The other change involved using a <button> inside a <link> element, which is not allowed. I replaced the <button> elements inside links with <div> elements styled as buttons. This ensured the links remained fully functional while reducing confusion for screen readers.
+
+All final pages passed HTML validation with no errors. I have provided a single example of the validation results instead of screenshots for every page, as all test result pages were visually identical.
+![HTML Validation](/docmedia/testing/html-validation.png)
+
+#### CSS Validation
+Similar to the HTML validation, I carried out CSS validation using the [Web3 CSS Validator](https://jigsaw.w3.org/css-validator/) toward the end of development to ensure all CSS files adhered to Web3 standards. I found multiple instances where commas were mistakenly used in border properties. This likely occurred because I created a single border style and applied it to multiple component CSS modules without noticing the issue. This was an easy fix, as I only needed to remove the unnecessary commas to resolve it.
+
+All final CSS files passed validation with no errors. I have provided a single example of the validation results instead of screenshots for every page, as all test result pages were visually identical.
+![CSS Validation](/docmedia/testing/css-validation.png)
+
+#### Python Linter
+Before deploying the back-end API code, I checked that all files conformed to the [Python PEP8 linter](https://pep8ci.herokuapp.com/#) using the linter provided by Code Institute. All files passed with no errors, and only minimal changes were needed, primarily to reduce line character counts or remove unnecessary blank spaces.
+
+#### JavaScript Liner
+At the end of development I checked all reacts files using the [ESLint](https://eslint.org/play/) tool with all files passing with no errors. This was a good final check to all the javascript files to check there were no overlooked errors.
 
 ### Accessibility and Performance
 
@@ -50,7 +65,7 @@ The results for each pages lighthouse testing can be found below.
 - [Sign In](/docmedia/testing/lighthouse-signin.png)
 - [Sign UP](/docmedia/testing/lighthouse-signup.png)
 - [Project List / Home Page](/docmedia/testing/lighthouse-home.png)
-- [Project Archive]()
+- [Project Archive](/docmedia/testing/lighthouse-archive.png)
 - [Project Details](/docmedia/testing/lighthouse-project.png)
 - [Project Report](/docmedia/testing/lighthouse-report.png)
 - [Create Project](/docmedia/testing/lighthouse-create-project.png)
@@ -77,7 +92,7 @@ The test results for each pages Wave testing can be found below.
 - [Project List / Home Page](/docmedia/testing/wave-project-list.png)
 - [Project Archive](/docmedia/testing/wave-archive.png)
 - [Project Details](/docmedia/testing/wave-project-page.png)
-- [Project Report]()
+- [Project Report](/docmedia/testing/wave-report.png)
 - [Create Project](/docmedia/testing/wave-create-project.png)
 - [Edit Project](/docmedia/testing/wave-project-edit.png)
 - [Task Details](/docmedia/testing/wave-task-page.png)
@@ -91,6 +106,11 @@ The test results for each pages Wave testing can be found below.
 - [Edit Profile](/docmedia/testing/wave-profile-edit.png)
 
 ### User Testing
+For user testing, I asked my family and colleagues to use the app and provide feedback where possible. The main feedback was that the UI is relatively simple, but the functionality is complete and versatile. This was expected, as it aligned with the goal for the Free Flow App MVP.
+
+The only bug found was related to the profile image. A user could not add a custom image to their profile, and the form would not submit if they attempted to do so. This issue was discovered in the final development stages. Although I spent time trying to resolve it, I was unable to find a fix within the available timeframe. Since the profile image was not a critical feature of the app, I decided to remove the button for adding a custom image in the MVP stage, with plans to revisit it post-MVP. As I followed an Agile approach and the MoSCoW method, this feature remains a candidate for future implementation.
+
+When testing the app with my tutor, they pointed out that there was no failsafe error message if the API became non-functional, which resulted in React-generated error messages being displayed. With this in mind, I added a failsafe error message to all pages in case of a catastrophic failure. This ensures that users remain within the app, receive a custom error message, and can still navigate the app.
 
 ### Unit Testing
 When considering unit testing for the project, I had kept it in mind as a stretch goal, but manual testing was the highest priority. This approach allowed me to check the full functionality and flow of the app from the front end. Due to time limitations, I was unable to write extensive unit tests for the project, but I did create a single unit test file for the Django API.
