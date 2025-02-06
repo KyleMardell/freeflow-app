@@ -113,7 +113,7 @@ const NavBar = () => {
             <Container>
                 <NavLink to={currentUser ? "/projects" : "/"}>
                     <Navbar.Brand>
-                        <h1 className={styles.NavBrand}>Free Flow</h1>
+                        <span className={styles.NavBrand}>Free Flow</span>
                     </Navbar.Brand>
                 </NavLink>
 

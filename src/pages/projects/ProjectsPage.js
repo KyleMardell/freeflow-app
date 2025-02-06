@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import { axiosReq } from "../../api/axiosDefaults";
 import ProjectPreview from "../../components/ProjectPreview";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-import { Button, Spinner, Alert } from "react-bootstrap";
+import { Spinner, Alert } from "react-bootstrap";
 
 import buttonStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
@@ -43,10 +43,10 @@ const ProjectsPage = ({ filter = "" }) => {
             <Col className="py-2 px-1 text-center" lg={8}>
                 <h1 className="my-4">My Projects</h1>
                 <Link to="/projects/create">
-                    <Button
+                    <div
                         className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
                         Create New Project
-                    </Button>
+                    </div>
                 </Link>
                 {projects.length ? (
                     projects.map((project) => {

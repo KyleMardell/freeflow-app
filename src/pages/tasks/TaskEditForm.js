@@ -302,7 +302,6 @@ const TaskEditForm = () => {
                         <Form.Label htmlFor="due_date" className="px-2">Due Date</Form.Label>
                         <Form.Control
                             type="date"
-                            placeholder="Select due date"
                             id="due_date"
                             name="due_date"
                             value={due_date}

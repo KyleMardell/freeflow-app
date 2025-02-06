@@ -1,5 +1,5 @@
 .DetailBorder {
-    border: 2px, solid #001E6C;
+    border: 2px solid #001E6C;
 }
 
 .BorderTop {
@@ -9,7 +9,7 @@
 }
 
 .BorderMid {
-    border: 2px, solid #001E6C;
+    border: 2px solid #001E6C;
     border-bottom: 0;
 }
 

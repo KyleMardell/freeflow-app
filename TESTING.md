@@ -80,18 +80,22 @@ The test results for each pages Wave testing can be found below.
 - [Project Report]()
 - [Create Project](/docmedia/testing/wave-create-project.png)
 - [Edit Project](/docmedia/testing/wave-project-edit.png)
-- [Task Details]()
-- [Create Task]()
-- [Edit Task]()
-- [Custom Tasks List]()
-- [Custom Task Details]()
-- [Create Custom Task]()
-- [Edit Custom Task]()
-- [Profile Page]()
-- [Edit Profile]()
+- [Task Details](/docmedia/testing/wave-task-page.png)
+- [Create Task](/docmedia/testing/wave-create-task.png)
+- [Edit Task](/docmedia/testing/wave-task-edit.png)
+- [Custom Tasks List](/docmedia/testing/wave-custom-tasks-list.png)
+- [Custom Task Details](/docmedia/testing/wave-custom-task.png)
+- [Create Custom Task](/docmedia/testing/wave-create-custom-task.png)
+- [Edit Custom Task](/docmedia/testing/wave-custom-task-edit.png)
+- [Profile Page](/docmedia/testing/wave-profile.png)
+- [Edit Profile](/docmedia/testing/wave-profile-edit.png)
 
 ### User Testing
 
 ### Unit Testing
+When considering unit testing for the project, I had kept it in mind as a stretch goal, but manual testing was the highest priority. This approach allowed me to check the full functionality and flow of the app from the front end. Due to time limitations, I was unable to write extensive unit tests for the project, but I did create a single unit test file for the Django API.
+This test file checks that a user can sign up, log into the app, and that a profile is generated upon sign-up. An image of the testing file can be found below, and the file itself can be accessed at [API testing](https://github.com/KyleMardell/freeflow-api/blob/main/profiles/test_views.py)
+
+![Unit tests](/docmedia/testing/unit-test.png)
 
 ### Manual Testing

@@ -141,10 +141,10 @@ const TaskPage = () => {
             </Col>
             <Col className="p-1 d-flex justify-content-around" xs={12} lg={8}>
                 <Link to={`/projects/${pid}/tasks/${tid}/edit`}>
-                    <Button
+                    <div
                         className={`${buttonStyles.Button} ${buttonStyles.ButtonLarge} my-3`}>
                         Edit Task
-                    </Button>
+                    </div>
                 </Link>
                 <Button
                     className={`${buttonStyles.Button} ${buttonStyles.ButtonLarge} my-3`}

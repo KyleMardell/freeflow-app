@@ -216,7 +216,6 @@ const TaskCreateForm = () => {
                         <Form.Label htmlFor="due_date" className="px-2">Due Date</Form.Label>
                         <Form.Control
                             type="date"
-                            placeholder="Select due date"
                             name="due_date"
                             id="due_date"
                             value={due_date}

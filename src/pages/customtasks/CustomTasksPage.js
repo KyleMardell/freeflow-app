@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Button, Row, Col, Spinner, Alert } from "react-bootstrap";
+import { Row, Col, Spinner, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -43,10 +43,10 @@ const CustomTasksPage = ({ filter = "" }) => {
             <Col className="py-2 px-1 text-center" lg={8}>
                 <h1 className="my-4">My Custom Tasks</h1>
                 <Link to="/customtasks/create">
-                    <Button
+                    <div
                         className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
                         Create New Custom Task
-                    </Button>
+                    </div>
                 </Link>
                 {customTasks.length ? (
                     customTasks.map((task) => {

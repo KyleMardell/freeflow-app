@@ -1,4 +1,7 @@
 .Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     align-self: center;
     border-radius: 10px;
     border-color: transparent;
@@ -8,6 +11,9 @@
     min-width: 110px;
     background-color: #001E6C;
     color: #ffffff;
+    font-family: "Ysabeau", sans-serif;
+    font-size: 1rem;
+    text-align: center;
   }
 
   .ButtonYellow {
