@@ -446,6 +446,24 @@ An example of restricting the returned resources to the request users resources 
 
 ![Defensive programming api example](/docmedia/screenshots/defensive-api.png)
 
+### Bugs
+When developing the app as a whole there were not too many times I encountered bugs, with all except one being resolved for the MVP stage. I have detailed each bug I encountered while developing the Free Flow app below.
+
+- API bug
+    The only bug I encountered when developing hte API came from the incorrect use of filters and ordering fields. This was a syntax error and easily resolved.
+
+- User context bug
+    When creating the user context, I had missed using set in the inner user context provider element causing a bug. This took a while to find as it was not an easy to spot mistake.
+
+- Missing tasks page bug
+    Once I had created the task create form I had forgotten to add the form data to the API request and was not sending any data to the post request. This was easy to spot as I added a console log for the response data and realised the form data was missing.
+
+- Custom task form bug
+    There was a bug where the custom tasks form was not submitting correctly due to the API URL being incorrect. I also used parsefloat on the estimated time to make sure the API was being sent a number as expected.
+
+- Custom task edit bug
+    When creating the custom task edit form I had not added the updated data to the form data and also changed my use of useState to simplify the custom task data use. I needed to add the data that the user cannot edit and is updated automatically to the form data as well.
+
 
 ### Future features
 

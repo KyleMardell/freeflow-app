@@ -120,3 +120,135 @@ This test file checks that a user can sign up, log into the app, and that a prof
 ![Unit tests](/docmedia/testing/unit-test.png)
 
 ### Manual Testing
+
+| Feature | Expected Outcome | Test Performed | Result | Pass/Fail |
+| --- | --- | --- | --- | --- |
+| Nav Bar |
+| Menu burger icon (mobile/tablet) | Displays expanded menu | Clicked menu icon | Expanded menu displayed | Pass |
+| Logged Out |
+| Logo text link | When clicked, redirects to the landing page | Clicked logo | Redirected to landing page | Pass |
+| Logo text link: hover (desktop) | Changes curser to pointer | Hovered mouse over logo | Curser changed to pointer | Pass |
+| Home menu link | When clicked, redirects to the landing page | Clicked link | Redirected to landing page | Pass |
+| Home menu link: hover (desktop) | Changes curser to pointer, text bold | Hovered mouse over link | Curser changed to pointer, text bold | Pass |
+| Log In menu link |  When clicked, redirects to the Log In page | Clicked link | Redirected to Log In page | Pass |
+| Log In menu link: hover (desktop) | Changes curser to pointer, text bold | Hovered mouse over link | Curser changed to pointer, text bold | Pass |
+| Sign Up menu link |  When clicked, redirects to the Sign Up page | Clicked link | Redirected to Sign Up page | Pass |
+| Sign Up menu link: hover (desktop) | Changes curser to pointer, text bold | Hovered mouse over link | Curser changed to pointer, text bold | Pass |
+| Logged In |
+| Logo text link | When clicked, redirects to the home / projects page | Clicked logo | Redirected to home / projects page | Pass |
+| Home menu link | When clicked, redirects to the home / projects page | Clicked link | Redirected to home / projects page | Pass |
+| Profile menu link | When clicked, redirects to the profile page | Clicked link | Redirected to profile page | Pass |
+| Profile menu link: hover (desktop) | Changes curser to pointer, text bold | Hovered mouse over link | Curser changed to pointer, text bold | Pass |
+| Custom Tasks menu link | When clicked, redirects to the Custom tasks page | Clicked link | Redirected to Custom tasks page | Pass |
+| Custom Tasks menu link: hover (desktop) | Changes curser to pointer, text bold | Hovered mouse over link | Curser changed to pointer, text bold | Pass |
+| Project Archive menu link | When clicked, redirects to the Project archive page | Clicked link | Redirected to Project archive page | Pass |
+| Project Archive menu link: hover (desktop) | Changes curser to pointer, text bold | Hovered mouse over link | Curser changed to pointer, text bold | Pass |
+| Sign Out menu link |  When clicked, displays sign out confirmation modal | Clicked sign out | Sign Out confirmation modal displayed | Pass |
+| Sign Out menu link: hover (desktop) | Changes curser to pointer, text bold | Hovered mouse over link | Curser changed to pointer, text bold | Pass |
+| Sign Out modal: sign out |  When clicked, signs out the user and redirects to the landing page | Clicked sign out | User signed out and redirected to the landing page | Pass |
+| Sign Out modal: cancel |  When clicked cancels the signing out | Clicked cancel | User signed out cancelled | Pass |
+| Landing Page |
+| Sign Up Now button 1 | When clicked redirects to the sign up page | Clicked button | Redirected to the sign up page | Pass |
+| Sign Up Now button 2 | When clicked redirects to the sign up page | Clicked button | Redirected to the sign up page | Pass |
+| Home / Projects list page |
+| Projects list: New user | "No projects" message displayed | Navigate to home page as a newly signed up and in user | "No projects" message displayed | Pass |
+| Projects list: Existing user with projects | List of projects displayed | Navigate to home page an existing user | Displayed list of projects | Pass |
+| Create New Project button | Redirected to create project form | Clicked button | Create project form displayed | Pass |
+| Create New Project button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Project Preview / Details Page Link | Redirected to project details page | Clicked link | Clicked projects details page displayed | Pass |
+| Project Preview / Details Page Link: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Project Details Page |
+| New project: no tasks message | When a new project is created a "no tasks" message is displayed before any tasks are added | Navigated to new project page | "No tasks" message displayed | Pass |
+| Add task button | Redirected to create task form | Clicked button | Create task form displayed | Pass |
+| Add task button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Edit project button | Redirected to edit project form | Clicked button | Edit project form displayed | Pass |
+| Edit project button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Delete project button | Delete project confirmation modal displayed | Clicked button | Delete project modal displayed | Pass |
+| Delete project button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Delete project modal: delete | When clicked deletes the project | Clicked cancel | Project deleted | Pass |
+| Delete project modal: cancel | When clicked cancels deleting the project | Clicked cancel | Delete cancelled | Pass |
+| Generate report button | Redirected to project report page | Clicked button | Project report displayed | Pass |
+| Generate report button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Return to projects button | Redirects to projects list | Clicked link | Redirected to projects list page | Pass |
+| Return to projects button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Task Preview / Details Page Link | Redirected to task details page | Clicked link | Clicked tasks details page displayed | Pass |
+| Task Preview / Details Page Link: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Task Details Page |
+| Edit task button | Redirected to edit task form | Clicked button | Edit task form displayed | Pass |
+| Edit task button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Delete task button | Delete task confirmation modal displayed | Clicked button | Delete task modal displayed | Pass |
+| Delete task button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Delete task modal: delete | When clicked deletes the task | Clicked cancel | task deleted | Pass |
+| Delete task modal: cancel | When clicked cancels deleting the task | Clicked cancel | Delete cancelled | Pass |
+| Return to project button | Redirects to project details page | Clicked link | Redirected to project details page | Pass |
+| Return to project button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Custom Tasks Page |
+| Custom tasks list: New user | "No Custom tasks" message displayed | Navigate to custom tasks as a newly signed up and in user | "No Custom tasks" message displayed | Pass |
+| Custom tasks list: Existing user with Custom tasks | List of Custom tasks displayed | Navigate to custom tasks page as an existing user | Displayed list of Custom tasks | Pass |
+| Create custom task button | Redirected to create custom task form | Clicked button | Create custom task form displayed | Pass |
+| Create custom task button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Custom task Preview / Details Page Link | Redirected to custom task details page | Clicked link | Clicked custom tasks details page displayed | Pass |
+| Custom task Preview / Details Page Link: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Project Archive Page |
+| Projects archive list: No completed projects | "No projects" message displayed | Navigate to project archive as a newly signed up and in user | "No projects" message displayed | Pass |
+| Projects archive list: With completed projects projects | List of projects displayed | Navigate to project archive an existing user | Displayed list of completed projects | Pass |
+| Project Preview / Details Page Link | Redirected to project details page | Clicked link | Clicked projects details page displayed | Pass |
+| Project Preview / Details Page Link: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed | Pass |
+| Project Report Page |
+| Project Report | Time and cost data calculated and displayed | Navigated to a project report | Report of project and task costs and times displayed | Pass |
+| Cancel button | Redirects to the project page | Clicked link | Redirected to the project page | Pass |
+| Cancel button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Forms |
+| Create Project Form |
+| Create project form: missing title | Error displayed | Submitted form with missing title | Error displayed | Pass |
+| Create project form: title only | Project created | Submitted form with title only | Project created | Pass |
+| Create project form: title and brief only | Project created | Submitted form with title and brief only | Project created | Pass |
+| Create project form: title, brief and hourly rate only | Project created | Submitted form with title, brief and hourly rate only | Project created | Pass |
+| Create project form: all fields filled | Project created | Submitted form with all fields | Project created | Pass |
+| Cancel button | Redirects to the projects list | Clicked link | Redirected to the projects list page | Pass |
+| Edit Project Form |
+| Edit project form | Project data fields populated | Navigated to a projects edit form | Existing data in relevant fields | Pass |
+| Edit project form: missing title | Error displayed | Submitted form with missing title | Error displayed | Pass |
+| Edit project form: missing date | Error displayed | Submitted form with missing date | Error displayed | Pass |
+| Edit project form: title and date only | Project Edited | Submitted form with title and date only | Project Edited | Pass |
+| Edit project form: title, date and brief only | Project Edited | Submitted form with title, date and brief only | Project Edited | Pass |
+| Edit project form: all fields filled | Project Edited | Submitted form with all fields | Project Edited | Pass |
+| Cancel button | Redirects to the project page | Clicked link | Redirected to the project page | Pass |
+| Create Task Form |
+| Create task form: missing title | Error displayed | Submitted form with missing title | Error displayed | Pass |
+| Create task form: title only | task created | Submitted form with title only | Task created | Pass |
+| Create task form: title and description only | task created | Submitted form with title and description only | Task created | Pass |
+| Create task form: title, description and estimated time only | task created | Submitted form with title, description and estimated time only | Task created | Pass |
+| Create task form: all fields filled | task created | Submitted form with all fields filled | Task created | Pass |
+| Create task form: custom tasks select | No custom tasks message displayed | Clicked select box with no custom tasks created | No custom tasks message displayed | Pass |
+| Create task form: custom tasks select | Custom task info entered into relevant fields | Selected a custom task | Task input fields populated with custom task data | Pass |
+| Submit button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Cancel button | Redirects to the project page | Clicked link | Redirected to the project page | Pass |
+| Cancel button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Edit task form |
+| Edit task form: missing title | Error displayed | Submitted form with missing title | Error displayed | Pass |
+| Edit task form: missing date | Error displayed | Submitted form with missing date | Error displayed | Pass |
+| Edit task form: title and date only | task edited | Submitted form with title and date only | Task edited | Pass |
+| Edit task form: title, description and date only | task edited | Submitted form with title, description and date only | Task edited | Pass |
+| Edit task form: title, description, estimated time and date only | task edited | Submitted form with title, description, estimated time and date only | Task edited | Pass |
+| Edit task form: all fields filled | task edited | Submitted form with all fields filled | Task edited | Pass |
+| Edit task form: custom task completed | Custom task data updated | Submitted form with status as complete and an entered actual time | Custom task data updated | Pass |
+| Submit button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Cancel button | Redirects to the task page | Clicked link | Redirected to the task page | Pass |
+| Cancel button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Create custom task form |
+| Create custom task form: missing title | Error displayed | Submitted form with missing title | Error displayed | Pass |
+| Create custom task form: title only | Custom task created | Submitted form with title only | Custom task created | Pass |
+| Create custom task form: title and description only | Custom task created | Submitted form with title and description only | Custom task created | Pass |
+| Create custom task form: all fields filled | Custom task created | Submitted form with all fields filled | Custom task created | Pass |
+| Submit button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Cancel button | Redirects to the custom tasks list page | Clicked link | Redirected to the custom tasks page | Pass |
+| Cancel button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Edit Custom Task Form |
+| Edit custom task form: missing title | Error displayed | Submitted form with missing title | Error displayed | Pass |
+| Edit custom task form: title only | Custom task edited | Submitted form with title only | Custom task edited | Pass |
+| Edit custom task form: title and description only | Custom task edited | Submitted form with title and description only | Custom task edited | Pass |
+| Edit custom task form: all fields filled | Custom task created | Submitted form with all fields filled | Custom task edited | Pass |
+| Submit button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| Cancel button | Redirects to the custom tasks list page | Clicked link | Redirected to the custom tasks page | Pass |
+| Cancel button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |

@@ -75,7 +75,7 @@ const TaskEditForm = () => {
                 setErrors((prevErrors) => ({
                     ...prevErrors,
                     customError:
-                        "An error occurred. Please try again or navigate to another page.",
+                        "An error occurred.",
                 }));
             }
 
@@ -94,7 +94,7 @@ const TaskEditForm = () => {
                 setErrors((prevErrors) => ({
                     ...prevErrors,
                     customError:
-                        "An error occurred when retrieving custom tasks. Please try again.",
+                        "An error occurred when retrieving custom tasks.",
                 }));
             }
         };

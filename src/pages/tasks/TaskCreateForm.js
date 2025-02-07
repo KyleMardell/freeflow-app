@@ -104,7 +104,7 @@ const TaskCreateForm = () => {
             }
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                customError: "An error occurred. Please try again.",
+                customError: "An error occurred.",
             }));
         }
     };
