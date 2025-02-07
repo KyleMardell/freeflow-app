@@ -271,5 +271,5 @@ No bugs were found in the final version of the app during testing. All API endpo
 | Delete custom task | Custom task deleted | Used delete custom task API end point | Custom task removed from custom tasks list | Pass |
 | Custom task Details | Created custom task details end point | Entered created custom task API end point | Custom task data displayed in custom task detail end point | Pass |
 | User profile image testing - feature removed from MVP due to bug |
-| User image API end point | Image Updated | Added a custom image to the django rest api form | Image updated | Pass |
+| User image API end point | Image Updated | Added a custom image to the django rest api form | Image not updated  | Fail |
 | User image form field: Front end profile edit form | Image updated | Added image to image file form field | Form not submitted | Fail |
