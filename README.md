@@ -184,7 +184,7 @@ Below I have listed the user stories and the relevant features that satisfy each
 
 - Project Report - As a user, I want to see a project report or summary so that I can evaluate the final project costs vs predicted costs, as well as efficiency and give the client a final cost report or invoice
     - Satisfied by the report page
-    - [Report]()
+    - [Report](#project-report-page)
 
 - Projects Ordered By - As a user, I want to reorder my projects list so that I can prioritise projects based on urgency or importance
     - Not satisfied due to time limitations
@@ -269,6 +269,9 @@ With the use of labels, issues were clearly categorized, helping to distinguish 
 ### Existing features
 
 #### Favicon
+For the favicon I used a free online favicon generator from [Favicon.io](https://favicon.io/favicon-generator/) using the colour scheme and typography of the app and simply the letter "FF" to represent Free Flow.
+
+![Favicon](/public/favicon/favicon-32x32.png)
 
 #### Nav bar
 I opted for a simple, responsive, collapsible nav bar for the Free Flow app, as it provides an intuitive and recognisable way to navigate the site. There are different options for logged-in and logged-out users. Visiting users can only access the home page and the sign-in or sign-up pages, while logged-in users have access to all the app’s features.
@@ -339,6 +342,14 @@ Each project's detail page can be accessed by clicking the project preview in th
 - [Project page with tasks tablet](/docmedia/screenshots/project-page-populated-tab.png)
 - [Project page empty desktop](/docmedia/screenshots/project-page-desk.png)
 - [Project page with tasks desktop](/docmedia/screenshots/project-page-populated-desk.png)
+
+#### Project report page
+The Free Flow app includes a feature for generating a project report for any project. This can be done simply by clicking a button on the project’s details page. The project report provides a summary of the project details, as well as time and cost data. This includes the total estimated and actual times and costs for the entire project, along with a breakdown of the same information per task. Since a project report can be generated at any time, it allows users to create estimates by entering only the estimated time for tasks, or invoices by entering the actual time taken for tasks. Costs are calculated based on the task time data and the project’s set hourly rate.
+
+![Project report mobile](/docmedia/screenshots/report-mob.png)
+
+- [Project report tablet](/docmedia/screenshots/report-tab.png)
+- [Project report desktop](/docmedia/screenshots/report-desk.png)
 
 #### Create task form
 The create task form is accessed from within the project page by clicking the "Create Task" button. It contains input fields that accommodate a wide range of tasks, making it adaptable to any project. The user can set a title, description, due date, status, and estimated time, with the actual time field omitted, as this should only be updated upon task completion. These fields allow users to add details about each task, track the time taken versus the estimated time for better future estimation, and facilitate billing purposes when generating project reports. Additionally, users can import a custom task template, which automatically populates the title, description, and estimated time. When using a custom task template, the task is also linked to the custom task for time analysis and updating. When a task form has been successfully submitted, the user is redirected to the newly created task's details page, allowing the user to view the new task information and letting them know the task has been added to the project. If a form is submitted unsuccessfully, the user is shown an error alert below the appropriate input field.
@@ -415,10 +426,10 @@ The profile displays a default user image and fields for a name, bio, email addr
 Since users cannot create or delete their profiles, only an edit profile form is required. This form allows users to update their profile information without being tied to their account details, giving them the flexibility to use either personal or business information.
 The form includes fields for name, bio, email, and phone number. I initially planned to add the ability to upload a custom user image, but I encountered a bug with this feature later in development. Since it is not a critical feature of the app, I decided to remove it from the profile edit form for now. I plan to fix this post-MVP as a later implementation, as I believe it would enhance the report page if exported as an invoice.
 
-![Profile edit form mobile]()
+![Profile edit form mobile](/docmedia/screenshots/edit-profile-mob.png)
 
-- [Profile edit form tablet]()
-- [Profile edit form desktop]()
+- [Profile edit form tablet](/docmedia/screenshots/edit-profile-tab.png)
+- [Profile edit form desktop](/docmedia/screenshots/edit-project-desk.png)
 
 #### 404 page
 If the user enters an incorrect URL in the browser, they are shown a 404 page that follows the site's design and simply displays a "404 Page Not Found" message. The navigation links and dropdown menu remain fully functional, allowing the user to easily navigate to another page.
