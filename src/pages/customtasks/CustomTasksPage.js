@@ -42,9 +42,17 @@ const CustomTasksPage = ({ filter = "" }) => {
         <Row className="h-100 d-flex justify-content-center">
             <Col className="py-2 px-1 text-center" lg={8}>
                 <h1 className="my-4">My Custom Tasks</h1>
+                <p className="mb-5 px-2">
+                    Custom tasks are used to track the usage of a task across
+                    multiple projects and analyze its actual time taken. When
+                    completing a custom task in a project, ensure that the
+                    correct "Actual time" is entered, as this data is used to
+                    update the custom task's time statistics, including the
+                    average, longest, and quickest times taken.
+                </p>
                 <Link to="/customtasks/create">
                     <div
-                        className={`${buttonStyles.Button} ${buttonStyles.Wide} my-3`}>
+                        className={`${buttonStyles.Button} ${buttonStyles.Wide} my-5`}>
                         Create New Custom Task
                     </div>
                 </Link>

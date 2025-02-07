@@ -12,8 +12,11 @@ import createProjectTip from "../../assets/create-project-tip.webp";
 import createTaskTip from "../../assets/create-task-tip.webp";
 import customTaskFirstTip from "../../assets/custom-task-tip.webp";
 import customTaskUpdatedTip from "../../assets/custom-task-updated-tip.webp";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const LandingPage = () => {
+    const history = useHistory();
+
     return (
         <Row className="h-100 d-flex justify-content-center">
             <Col className="p-2 my-5 text-center" xs={12} lg={8}>
@@ -34,10 +37,11 @@ const LandingPage = () => {
                     </Carousel.Item>
                 </Carousel>
             </Col>
-            <Col className="p-2 mt-1 text-center" xs={12} lg={8}>
+            <Col className="p-2 mt-1 d-flex align-items-center justify-content-center" xs={12} lg={8}>
                 <Button
+                    onClick={() => history.push("/signup")}
                     className={`${buttonStyles.Button} ${buttonStyles.ButtonLarge}`}>
-                    Join Now
+                    Sign Up Now
                 </Button>
             </Col>
             <Col className="p-2 my-5" xs={12} lg={8}>
@@ -72,10 +76,11 @@ const LandingPage = () => {
                     detailed reports and smart task tracking.
                 </p>
             </Col>
-            <Col className="p-2 my-1 text-center" xs={12} lg={8}>
+            <Col className="p-2 mt-1 d-flex align-items-center justify-content-center" xs={12} lg={8}>
                 <Button
+                    onClick={() => history.push("/signup")}
                     className={`${buttonStyles.Button} ${buttonStyles.ButtonLarge}`}>
-                    Sign Up
+                    Sign Up Now
                 </Button>
             </Col>
             <Col className="p-2 mt-5 mb-3 text-center" xs={12} lg={8}>
