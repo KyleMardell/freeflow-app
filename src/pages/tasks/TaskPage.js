@@ -49,7 +49,7 @@ const TaskPage = () => {
                 }
                 setErrors((prevErrors) => ({
                     ...prevErrors,
-                    customError: "An error occurred. Please try again or navigate to another page."
+                    customError: "An error occurred."
                 }));
             }
         };
@@ -66,7 +66,7 @@ const TaskPage = () => {
                 setErrors(err.response?.data);
                 setErrors((prevErrors) => ({
                     ...prevErrors,
-                    customError: "An error occurred. Please try again."
+                    customError: "An error occurred."
                 }));
             }
         }

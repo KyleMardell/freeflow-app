@@ -28,7 +28,7 @@ const ProjectsArchivePage = ({ filter = "" }) => {
                 setErrors((prevErrors) => ({
                     ...prevErrors,
                     customError:
-                        "An error occurred. Please try again or navigate to another page.",
+                        "An error occurred.",
                 }));
             }
         };
