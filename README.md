@@ -394,14 +394,18 @@ The task details page displays the user-entered task data, as well as the create
 - [Task page desktop](/docmedia/screenshots/task-page-desk.png)
 
 #### Custom tasks page
-The custom tasks page allows the user to view a list of all their custom tasks and create new ones. Similar to the project and task previews, the custom task preview displays basic task information in the list. Each preview can be clicked to navigate to the custom task details page. This consistent use of custom task previews creates a familiar experience across the app, allowing users to quickly and easily view their custom tasks.
+The Custom Tasks page allows users to view a list of all their custom tasks and create new ones. Similar to the project and task previews, each custom task preview displays basic task information in the list. Clicking on a preview navigates the user to the Custom Task Details page.
 
-![Custom tasks list empty mobile](/docmedia/screenshots/custom-tasks-list-empty-mob.png) ![Custom tasks list populated mobile]()
+This consistent use of previews creates a familiar experience across the app, enabling users to quickly and easily access their custom tasks. The Custom Tasks page is also the only page with an instructional section explaining how custom tasks work. While I aimed to keep explanations minimal to ensure an intuitive and self-explanatory experience, I included this instruction to provide extra clarity.
+
+Later in development, I added a search bar to the Custom Tasks page. This feature allows users to search for text within custom task titles, making it easier to locate specific tasks in a large list. In the future, I plan to expand this functionality to the Projects and Tasks pages, but I first wanted to test its implementation with custom tasks before applying it more broadly.
+
+![Custom tasks list empty mobile](/docmedia/screenshots/custom-tasks-list-empty-mob.png) ![Custom tasks list populated mobile](/docmedia/screenshots/custom-tasks-list-populated-mob.png)
 
 - [Custom tasks list empty tablet](/docmedia/screenshots/custom-tasks-list-empty-tab.png)
-- [Custom tasks list populated tabler]()
+- [Custom tasks list populated tablet](/docmedia/screenshots/custom-tasks-list-populated-tab.png)
 - [Custom tasks list empty desktop](/docmedia/screenshots/custom-tasks-list-empty-desk.png)
-- [Custom tasks list populated desktop]()
+- [Custom tasks list populated desktop](/docmedia/screenshots/custom-tasks-list-populated-desk.png)
 
 #### Create custom task form
 To create a custom task, only three fields are required: a title, description, and estimated time. These are the only template-based fields necessary for reusable tasks, as the due date and actual times are project- and task-specific. The main function of custom tasks relies on the actual time data from completed tasks, which is why the time statistic fields cannot be manually updated by the user. This streamlined approach allows users to quickly and easily add new custom tasks with no unnecessary or overcomplicated information required, promoting greater versatility and a wider range of use cases. When a new custom task is created, the user is redirected to the custom task's details page. This confirms that the new custom task has been added to the custom tasks list and that the data is correct. If any required data is missing or incorrect, the user is shown an error alert below the appropriate input field.

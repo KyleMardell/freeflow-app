@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Row, Col, Spinner, Alert } from "react-bootstrap";
+import { Row, Col, Spinner, Alert, Form } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -15,11 +15,12 @@ const CustomTasksPage = ({ filter = "" }) => {
     const [customTasks, setCustomTasks] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const [errors, setErrors] = useState({});
+    const [query, setQuery] = useState("");
 
     useEffect(() => {
         const fetchCustomTasks = async () => {
             try {
-                const { data } = await axiosReq.get("/custom_tasks");
+                const { data } = await axiosReq.get(`/custom_tasks/?${filter}search=${query}`);
                 setCustomTasks(data);
                 setIsLoaded(true);
             } catch (err) {
@@ -36,7 +37,7 @@ const CustomTasksPage = ({ filter = "" }) => {
         };
         setIsLoaded(false);
         fetchCustomTasks();
-    }, [filter]);
+    }, [filter, query]);
 
     return isLoaded ? (
         <Row className="h-100 d-flex justify-content-center">
@@ -56,6 +57,16 @@ const CustomTasksPage = ({ filter = "" }) => {
                         Create New Custom Task
                     </div>
                 </Link>
+
+                <Form className="mb-4" onSubmit={(event) => event.preventDefault()}>
+                    <Form.Control
+                        type="text"
+                        placeholder="Search custom tasks..."
+                        value={query}
+                        onChange={(event) => setQuery(event.target.value)}
+                    />
+                </Form>
+
                 {customTasks.length ? (
                     customTasks.map((task) => {
                         return <CustomTaskPreview key={task.id} {...task} />;
