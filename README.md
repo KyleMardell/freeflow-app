@@ -24,6 +24,19 @@ Throughout my journey to becoming a web developer, I have found front-end develo
 Front-end specialists play a key role in development teams—or even as solo developers—by understanding what features will be effective and well-received by users. They are skilled in implementing a wide variety of functionalities using front-end development tools while ensuring that the interface remains both visually appealing and user-friendly. Additionally, front-end developers must be mindful of data security, particularly when handling sensitive user information and interacting with APIs. This requires careful consideration of what data is necessary, where it is stored, and how it is transmitted throughout the application.
 Overall, front-end developers are integral to any development team, as they create engaging and efficient user experiences that enhance an application’s overall success.
 
+### React
+When developing the front end of the app, I found React to be an incredibly versatile and feature-rich tool with a relatively gradual learning curve. The ability to create reusable components in React was key to the successful development of the app. Implementing many of the same features in vanilla JavaScript within the given time frame would have been nearly impossible.
+
+The reusable components I created included list previews for projects, tasks, and custom tasks, as well as dedicated pages for each. By designing reusable components for pages, I was able to build a single, feature-rich component, such as the Profile Detail component.
+
+This component not only displays project details but also includes buttons for editing and deleting the project, as well as generating a project report. Additionally, it lists all tasks associated with the project. Thanks to React’s component-based structure, this functionality can be seamlessly replicated for any project, ensuring that all buttons and features dynamically update to reflect the relevant project with ease.
+
+I utilized React’s components and hooks, such as useState, useEffect, and useHistory, to create a seamless user experience in the Free Flow app. These hooks allowed me to build self-contained components with extensive functionality while keeping much of the processing hidden from the user.
+
+React’s integration with Bootstrap made it easy to create responsive layouts that followed my designs while maintaining a consistent user experience across different screen sizes. Additionally, the ability to trigger API calls when a component mounts and dynamically update the state were two of the most frequently used React features in my components, playing a crucial role throughout the app.
+
+Overall, I found React to be an invaluable tool in the development of the Free Flow app. I feel that I have only scratched the surface of its capabilities and look forward to exploring it further in future projects.
+
 ## User Experience
 
 ### First time visitor goals
@@ -447,6 +460,7 @@ If the user enters an incorrect URL in the browser, they are shown a 404 page th
 ### Defensive programming
 When considering defensive programming, I focused on establishing a strong foundation in the backend code early on, while also implementing frontend measures. Defensive programming is essential for both data security and user experience.
 To ensure a secure foundation, I implemented checks in the API code for user requests. Since the app is designed for a single user rather than a social platform, each user should only be able to access the data they have created. With this in mind, all API views are restricted to return only data created by the requesting user, preventing unauthorized access to other users’ data. This approach was applied across all API views to ensure data security throughout the entire application.
+I also implemented defensive programming measure using react hooks to check if a user is logged in or not and then preventing them from viewing pages they should not be able to access. I added these checks to all pages and found this to be an extremely valuable tool created by a simple react hook. 
 An example of restricting the returned resources to the request users resources is shown below.
 
 ![Defensive programming api example](/docmedia/screenshots/defensive-api.png)

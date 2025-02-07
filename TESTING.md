@@ -120,6 +120,9 @@ This test file checks that a user can sign up, log into the app, and that a prof
 ![Unit tests](/docmedia/testing/unit-test.png)
 
 ### Manual Testing
+Below, I have provided a detailed table outlining all the manual testing conducted for the app. This includes both front-end and back-end testing to ensure that all pages, buttons, and links are displayed correctly, as well as verifying that all API endpoints function as expected.
+I conducted thorough testing on all forms across the app, as forms are often where the most common issues and bugs arise. Back-end testing was performed both before and after front-end development to ensure a seamless integration between the two.
+No bugs were found in the final version of the app during testing. All API endpoints functioned as expected, with the exception of the user image upload feature, which is detailed at the bottom of the manual testing file. This feature was removed from the final version due to time constraints but will be considered for future implementation.
 
 | Feature | Expected Outcome | Test Performed | Result | Pass/Fail |
 | --- | --- | --- | --- | --- |
@@ -252,3 +255,21 @@ This test file checks that a user can sign up, log into the app, and that a prof
 | Submit button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
 | Cancel button | Redirects to the custom tasks list page | Clicked link | Redirected to the custom tasks page | Pass |
 | Cancel button: hover (desktop) | Changes curser to pointer, colour changes | Hovered mouse over link | Curser changed to pointer, colour changed |
+| API Testing |
+| Profile created | Profile created on sign up | Sign up as a new user | Profile end point shown new user profile | Pass |
+| Edit profile | profile edited | Entered edited profile data | profile data edited in profile detail API end point | Pass |
+| New project | Created project displayed in projects list end point | Created a new project | Project displayed in project list end point | Pass |
+| Edit project | Project edited | Entered edited project data | Project data edited in project detail API end point | Pass |
+| Delete project | Project deleted | Used delete project API end point | Project removed from projects list | Pass |
+| Project Details | Created project details end point | Entered created projects API end point | Project data displayed in project detail end point | Pass |
+| New task | Created task displayed in projects tasks list end point | Created a new task | Task displayed in project tasks list end point | Pass |
+| Edit task | Task edited | Entered edited task data | Task data edited in task detail API end point | Pass |
+| Delete task | Task deleted | Used delete task API end point | Task removed from tasks list | Pass |
+| Task Details | Created task details end point | Entered created task API end point | Task data displayed in task detail end point | Pass |
+| New custom task | Created custom task displayed in custom tasks list end point | Created a new custom task | Custom task displayed in custom tasks list end point | Pass |
+| Edit custom task | Custom task edited | Entered edited custom task data | Custom task data edited in custom task detail API end point | Pass |
+| Delete custom task | Custom task deleted | Used delete custom task API end point | Custom task removed from custom tasks list | Pass |
+| Custom task Details | Created custom task details end point | Entered created custom task API end point | Custom task data displayed in custom task detail end point | Pass |
+| User profile image testing - feature removed from MVP due to bug |
+| User image API end point | Image Updated | Added a custom image to the django rest api form | Image updated | Pass |
+| User image form field: Front end profile edit form | Image updated | Added image to image file form field | Form not submitted | Fail |
