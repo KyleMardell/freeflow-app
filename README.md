@@ -19,6 +19,11 @@ Ultimately, Free Flow allows users to track multiple projects by breaking each o
 
 Contents Here
 
+## Front End Specialisation
+Throughout my journey to becoming a web developer, I have found front-end development to be an essential skill in any developer’s toolkit. The ability to create seamless and intuitive user experiences is crucial when designing and building modern web applications, as users often value familiarity, aesthetics, and functionality in equal measure.
+Front-end specialists play a key role in development teams—or even as solo developers—by understanding what features will be effective and well-received by users. They are skilled in implementing a wide variety of functionalities using front-end development tools while ensuring that the interface remains both visually appealing and user-friendly. Additionally, front-end developers must be mindful of data security, particularly when handling sensitive user information and interacting with APIs. This requires careful consideration of what data is necessary, where it is stored, and how it is transmitted throughout the application.
+Overall, front-end developers are integral to any development team, as they create engaging and efficient user experiences that enhance an application’s overall success.
+
 ## User Experience
 
 ### First time visitor goals
